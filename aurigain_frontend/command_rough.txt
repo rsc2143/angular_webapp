@@ -1,0 +1,48 @@
+ng new 
+ng g m modules/home
+ng g c modules/home 
+
+ng g c modules/home/components/home-page
+
+Add following to const routes: Routes = [ {path: '', component: HomePageComponent},] 
+in file src/app/app-routing.module.ts
+
+
+Steps followed to create this project:
+3rd Jan 2022
+    - ng new aurigain_frontend 
+        i. created our project of aurigain_frontend inside the following directory:
+        /Users/rohit/Downloads/Study/AuriGainTech/Code/aurigain_frontend
+    - ng generate module modules/home/
+    OR 
+      ng g m modules/home
+        i. we created the home module inside the src/app/modules directory 
+
+    - Add following to file src/app/app-routing.module.ts
+    
+    const routes: Routes = [
+  {
+    path: '', 
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  },
+];
+ 
+    - ng generate component modules/home/components/home-page 
+    OR 
+      ng g c modules/home/components/home-page
+        i. we created the home-page component inside the src/app/modules/home/components directory
+
+    - Add following to file src/app/modules/home/home.component.ts
+    
+const routes: Routes = [
+  {
+    path: '', component: HomeComponent,
+    children: [
+      {
+        path: '', component: HomePageComponent 
+      },
+    ]
+  }
+]
+
+Learn about two way binding 

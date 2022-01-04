@@ -1,0 +1,20 @@
+-src
+-app
+ -config
+   -constrants.service.ts
+
+ -core
+   -auth
+   -guards
+   -http
+   -services
+
+ -modules
+   -super-admin
+   -dashboard
+   -home
+     -home-page
+     -nav-bar
+     -footer
+     -about-us
+     -login
