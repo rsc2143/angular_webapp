@@ -1,24 +1,18 @@
-
-    .container-fluid{
-        background-color: #15549a;
-      }
-      
-      .container-fluid a{
-        color: #83bcfa;
-        /* font-weight: bold; */
-        text-decoration: none; 
-        font-size: small; 
-      }
-      
-      .container-fluid a:hover{
-        color: white;
-        /* font-weight: bold; */
-        text-decoration: none;  
-      }
-      
-      /* Responsive layout - makes a one column-layout instead of a two-column layout */
-      @media (max-width: 767px) {
-        .container-fluid{    
-          text-align: right;
-        }
-      }
+.topNavbarDiv{
+   /* top nav */
+  .container-fluid{
+  background-color: #15549a;
+  }
+  .font-size a{
+    color: #83bcfa;
+    text-decoration: none; 
+    font-size: small; 
+  }
+  
+  .font-size a:hover{
+    color: white;
+    text-decoration: none;  
+  }
+  /* top nav end */
+  
+}
