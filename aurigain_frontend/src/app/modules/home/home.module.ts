@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { TopNavbarBottomComponent } from './components/top-navbar-bottom/top-navbar-bottom.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { PartnerUsComponent } from './components/partner-us/partner-us.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BlogComponent } from './components/blog/blog.component';
-import { FormsModule} from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+import { LoginUserComponent } from './components/login-user/login-user.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { AppBootStrapModule } from 'src/app/shared/modules/bootstrap/bootstrap-module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -20,7 +23,10 @@ const routes: Routes = [
         path: '', component: HomePageComponent 
       },
       {
-        path: 'login', component: LoginComponent 
+        path: 'login', component: LoginUserComponent 
+      },
+      {
+        path: 'forgot-password', component: ForgotPasswordComponent 
       },
       {
         path: 'blog', component: BlogComponent 
@@ -53,8 +59,9 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     HomePageComponent,
-    LoginComponent,
     TopNavbarComponent,
+    LoginUserComponent,
+    ForgotPasswordComponent,
     TopNavbarBottomComponent,
     ContactUsComponent,
     PartnerUsComponent,
@@ -65,8 +72,14 @@ const routes: Routes = [
   
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    AppBootStrapModule,
+    NgbModule,
     RouterModule.forChild(routes),
     
+  ],
+  exports: [
+    RouterModule,
   ]
 })
 export class HomeModule { }
