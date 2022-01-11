@@ -2,6 +2,7 @@
     .mt30{
         background-color: white;
         margin-top: 50px;
+        margin-bottom: 30px;
       color: #778191;
      
        
@@ -40,5 +41,16 @@ background-color: #2573cb!important;
      
      .link-color a:hover{
        color: #15549a!important;
+       text-decoration: none;
      }
+
+.btn-link{
+  color: #f51f8a;
+  text-decoration: none;
+}
+
+.btn-link:hover{
+  color: #15549a!important;
+  text-decoration: none;
+}
 }
