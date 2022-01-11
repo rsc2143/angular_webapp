@@ -1,12 +1,21 @@
 /* footer */
-footer .container-fluid{
+.footer-font{
+   .container-fluid{
     background-color: black;
     /* height: 80px; */
   }
-  footer .container-fluid a{
+  p{
+    color: #778191;
+    font-size: 14px;
+  }
+   a{
     color: #f51f8a;
+    text-decoration: none;
+    padding-left: 5px;
   }
   
-  footer .container-fluid a:hover{
+   a:hover{
     color: white;
+    text-decoration: none;
   }
+}
