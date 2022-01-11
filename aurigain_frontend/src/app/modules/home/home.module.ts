@@ -15,6 +15,7 @@ import { LoginUserComponent } from './components/login-user/login-user.component
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AppBootStrapModule } from 'src/app/shared/modules/bootstrap/bootstrap-module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FaqComponent } from './components/faq/faq.component';
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -33,6 +34,9 @@ const routes: Routes = [
       },
       {
         path: 'partner-us', component: PartnerUsComponent 
+      },
+      {
+        path: 'faq', component: FaqComponent 
       },
       {
         path: 'contact-us', component: ContactUsComponent 
@@ -66,7 +70,8 @@ const routes: Routes = [
     ContactUsComponent,
     PartnerUsComponent,
     FooterComponent,
-    BlogComponent
+    BlogComponent,
+    FaqComponent
   ],
   imports: [
   
