@@ -15,6 +15,7 @@ import { LoginUserComponent } from './components/login-user/login-user.component
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AppBootStrapModule } from 'src/app/shared/modules/bootstrap/bootstrap-module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/core/authentication/auth.service';
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -75,9 +76,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     AppBootStrapModule,
     NgbModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
     
   ],
+  providers: [AuthService],
   exports: [
     RouterModule,
   ]

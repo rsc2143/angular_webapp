@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
 import { ConstantsService } from 'src/app/config/constants.service';
+import { ConditionalExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-login-user',
@@ -18,7 +19,7 @@ export class LoginUserComponent implements OnInit {
     private router: Router, 
     private conts: ConstantsService,
     private authservice: AuthService,
-    private loginService: LoginService,
+    private loginservice: LoginService
     
     ) { }
     
@@ -73,7 +74,17 @@ export class LoginUserComponent implements OnInit {
       .subscribe(
         user => {
           console.log(user, "student add")
+          localStorage.setItem('token', user['token']);
+          this.switchToLoginForm();
         },
+        error => {
+          console.log("Error section")
+          this.errors = error['message']['error']['message'];
+          console.log(this.errors);
+          if (this.errors == 'Duplicate Field Value Entered'){
+            this.errors = 'Phonenumber already exist'
+          }
+        }
       );
   }
   login(){
@@ -93,31 +104,29 @@ export class LoginUserComponent implements OnInit {
     }
     if(username && password){
       const userObj ={
-        username: username,
+        email: username,
         password: password
       }
+      console.log(userObj);
       this.authservice.login(userObj).subscribe(
         user=> {
-          alert("login successful");
-          this.loginForm.reset();
-          this.router.navigate(['']);
+          console.log(user)
+          this.errors = '';
+          console.log("login");
           this.successMsg = "Logged in successfully, loading...."
+          this.loginservice.processLogin(user).subscribe();
+          // localStorage.setItem('token', user['token']);
+          // this.router.navigate(['/dashboard']);
+          
         },
+        error => {
+          console.log("errorsection", error);
+          this.successMsg = '';
+          this.errors = error['message'];
+          console.log(error, "aa ", error['message']);
+        }
       )
     }
-    
-    // this.http.get<any>("https://jsonplaceholder.typicode.com/").subscribe(
-    //   res => {
-    //     const user=res.find((a:any)=>{
-    //       return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password;
-    //     });
-    //   if (user) {
-    //     
-    //     this.loginForm.reset();
-    //     this.router.navigate(['']);
-    //   }
-    //   },
-    // )
   }
   
   ngOnInit(): void {

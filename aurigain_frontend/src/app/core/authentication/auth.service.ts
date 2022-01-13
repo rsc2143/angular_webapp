@@ -18,12 +18,15 @@ export class AuthService {
   ) { }
 
   login(data: any) {
+    console.log("Inside Login service")
     return this.http.post(this.consts.loginApiUrl, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
   signup(data: any) {
+
+    console.log("Inside Signup service")
     return this.http.post(this.consts.signupApiUrl, data)
       .pipe(
         catchError(this.errorHandler.handleError)

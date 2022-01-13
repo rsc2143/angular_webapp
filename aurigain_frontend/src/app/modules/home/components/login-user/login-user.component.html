@@ -8,7 +8,7 @@
               <div class="col-xl-9 col-lg-6 col-sm-10 col-12 mt-5">
                   <h1 class="text-center">Login</h1>
               </div>
-              <form (ngSubmit)="login()">
+              <form>
                   <div class="form-group row mt-5">
                       <label for="inputEmail3" class="col-sm-2 col-form-label text-right">E-Mail Address</label>
                       <div class="col-xl-6 col-lg-6 col-sm-10 col-12">
@@ -78,14 +78,14 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">E-Mail Address</label>
                     <div class="col-xl-6 col-lg-6 col-sm-10 col-12">
                         <input type="email"
-                        formControlName="email" class="form-control" id="inputEmail3" placeholder="Enter your Email" value="" (click)="resetValidations()"  required>
+                        formControlName="email" class="form-control" id="inputEmail3" placeholder="Enter your Email"  (click)="resetValidations()"  required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Mobile No.</label>
                     <div class="col-xl-6 col-lg-6 col-sm-10 col-12">
                         <input type="number"
-                        formControlName="contactNumber" class="form-control" id="inputMobile" placeholder="Enter your Mobile No." value=""  (click)="resetValidations()" required>
+                        formControlName="contactNumber" class="form-control" id="inputMobile" placeholder="Enter your Mobile No."   (click)="resetValidations()" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -93,7 +93,7 @@
                     <div class="col-xl-6 col-lg-6 col-sm-10 col-12">
                         <input formControlName="password"
                         type="password" class="form-control" id="inputPassword3"
-                            placeholder="Create your Password" value=""   required (click)="resetValidations()">
+                            placeholder="Create your Password"   required (click)="resetValidations()">
                     </div>
                 </div>                    
                 <div class="form-group row">
