@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardHomeComponent } from './components/dashboard-home/dashboard-home.component';
 import { RouterModule, Routes } from '@angular/router';
-
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   {
     path: '', component: DashboardComponent,
@@ -18,10 +19,12 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    DashboardHomeComponent
+    DashboardHomeComponent,
+    SideBarComponent
   ],
   imports: [
     CommonModule,
+    NgbModule,
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule]

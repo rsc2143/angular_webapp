@@ -15,11 +15,8 @@ import { LoginUserComponent } from './components/login-user/login-user.component
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AppBootStrapModule } from 'src/app/shared/modules/bootstrap/bootstrap-module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-<<<<<<< HEAD
 import { AuthService } from 'src/app/core/authentication/auth.service';
-=======
 import { FaqComponent } from './components/faq/faq.component';
->>>>>>> 7f541498aa6ccdae7ef0e9b22800938a1de30839
 const routes: Routes = [
   {
     path: '', component: HomeComponent,

@@ -1,0 +1,212 @@
+
+<!-- top header start -->
+<div class="header-container fixed-top">
+    <header class="header navbar navbar-expand-sm">
+        <ul class="navbar-item theme-brand flex-row text-center">
+            <li class="nav-item theme-logo">
+                <a href=" "> <img src="https://aurigain.com/images/logon.jpeg" width="30" height="30"
+                        class="navbar-logo" alt="logo"></a>
+            </li>
+            <li class="nav-item theme-text">
+                <a href=" " class="nav-link"> Aurigain</a>
+            </li>
+        </ul>
+        <ul class="navbar-item flex-row ml-md-auto">
+            <li class="theme-change-btn-grp d-none d-lg-flex align-items-center mr-2">
+                <a href="" class="btn-theme-default"></a>
+                <a href="" class="btn-theme-dark"></a>
+                <a href="" class="btn-theme-primary"></a>
+                <a href="" class="btn-theme-green"></a>
+            </li>
+            <li class="nav-item dropdown user-profile-dropdown">
+                <a href="javascript: void(0);" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" class="nav-link dropdown-toggle user">
+                    <img src="http://allaboutitdemo.co.in/assets/img/user-default.jpg" width="28" alt="user-image">
+                </a>
+                <div aria-labelledby="userProfileDropdown" class="dropdown-menu position-absolute">
+                    <div>
+                        <div class="dropdown-item">
+                            <div class="dropdown-item-img"></div>
+                            <div class="dropdown-item-name text-center"></div>
+                            <a href="javascript: void(0);" class="text-danger pb-0">Change password</a>
+                            <a href="javascript: void(0);" class="dropdown-item-sign-out">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </header>
+</div>
+
+<div class="sub-header-container">
+    <header class="header navbar navbar-expand-sm">
+        <a href=" " data-placement="bottom" class="sidebarCollapse">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </a>
+    </header>
+</div>
+
+ <!-- sidebar start -->
+ <div class="sidebar-wrapper sidebar-theme">
+    <nav id="sidebar">
+        <div class="shadow-bottom"></div>
+        <ul id="accordionExample" class="list-unstyled menu-categories ps">
+            <li class="menu menu-active">
+                <a href=" " aria-expanded="false" class="dropdown-toggle">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                    </svg> -->
+                    <span>Dashboard</span>
+                    <span class="shape1"></span>
+                    <span class="shape2"></span>
+                </a>
+            </li>
+            <li ngbDropdown class="menu">
+                <a ngbDropdownToggle href=" " data-toggle="collapse" data-activ="true" aria-expanded="false" class="dropdown-toggle collapsed">
+                    
+                    <span>Lead</span>
+                </a>
+                <ul ngbDropdownMenu id="Lead-Menu" data-parent="#accordionExample" class="submenu list-unstyled collapse">
+                    <li ngbDropdownItem id="accordion" class="sub-submenu"> 
+                        <a href=" " data-target="#sub-submenu-1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">
+                            <span class="d-flex">
+                                <i class="fas fa-gem"></i> 
+                                Gold Loan
+                            </span>
+                        </a>                         
+                    </li>
+                    <li ngbDropdownItem id="accordion" class="sub-submenu"> 
+                        <a href=" " data-target="#sub-submenu-1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">
+                            <span class="d-flex">
+                                <i class="fas fa-gem"></i> 
+                                Gold Loan
+                            </span>
+                        </a>                         
+                    </li>
+                    <li ngbDropdownItem id="accordion" class="sub-submenu"> 
+                        <a href=" " data-target="#sub-submenu-1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">
+                            <span class="d-flex">
+                                <i class="fas fa-gem"></i> 
+                                Gold Loan
+                            </span>
+                        </a>                         
+                    </li>
+                    <li ngbDropdownItem id="accordion" class="sub-submenu"> 
+                        <a href=" " data-target="#sub-submenu-1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">
+                            <span class="d-flex">
+                                <i class="fas fa-gem"></i> 
+                                Gold Loan
+                            </span>
+                        </a>                         
+                    </li>
+                </ul>
+            </li>
+            <li class="menu">
+                <a href=" " data-toggle="collapse" data-activ="true" aria-expanded="false" class="dropdown-toggle collapsed">
+                     <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16"  class="bi bi-layout-text-sidebar-reverse">
+                    </svg>  -->
+                    <span>Master</span>
+                </a>
+                <ul id="Dropdown-menu-1" data-parent="#accordionExample" class="submenu list-unstyled collapse">
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        User Role
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        User Manager
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        State
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        District
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Qualification
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Document KYC Type
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Payment Mode
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Purpose
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Jwellery Type
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Product Category
+                    </li>
+                    <li>
+                        <a href=" "></a>
+                        <i class="fas fa-user-tag"></i>
+                        Banks
+                    </li>
+
+                </ul>
+            </li>
+            <li class="menu">
+                <a href=" " aria-expanded="false" class="dropdown-toggle collapsed">
+                    <span class="d-flex">
+                        
+                        Door Step Agent
+                    </span>
+                    <!-- <span class="shape1"></span>
+                    <span class="shape2"></span> -->
+                </a>
+            </li>
+            <li class="menu">
+                <a href=" " aria-expanded="false" class="dropdown-toggle collapsed">
+                    <span class="d-flex">                        
+                        Agent
+                    </span>
+                    <!-- <span class="shape1"></span>
+                    <span class="shape2"></span> -->
+                </a>
+            </li>
+            <li class="menu">
+                <a href=" " aria-expanded="false" class="dropdown-toggle collapsed">
+                    <span class="d-flex">                        
+                        Customer
+                    </span>
+                    <!-- <span class="shape1"></span>
+                    <span class="shape2"></span> -->
+                </a>
+            </li>
+
+            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;">
+                </div>
+            </div>
+            <div class="ps__rail-y" style="top: 0px; right: -4px;">
+                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;">
+                </div>
+            </div>
+        </ul>
+    </nav>
+</div>
+<!-- sidebar end -->
