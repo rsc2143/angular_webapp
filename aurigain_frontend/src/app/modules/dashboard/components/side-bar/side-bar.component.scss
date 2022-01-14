@@ -52,14 +52,24 @@ a , a:hover , a:focus{
     text-decoration: none;
 }
 
+#sidebar ul ul ul li a {
+    margin-left: 50px;
+}
 
+#sidebar ul li a.active{
+	color:black;
+	background-color: #fff;
 
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-	color: #000;
-	background: #fff;
 	
 }
+
+
+// #sidebar ul li.active>a,
+// a[aria-expanded="true"] {
+// 	color: #000;
+// 	background: #fff;
+	
+// }
 
 a[data-toggle="collapse"]{
 	position: relative;
@@ -72,6 +82,11 @@ a[data-toggle="collapse"]{
 	right: 20%;
 	transform: translateY(-50%);
 }
+
+i{
+	padding: 0 10px;
+}
+
 ul ul a{
 	color: #fff;
 	font-size: 0.9em !important;

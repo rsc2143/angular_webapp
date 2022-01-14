@@ -5,87 +5,67 @@
 			<ul class="list-unstyled components">
 	
 				<li>
-					<a href="#home" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<span><i class="fa fa-home" style="margin-left:-5px;"></i></span> Dashboard</a>
-					<ul class="collapse list-unstyled" id="home">
-						<li>
-							<a href="#">Home 1</a>
-						</li>
-						<li>
-							<a href="#">Home 2</a>
-						</li>
-
-					</ul>
-				</li>
+					<a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+						<span><i class="fa fa-home" style="margin-left:-5px;"></i> Dashboard</span>
+						
+					</a>
+				</li>				
 				<!-- <li>
 					<a href="#"><span><i class="fa fa-info-circle" style="margin-left:-5px;"></i></span> About</a>
 				</li> -->
 				<li>
-					<a href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+					<a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 						<span><i class="fa fa-book" style="margin-left:-5px;"></i></span> Lead</a>
 					<ul class="collapse list-unstyled " id="course">
 						<li>
-							<a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">HTML 5</a>
+							<a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond" aria-hidden="true"></i>Gold Loan 5</a>
                             <ul class="collapse list-unstyled " id="submenu1">
                                 <li>
-                                    <a href="#">Fresh</a>
+                                    <a routerLink="fresh-leads" >Fresh Lead</a>
                                 </li>
                                 <li>
-                                    <a href="#">Bt</a>
+                                    <a routerLink="balance-transfer-leads">BT Lead</a>
                                 </li>                               
                             </ul>
 						</li>
 						<li>
-							<a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Gold Loan</a>
+							<a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-id-card-o" aria-hidden="true"></i>Personal Loan</a>
                             <ul class="collapse list-unstyled " id="submenu2">
                                 <li>
-                                    <a href="#">Fresh</a>
+                                    <a href="#">Fresh Lead</a>
                                 </li>
                                 <li>
-                                    <a href="#">Bt</a>
+                                    <a href="#">BT Lead</a>
                                 </li>                                
                             </ul>
 						</li>
 						<li>
-							<a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Personal Loan</a>
+							<a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-home" aria-hidden="true"></i>Home Loan</a>
 							<ul class="collapse list-unstyled " id="submenu3">
                                 <li>
-                                    <a href="#">Fresh</a>
+                                    <a href="#">Fresh Lead</a>
                                 </li>
                                 <li>
-                                    <a href="#">Bt</a>
+                                    <a href="#">BT Lead</a>
                                 </li>                                
                             </ul>
 						</li>
 						<li>
-							<a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home Loan</a>
+							<a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-car" aria-hidden="true"></i>Vehicle Loan</a>
 							<ul class="collapse list-unstyled " id="submenu4">
                                 <li>
-                                    <a href="#">Fresh</a>
+                                    <a href="#">Fresh Lead</a>
                                 </li>
                                 <li>
-                                    <a href="#">Bt</a>
+                                    <a href="#">BT Lead</a>
                                 </li>                                
                             </ul>
 						</li>
-						<li>
-							<a href="#submenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle Loan</a>
-							<ul class="collapse list-unstyled " id="submenu5">
-                                <li>
-                                    <a href="#">Fresh</a>
-                                </li>
-                                <li>
-                                    <a href="#">Bt</a>
-                                </li>                                
-                            </ul>
-						</li>
-
-
 					</ul>
 				</li>
 				<li>
 					<a href="#Career" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<span><i class="fa fa-graduation-cap" style="margin-left:-5px;"></i></span> Career</a>
+						<span><i class="fa fa-graduation-cap" style="margin-left:-5px;"></i></span> Master</a>
 					<ul class="collapse" id="Career">
 						<li>
 							<a href="#">User Role</a>
@@ -127,14 +107,14 @@
 				</li>
 
 				<li>
-					<a href="#"><span><i class="fa fa-lock" style="margin-left:-5px;"></i></span> Door Step Agent</a>
+					<a routerLink="/dashboard/door-step-agent" routerLinkActive="active"><span><i class="fa fa-lock" style="margin-left:-5px;"></i></span> Door Step Agent</a>
 				</li>
 
 				<li>
-					<a href="#"><span><i class="fa fa-phone" style="margin-left:-5px;"></i></span> Agent</a>
+					<a href="#" routerLinkActive="active"><span><i class="fa fa-phone" style="margin-left:-5px;"></i></span> Agent</a>
 				</li>
 				<li>
-					<a href="#"><span></span> Customer</a>
+					<a href="#" routerLinkActive="active"><i class="fa fa-users" aria-hidden="true"></i> Customer</a>
 				</li>
 			</ul>
 		</nav>
