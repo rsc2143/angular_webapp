@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SideNavBarService } from '../../side-nav.service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public sidenavservice: SideNavBarService
+  ) { }
 
   ngOnInit(): void {
   }
