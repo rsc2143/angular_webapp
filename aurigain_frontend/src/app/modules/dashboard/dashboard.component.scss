@@ -1,3 +1,10 @@
+
+.sticky-bottom{
+    position: sticky;
+    top:45px;
+    z-index: 9999;
+}
+
 #content{
 	width: 100%;
 	padding: 20px;
