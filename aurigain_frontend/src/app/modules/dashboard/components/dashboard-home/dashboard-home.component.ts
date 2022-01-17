@@ -9,10 +9,11 @@ import { SideNavBarService } from '../../side-nav.service';
 export class DashboardHomeComponent implements OnInit {
 
   constructor(
-    public sidenavservice: SideNavBarService
+    public sidenavservice: SideNavBarService,
+   
   ) { }
 
   ngOnInit(): void {
   }
-
+  
 }

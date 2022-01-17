@@ -13,6 +13,7 @@ export class PermissionsService {
     private auth: AuthService 
   ) { }
 
+
   isauthenticated(): boolean {
     const token = this.cookie.get('_l_a_t');
     if (!token) {
@@ -31,4 +32,67 @@ export class PermissionsService {
       return false;
     }
   }
+
+  isAdmin() {
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+    // Check user type only if authenticated
+    if (true) {
+      //use  this.isauthenticated() inside if statement
+      try {
+        console.log("decoded token is: ", decodeToken);
+        const userType = decodeToken['role'];
+        console.log(userType);
+        if (userType.includes('admin') || userType.includes('superadmin')) {
+          console.log("superadminabab");
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+  }
+
+  isSupervisor() {
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+    // Check user type only if authenticated
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['role'];
+        if (userType.includes('supervisor')) {
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  isAgent() {
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+    // Check user type only if authenticated
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['role'];
+        if (userType.includes('agent')) {
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
 }

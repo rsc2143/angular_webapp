@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { Profile, ProfileAdapter } from '../adaptors/profile.model';
 import { ErrorHandlerService } from '../http/error-handler.service';
@@ -36,5 +37,24 @@ export class ProfileService {
                 }
                 );
     })
+  }
+
+  setProfileData(data) {
+      this.setUserProfileValue(data);
+  }
+
+  getProfileData() {
+    return this.http.get(this.consts.getUpdateProfileUrl)
+        .pipe(
+            catchError(this.errorHandler.handleError)
+        );
 }
+
+  updateProfileData(data) {
+    return this.http.put(this.consts.getUpdateProfileUrl, data)
+        .pipe(
+            catchError(this.errorHandler.handleError)
+        );
+  }
+  
 }

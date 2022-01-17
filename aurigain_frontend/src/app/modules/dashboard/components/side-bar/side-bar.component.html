@@ -63,7 +63,8 @@
 						</li>
 					</ul>
 				</li>
-				<li>
+				
+				<li *ngIf="isAdmin">
 					<a href="#Career" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 						<span><i class="fa fa-graduation-cap" style="margin-left:-5px;"></i></span> Master</a>
 					<ul class="collapse" id="Career">
@@ -106,14 +107,14 @@
 					</ul>
 				</li>
 
-				<li>
+				<li *ngIf="isAdmin">
 					<a routerLink="/dashboard/door-step-agent" routerLinkActive="active"><span><i class="fa fa-lock" style="margin-left:-5px;"></i></span> Door Step Agent</a>
 				</li>
 
-				<li>
+				<li *ngIf="isAdmin">
 					<a href="#" routerLinkActive="active"><span><i class="fa fa-phone" style="margin-left:-5px;"></i></span> Agent</a>
 				</li>
-				<li>
+				<li *ngIf="isAdmin">
 					<a href="#" routerLinkActive="active"><i class="fa fa-users" aria-hidden="true"></i> Customer</a>
 				</li>
 			</ul>
