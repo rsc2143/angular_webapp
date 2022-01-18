@@ -24,14 +24,20 @@ a , a:hover , a:focus{
 }
 
 #sidebar{
-	min-width: 250px;
-	max-width: 250px;
+	width: 240px;
+	 position: fixed;
+    z-index: 1028;
 	background: #002767;
 	color: #fff;
 	transition: all 0.3s;
 	min-height: 100%;
 }
 
+#sidebar ul{
+	font-size: 13px;
+	letter-spacing: 1px;
+	font-weight: 600;
+}
 
 #sidebar ul li a{
 	padding: 10px;
@@ -110,7 +116,7 @@ ul ul a{
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -240px;
     }
     #sidebar.active {
         margin-left: 0;
@@ -122,7 +128,7 @@ ul ul a{
 
     
 #sidebar.hidden {
-      margin-left: -250px;
+      margin-left: -240px;
     }
 
 
