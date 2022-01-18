@@ -40,7 +40,7 @@ export class PermissionsService {
     if (true) {
       //use  this.isauthenticated() inside if statement
       try {
-        console.log("decoded token is: ", decodeToken);
+        console.log("decoded token is:", decodeToken);
         const userType = decodeToken['role'];
         console.log(userType);
         if (userType.includes('admin') || userType.includes('superadmin')) {

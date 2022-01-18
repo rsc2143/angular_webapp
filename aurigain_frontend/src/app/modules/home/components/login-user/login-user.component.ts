@@ -114,7 +114,8 @@ export class LoginUserComponent implements OnInit {
           this.errors = '';
           console.log("login");
           this.successMsg = "Logged in successfully, loading...."
-          this.loginservice.processLogin(user).subscribe();
+          this.router.navigateByUrl('/dashboard')
+          // this.loginservice.processLogin(user).subscribe();
           // localStorage.setItem('token', user['token']);
           // this.router.navigate(['/dashboard']);
           
