@@ -1,20 +1,24 @@
 #content{
 	width: 100%;
-	padding: 20px;
 	min-height: 100vh;
 	transition: all 0.3s;
-    margin-left: 240px;
+    padding: 10px;
 }
 
 .wrapper{
-	display: flex;
-	text-decoration: none;
-	transition: all 0.3s;
+	position: absolute;
+    width: calc(100% - 250px);
+    left: 250px;
+    min-height: 100vh;
+    transition: 0.5s;
 }
-
+.wrapper.active{
+    width: calc(100% - 0px);
+    left: 0px;
+}
 #content{
     .bg-secondary{
-         background-color: white!important;
+        background-color: white!important;
         border-radius: 10px;
     }
     .row {
@@ -68,7 +72,22 @@
 		border-color: #002767;
 		box-shadow: 0 10px 20px -10px #3b3f5c;
 	}
+    // .breadcrumb {
+    //     background: #0000!important;
+    //     padding: 0;
+    //     border: none;
+    //     margin: 8px 0 5px;
+        
+    // }
+    // .breadcrumb a{
+    //     text-decoration: none;
+    //     color: #3b3f5c;
+    // }
 
+    // .breadcrumb-item.active{
+    //     color: #000;
+    // font-weight: 600;
+    // }
 
 
 

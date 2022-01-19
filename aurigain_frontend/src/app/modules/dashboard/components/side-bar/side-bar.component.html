@@ -1,123 +1,143 @@
-
-		<nav id="sidebar" [ngClass]="{'hidden':sidenavservice.hideSideNav }">
-
-			
-			<ul class="list-unstyled components pt-5">
-	
-				<li>
-					<a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-						<span><i class="fa fa-home" style="margin-left:-5px;"></i> Dashboard</span>
-						
-					</a>
-				</li>				
-				<!-- <li>
-					<a href="#"><span><i class="fa fa-info-circle" style="margin-left:-5px;"></i></span> About</a>
-				</li> -->
-				<li>
-					<a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<span><i class="fa fa-book" style="margin-left:-5px;"></i></span> Lead</a>
-					<ul class="collapse list-unstyled " id="course">
-						<li>
-							<a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond" aria-hidden="true"></i>Gold Loan 5</a>
-                            <ul class="collapse list-unstyled " id="submenu1">
-                                <li>
-                                    <a routerLink="fresh-leads" >Fresh Lead</a>
-                                </li>
-                                <li>
-                                    <a routerLink="balance-transfer-leads">BT Lead</a>
-                                </li>                               
-                            </ul>
-						</li>
-						<li>
-							<a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-id-card-o" aria-hidden="true"></i>Personal Loan</a>
-                            <ul class="collapse list-unstyled " id="submenu2">
-                                <li>
-                                    <a href="#">Fresh Lead</a>
-                                </li>
-                                <li>
-                                    <a href="#">BT Lead</a>
-                                </li>                                
-                            </ul>
-						</li>
-						<li>
-							<a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-home" aria-hidden="true"></i>Home Loan</a>
-							<ul class="collapse list-unstyled " id="submenu3">
-                                <li>
-                                    <a href="#">Fresh Lead</a>
-                                </li>
-                                <li>
-                                    <a href="#">BT Lead</a>
-                                </li>                                
-                            </ul>
-						</li>
-						<li>
-							<a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-car" aria-hidden="true"></i>Vehicle Loan</a>
-							<ul class="collapse list-unstyled " id="submenu4">
-                                <li>
-                                    <a href="#">Fresh Lead</a>
-                                </li>
-                                <li>
-                                    <a href="#">BT Lead</a>
-                                </li>                                
-                            </ul>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#Career" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<span><i class="fa fa-graduation-cap" style="margin-left:-5px;"></i></span> Master</a>
-					<ul class="collapse" id="Career">
-						<li>
-							<a href="#">User Role</a>
-						</li>
-						<li>
-							<a href="#">User Manager</a>
-						</li>
-						<li>
-							<a href="#"> State</a>
-						</li>
-						<li>
-							<a href="#"> District</a>
-						</li>
-						<li>
-							<a href="#"> Qualification</a>
-						</li>
-						<li>
-							<a href="#"> Document KYC Type</a>
-						</li>
-						<li>
-							<a href="#"> Payment Mode</a>
-						</li>
-						<li>
-							<a href="#"> Purpose</a>
-						</li>
-						<li>
-							<a href="#"> Jewellery Type</a>
-						</li>
-						<li>
-							<a href="#"> Product Category</a>
-						</li>
-						<li>
-							<a href="#"> Products</a>
-						</li>
-						<li>
-							<a href="#"> Banks</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a routerLink="/dashboard/door-step-agent" routerLinkActive="active"><span><i class="fa fa-lock" style="margin-left:-5px;"></i></span> Door Step Agent</a>
-				</li>
-
-				<li>
-					<a href="#" routerLinkActive="active"><span><i class="fa fa-phone" style="margin-left:-5px;"></i></span> Agent</a>
-				</li>
-				<li>
-					<a href="#" routerLinkActive="active"><i class="fa fa-users" aria-hidden="true"></i> Customer</a>
-				</li>
-			</ul>
-		</nav>
-
-	
-
+<div class="side-fix">
+	<div class="container">
+		<div class="navigation">
+			<nav id="sidebar" [ngClass]="{'hidden':sidenavservice.hideSideNav }">
+				<ul class="list-unstyled components pt-4">
+					<li>
+						<a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+							<span class="title"><i class="fa fa-home "></i>Dashboard</span>
+						</a>
+					</li>
+					<li>
+						<a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false"
+							class="dropdown-toggle">
+							<span class="title"><i class="fa fa-book"></i>Lead</span>
+						</a>
+						<ul class="collapse list-unstyled" id="course">
+							<li>
+								<a href="#submenu1" data-toggle="collapse" aria-expanded="false"
+									class="dropdown-toggle">
+									<span class=""><i class="fa fa-diamond" aria-hidden="true"></i>
+									</span>
+									<span class="title"> Gold Loan</span>
+								</a>
+								<ul class="collapse list-unstyled " id="submenu1">
+									<li>
+										<a routerLink="fresh-leads">Fresh Lead</a>
+									</li>
+									<li>
+										<a routerLink="balance-transfer-leads">BT Lead</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#submenu2" data-toggle="collapse" aria-expanded="false"
+									class="dropdown-toggle">
+									<span class=""> <i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+									<span class="title"> Personal Loan</span>
+								</a>
+								<ul class="collapse list-unstyled " id="submenu2">
+									<li>
+										<a href="#">Fresh Lead</a>
+									</li>
+									<li>
+										<a href="#">BT Lead</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#submenu3" data-toggle="collapse" aria-expanded="false"
+									class="dropdown-toggle">
+									<span class=""><i class="fa fa-home" aria-hidden="true"></i></span>
+									<span class="title"> Home Loan</span>
+								</a>
+								<ul class="collapse list-unstyled " id="submenu3">
+									<li>
+										<a href="#">Fresh Lead</a>
+									</li>
+									<li>
+										<a href="#">BT Lead</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#submenu4" data-toggle="collapse" aria-expanded="false"
+									class="dropdown-toggle">
+									<span class=""><i class="fa fa-car" aria-hidden="true"></i></span>
+									<span class="title">Vehicle Loan</span>
+								</a>
+								<ul class="collapse list-unstyled " id="submenu4">
+									<li>
+										<a href="#">Fresh Lead</a>
+									</li>
+									<li>
+										<a href="#">BT Lead</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#Career" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+							<span class=""><i class="fa fa-graduation-cap" style="margin-left:-5px;"></i></span>
+							<span class="title"> Master</span>
+						</a>
+						<ul class="collapse" id="Career">
+							<li>
+								<a href="#">User Role</a>
+							</li>
+							<li>
+								<a href="#">User Manager</a>
+							</li>
+							<li>
+								<a href="#"> State</a>
+							</li>
+							<li>
+								<a href="#"> District</a>
+							</li>
+							<li>
+								<a href="#"> Qualification</a>
+							</li>
+							<li>
+								<a href="#"> Document KYC Type</a>
+							</li>
+							<li>
+								<a href="#"> Payment Mode</a>
+							</li>
+							<li>
+								<a href="#"> Purpose</a>
+							</li>
+							<li>
+								<a href="#"> Jewellery Type</a>
+							</li>
+							<li>
+								<a href="#"> Product Category</a>
+							</li>
+							<li>
+								<a href="#"> Products</a>
+							</li>
+							<li>
+								<a href="#"> Banks</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a routerLink="/dashboard/door-step-agent" routerLinkActive="active">
+							<span class="title"><i class="fa fa-lock"></i>Door Step Agent</span>
+						</a>
+					</li>
+					<li>
+						<a href=" " routerLinkActive="active">
+							<span class="title"><i class="fa fa-phone"></i>Agent</span>
+						</a>
+					</li>
+					<li>
+						<a href=" " routerLinkActive="active">
+							<span class="title"><i class="fa fa-users" aria-hidden="true"></i> Customer</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
