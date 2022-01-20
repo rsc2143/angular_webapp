@@ -102,14 +102,11 @@
 	color: #fff;
 	
 }
-// #sidebar ul li:hover a
-// {
-// 	color: #000;
-// }
+
 // #sidebar ul li a .icon
 // {
 // 	position: relative;
-// 	display: block;
+// 	display: flex;
 // 	min-width: 40px;
 // 	height: 10px;
 // 	line-height: 22px;
@@ -143,7 +140,11 @@
     /* background: #fff; */
     text-decoration: none;
 }
-
+#sidebar ul ul ul li a:hover {
+    color: #2f5546;
+    /* background: #fff; */
+    text-decoration: none;
+}
 #sidebar ul ul ul li a {
     margin-left: 50px;
 }
@@ -152,41 +153,39 @@
 	background-color: #fff;	
 }
 /* curve outside*/
-// #sidebar ul li a.active ::after
-// {
-// 	content: '';
-// 		position: absolute;
-// 		right: -10px;
-// 		top: -40px;
-// 		width: 40px;
-// 		height: 40px;
-// 		background: transparent;
-// 		border-radius: 50%;
-// 		box-shadow: 30px 30px 0 2px rgb(136, 96, 96);
-// 		// pointer-events: none;
-// }
-// #sidebar ul li a.active ::after
-// {
-// 	content: '';
-// 		position: absolute;
-// 		right: 0;
-// 		bottom: -20px;
-// 		width: 30px;
-// 		height: 30px;
-// 		background: transparent;
-// 		border-radius: 50%;
-// 		box-shadow: 35px 35px 0 10px #fff;
-// 		pointer-events: none;
-		
-// 		white-space: nowrap;
-// }
+#sidebar ul li a.active ::after
+{
+	content: '';
+		position: absolute;
+		right: -10px;
+		top: -49px;
+		width: 40px;
+		height: 40px;
+		background: transparent;
+		border-radius: 50%;
+		box-shadow: 35px 30px 0 10px #fff;
+		pointer-events: none;
+}
+#sidebar ul li a.active ::before
+{
+	content: '';
+		position: absolute;
+		right: -10px;
+		bottom: -49px;
+		width: 40px;
+		height: 40px;
+		background: transparent;
+		border-radius: 50%;
+		box-shadow: 35px -30px 0 10px #fff;
+		pointer-events: none;
+}
 
-// #sidebar ul li.active>a,
-// a[aria-expanded="true"] {
-// 	color: #000;
-// 	background: #fff;
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+	color: #000;
 	
-// }
+	
+}
 a[data-toggle="collapse"]{
 	position: relative;
 }

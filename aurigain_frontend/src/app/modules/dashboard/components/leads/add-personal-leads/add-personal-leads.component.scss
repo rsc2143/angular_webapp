@@ -1,24 +1,16 @@
 
 .new-lead{
-/* // #content{
-// 	width: 100%;
-// 	padding: 20px;
-// 	min-height: 100vh;
-// 	transition: all 0.3s;
-//     margin-left: 240px;
-// } */
-
-.wrapper{
-	display: flex;
-	text-decoration: none;
-	transition: all 0.3s;
-    margin-left: 240px;
-}
-// .sidebar-closed .lead {
-//     padding: 0 16px!important;
-//     margin-left: 0;
-// }
-
+    .wrapper{
+        position: absolute;
+        width: calc(100% - 250px);
+        left: 250px;
+        min-height: 100vh;
+        transition: 0.5s;
+    }
+    .wrapper.active{
+        width: calc(100% - 0px);
+        left: 0px;
+    }
 
 
 #lead{
