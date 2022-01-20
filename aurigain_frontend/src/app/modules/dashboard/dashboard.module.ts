@@ -14,6 +14,9 @@ import { AddFreshLeadsComponent } from './components/leads/add-fresh-leads/add-f
 import { AddBalanceTransferLeadsComponent } from './components/leads/add-balance-transfer-leads/add-balance-transfer-leads.component';
 import { PersonalLeadsComponent } from './components/leads/personal-leads/personal-leads.component';
 import { AddPersonalLeadsComponent } from './components/leads/add-personal-leads/add-personal-leads.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 const routes: Routes = [
   {
     path: '', component: DashboardComponent,
@@ -60,6 +63,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule]
