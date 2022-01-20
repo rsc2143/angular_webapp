@@ -42,6 +42,9 @@ const routes: Routes = [
       { 
         path: 'balance-transfer-leads', component: BalanceTransferLeadsComponent
       },
+      { 
+        path: 'balance-transfer-leads/add-update', component: AddBalanceTransferLeadsComponent
+      },
     ]
   }
 ]
