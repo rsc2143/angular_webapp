@@ -128,3 +128,42 @@
         }
     }
 }
+
+
+.upload-btn{
+    position: relative;
+    display: block;
+    border: 2px dotted #dae0ff ;
+    font-size: 20px;
+    border-radius:15px;
+    background: #fff;
+  }
+  
+  .file-upload__label {
+    display: block;
+    padding: 10px 0;
+    color: #4361ee;
+    text-align: center;
+    transition: background .3s;
+    
+    i{
+        margin-right: 10px;
+    }
+    
+  }
+  
+  .file-upload__label:hover {
+       cursor: pointer;
+       
+    }
+  
+  .upload-btn input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: 999999999;
+    cursor: pointer;
+  }
+  

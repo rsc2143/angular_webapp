@@ -176,87 +176,74 @@
                   </div>
                   <div class="detail-div">
                       <div class="row">                        
-                          <div *ngIf="currentStep >2; else elseBlock">
-                              <div class="completed-step"> <i class="fa fa-check"></i></div>
-                          </div>
-                          <ng-template #elseBlock>
-                              <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                          </ng-template>
-                      
-                      <h3 style="padding-top:15px">Document Details </h3>
+                              <div *ngIf="currentStep >2; else elseBlock">
+                                  <div class="completed-step"> <i class="fa fa-check"></i></div>
+                              </div>
+                              <ng-template #elseBlock>
+                                  <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
+                              </ng-template>
+                          <h3 style="padding-top:15px">Address Detials</h3>
                       </div>
                       <div class="vertical-line personal-form" *ngIf="currentStep == 2">
-                          <div class="form-content">
-                              <form [formGroup]="documentDetails">
+                        <div class="form-content">
+                            <form [formGroup]="addressDetails">
                                 <div class="form-row">
                                 
-                                    <div class="form-group col-md-4">
-                                        <label for="inputState">Document (POI) </label>
-                                        <select id="inputState" class="form-control" formControlName="documentType">
-                                        <option value="" selected>Selected Document Type</option>
-                                        <option value="Adhar Card">Adhar Card</option>
-                                        </select>
-                                            <ng-container *ngIf="documentDetails.get('documentType').invalid && documentDetails.get('documentType').touched" class="col-sm-3 col-form-label"></ng-container>
-                                            <div *ngIf="documentDetails.get('documentType').invalid && documentDetails.get('documentType').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                                <small class="text-danger" *ngIf="documentDetails.get('documentType').errors?.['required']">Document Type is required</small>
-                                            </div>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-4">
-                                        <label for="inputDocumentNumber">Document Number (POI)</label>
-                                        <input formControlName="documentNumber" type="number" class="form-control" placeholder="Document Number">
-
-                                        <ng-container *ngIf="documentDetails.get('documentNumber').invalid && documentDetails.get('documentNumber').touched" class="col-sm-3 col-form-label"></ng-container>
-                                            <div *ngIf="documentDetails.get('documentNumber').invalid && documentDetails.get('documentNumber').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                                <small class="text-danger" *ngIf="documentDetails.get('documentNumber').errors?.['required']">Enter Document Number</small>
-                                            </div>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-4">
-                                    <label for="inputDocumentTypePOA">Document (POA) </label>
-                                    <select id="inputDocumentTypePOA" class="form-control" formControlName="documentTypePOA">
-                                    <option value="" selected>Selected Document Type</option>
-                                    <option value="Adhar Card">Adhar Card</option>
-                                    </select>
-                                        <ng-container *ngIf="documentDetails.get('documentTypePOA').invalid && documentDetails.get('documentTypePOA').touched" class="col-sm-3 col-form-label"></ng-container>
-                                        <div *ngIf="documentDetails.get('documentTypePOA').invalid && documentDetails.get('documentTypePOA').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                            <small class="text-danger" *ngIf="documentDetails.get('documentTypePOA').errors?.['required']">Document Type is required</small>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">Pin Code</label>
+                                    <input formControlName="pinCode" type="number" class="form-control" placeholder="Pincode">
+                                        <ng-container *ngIf="addressDetails.get('pinCode').invalid && addressDetails.get('pinCode').touched" class="col-sm-3 col-form-label"></ng-container>
+                                        <div *ngIf="addressDetails.get('pinCode').invalid && addressDetails.get('pinCode').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                            <small class="text-danger" *ngIf="addressDetails.get('pinCode').errors?.['required']">Pincode is required</small>
                                         </div>
+                                </div>
+                                
+                                <div class="form-group col-md-4">
+                                    <label for="inputFullName">Area (Location)</label>
+                                    <select formControlName="area" id="inputPLoan" class="form-control">
+                                        <option value="" selected>Select Purpose</option>
+                                            <option value="area1">Area 1</option>
+                                            <option value="area2">Area 2</option>
+                                        </select>
+
+                                    <ng-container *ngIf="addressDetails.get('area').invalid && addressDetails.get('area').touched" class="col-sm-3 col-form-label"></ng-container>
+                                        <div *ngIf="addressDetails.get('area').invalid && addressDetails.get('area').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                            <small class="text-danger" *ngIf="addressDetails.get('area').errors?.['required']">Select Area</small>
+                                        </div>
+                                </div>
+                                
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="inputAddress">Address Line 1</label>
+                                        <input type="text" formControlName="addressLine1" class="form-control" id="inputAddress1">
+                                
+                                        <ng-container *ngIf="addressDetails.get('addressLine1').invalid && addressDetails.get('addressLine1').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="addressDetails.get('addressLine1').invalid && addressDetails.get('addressLine1').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="addressDetails.get('addressLine1').errors?.['required']">Enter Email</small>
+                                            </div>
                                     </div>
                                 </div>
-                                  <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="inputDocumentNumber">Document Number (POA)</label>
-                                        <input formControlName="documentNumberPOA" type="number" class="form-control" placeholder="Document Number">
-
-                                        <ng-container *ngIf="documentDetails.get('documentNumberPOA').invalid && documentDetails.get('documentNumberPOA').touched" class="col-sm-3 col-form-label"></ng-container>
-                                            <div *ngIf="documentDetails.get('documentNumberPOA').invalid && documentDetails.get('documentNumberPOA').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                                <small class="text-danger" *ngIf="documentDetails.get('documentNumberPOA').errors?.['required']">Enter Document Number</small>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="inputAddress">Address Line 2</label>
+                                        <input type="text" formControlName="addressLine2" class="form-control" id="inputAddress2">
+                                
+                                        <ng-container *ngIf="addressDetails.get('addressLine2').invalid && addressDetails.get('addressLine2').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="addressDetails.get('addressLine2').invalid && addressDetails.get('addressLine2').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="addressDetails.get('addressLine2').errors?.['required']">Enter Email</small>
                                             </div>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputFatherName">PAN Number</label>
-                                        <input formControlName="panNumber" type="number" class="form-control" placeholder="PAN Number">
-    
-                                        <ng-container *ngIf="documentDetails.get('panNumber').invalid && documentDetails.get('panNumber').touched" class="col-sm-3 col-form-label"></ng-container>
-                                            <div *ngIf="documentDetails.get('panNumber').invalid && documentDetails.get('panNumber').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                                <small class="text-danger" *ngIf="documentDetails.get('panNumber').errors?.['required']">Enter Father Name</small>
-                                            </div>
-                                    </div>                              
-                                  </div>
-                              </form>
-                          </div>
-                          <div class="row">
-                              <div class="form-btn"> 
-                                  <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
-                              </div>
-                              <div class="form-btn">
-                                  
-                                  <a (click)="saveDocumentDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i> Next</button></a>
-                              </div>
-                          </div>
+                                </div> 
+                                
+                            </form>
+                        </div>
+                        <div class="form-btn">
+                            <a (click)="saveAddressDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Next</button></a>
+                        </div>
                       </div>
                   </div>
+                  
                   <div class="detail-div">
                       <div class="row">                        
                           <div *ngIf="currentStep >3; else elseBlock">
@@ -381,7 +368,7 @@
                               <form [formGroup]="appointmentDetails">
                                   <div class="form-row">
                                   
-                                      <div class="form-group col-md-4">
+                                      <!-- <div class="form-group col-md-4">
                                           <label for="inputBank">Bank</label>
                                           <select id="inputBank" class="form-control" formControlName="bank">
                                           <option value="" selected>Selected Bank</option>
@@ -392,7 +379,7 @@
                                               <div *ngIf="documentDetails.get('bank').invalid && documentDetails.get('bank').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
                                                   <small class="text-danger" *ngIf="documentDetails.get('bank').errors?.['required']">Document Type is required</small>
                                               </div>
-                                      </div>
+                                      </div> -->
                                       <div class="form-group col-md-4">
                                           <label for="inputbranch">Branch</label>
                                           <select id="inputBranch" class="form-control" formControlName="branch">
@@ -434,10 +421,342 @@
                               </div>
                               <div class="form-btn">
                                   
-                                  <a (click)="saveForms()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button></a>
+                                  <a (click)="saveAppointmentDetails()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button></a>
                               </div>
                           </div>
                       </div>
+                  </div>
+                  <div class="detail-div">
+                    <div class="row">                        
+                        <div *ngIf="currentStep >5; else elseBlock">
+                            <div class="completed-step"> <i class="fa fa-check"></i></div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
+                        </ng-template>
+                    
+                    <h3 style="padding-top:15px">Document Details </h3>
+                    </div>
+                    <div class="vertical-line personal-form" *ngIf="currentStep == 5">
+                        <div class="form-content">
+                            <form [formGroup]="documentDetails">
+                              <div class="form-row">
+                              
+                                  <div class="form-group col-md-4">
+                                      <label for="inputState">Document (POI) </label>
+                                      <select id="inputState" class="form-control" formControlName="documentType">
+                                      <option value="" selected>Selected Document Type</option>
+                                      <option value="Adhar Card">Adhar Card</option>
+                                      </select>
+                                          <ng-container *ngIf="documentDetails.get('documentType').invalid && documentDetails.get('documentType').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="documentDetails.get('documentType').invalid && documentDetails.get('documentType').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="documentDetails.get('documentType').errors?.['required']">Document Type is required</small>
+                                          </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-4">
+                                      <label for="inputDocumentNumber">Document Number (POI)</label>
+                                      <input formControlName="documentNumber" type="number" class="form-control" placeholder="Document Number">
+
+                                      <ng-container *ngIf="documentDetails.get('documentNumber').invalid && documentDetails.get('documentNumber').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="documentDetails.get('documentNumber').invalid && documentDetails.get('documentNumber').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="documentDetails.get('documentNumber').errors?.['required']">Enter Document Number</small>
+                                          </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-4">
+                                  <label for="inputDocumentTypePOA">Document (POA) </label>
+                                  <select id="inputDocumentTypePOA" class="form-control" formControlName="documentTypePOA">
+                                  <option value="" selected>Selected Document Type</option>
+                                  <option value="Adhar Card">Adhar Card</option>
+                                  </select>
+                                      <ng-container *ngIf="documentDetails.get('documentTypePOA').invalid && documentDetails.get('documentTypePOA').touched" class="col-sm-3 col-form-label"></ng-container>
+                                      <div *ngIf="documentDetails.get('documentTypePOA').invalid && documentDetails.get('documentTypePOA').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                          <small class="text-danger" *ngIf="documentDetails.get('documentTypePOA').errors?.['required']">Document Type is required</small>
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                      <label for="inputDocumentNumber">Document Number (POA)</label>
+                                      <input formControlName="documentNumberPOA" type="number" class="form-control" placeholder="Document Number">
+
+                                      <ng-container *ngIf="documentDetails.get('documentNumberPOA').invalid && documentDetails.get('documentNumberPOA').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="documentDetails.get('documentNumberPOA').invalid && documentDetails.get('documentNumberPOA').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="documentDetails.get('documentNumberPOA').errors?.['required']">Enter Document Number</small>
+                                          </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                      <label for="inputFatherName">PAN Number</label>
+                                      <input formControlName="panNumber" type="number" class="form-control" placeholder="PAN Number">
+  
+                                      <ng-container *ngIf="documentDetails.get('panNumber').invalid && documentDetails.get('panNumber').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="documentDetails.get('panNumber').invalid && documentDetails.get('panNumber').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="documentDetails.get('panNumber').errors?.['required']">Enter Father Name</small>
+                                          </div>
+                                  </div>                              
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="form-btn"> 
+                                <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
+                            </div>
+                            <div class="form-btn">
+                                
+                                <a (click)="saveDocumentDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i> Next</button></a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="detail-div">
+                    <div class="row">                        
+                        <div *ngIf="currentStep >6; else elseBlock">
+                            <div class="completed-step"> <i class="fa fa-check"></i></div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
+                        </ng-template>
+                    
+                    <h3 style="padding-top:15px">Existing Loan Details </h3>
+                    </div>
+                    <div class="vertical-line personal-form" *ngIf="currentStep == 6">
+                        <div class="form-content">
+                            <form [formGroup]="existingLoanDetails">
+                              <div class="form-row">
+                              
+                                  <div class="form-group col-md-4">
+                                      <label for="inputBankName">Bank Name</label>
+                                      <input formControlName="bankName" type="text" class="form-control" placeholder="Bank Name">
+                                          <ng-container *ngIf="existingLoanDetails.get('bankName').invalid && existingLoanDetails.get('bankName').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="existingLoanDetails.get('bankName').invalid && existingLoanDetails.get('bankName').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="existingLoanDetails.get('bankName').errors?.['required']">Bank Name is required</small>
+                                          </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-4">
+                                      <label for="inputAmountOld">Amount</label>
+                                      <input formControlName="amountOld" type="number" class="form-control" placeholder="Amount">
+
+                                      <ng-container *ngIf="existingLoanDetails.get('amountOld').invalid && existingLoanDetails.get('amountOld').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="existingLoanDetails.get('amountOld').invalid && existingLoanDetails.get('amountOld').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="existingLoanDetails.get('amountOld').errors?.['required']">Enter Amount</small>
+                                          </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-4">
+                                  <label for="inputdateOld">Date</label>
+                                  <input formControlName="amountOld" type="date" class="form-control">
+                                      <ng-container *ngIf="existingLoanDetails.get('dateOld').invalid && existingLoanDetails.get('dateOld').touched" class="col-sm-3 col-form-label"></ng-container>
+                                      <div *ngIf="existingLoanDetails.get('dateOld').invalid && existingLoanDetails.get('dateOld').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                          <small class="text-danger" *ngIf="existingLoanDetails.get('dateOld').errors?.['required']">Date required</small>
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                      <label for="inputDocumentNumber">Jewellery Valuation</label>
+                                      <input formControlName="valuation" type="number" class="form-control" placeholder="Jewellery Valuation">
+
+                                      <ng-container *ngIf="existingLoanDetails.get('valuation').invalid && existingLoanDetails.get('valuation').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="existingLoanDetails.get('valuation').invalid && existingLoanDetails.get('valuation').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="existingLoanDetails.get('valuation').errors?.['required']">Enter Jewellery Valuation</small>
+                                          </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                      <label for="inputoutstandingAmount">Outstanding Amount</label>
+                                      <input formControlName="outstandingAmount" type="number" class="form-control" placeholder="Outstanding Amount">
+
+                                      <ng-container *ngIf="existingLoanDetails.get('outstandingAmount').invalid && existingLoanDetails.get('outstandingAmount').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="existingLoanDetails.get('outstandingAmount').invalid && existingLoanDetails.get('outstandingAmount').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="existingLoanDetails.get('outstandingAmount').errors?.['required']">Enter Outstanding Amount</small>
+                                          </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                      <label for="inputbalanceTransferAmount">Balance Transfer Amount</label>
+                                      <input formControlName="balanceTransferAmount" type="number" class="form-control" placeholder="Balance Transfer Amount">
+
+                                      <ng-container *ngIf="existingLoanDetails.get('balanceTransferAmount').invalid && existingLoanDetails.get('balanceTransferAmount').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="existingLoanDetails.get('balanceTransferAmount').invalid && existingLoanDetails.get('balanceTransferAmount').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="existingLoanDetails.get('balanceTransferAmount').errors?.['required']">Enter Balance Transfer Amount</small>
+                                          </div>
+                                  </div>
+                                                              
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputRequiredAmount">Required Amount</label>
+                                        <input formControlName="requiredAmount" type="number" class="form-control" placeholder="Required Amount">
+    
+                                        <ng-container *ngIf="existingLoanDetails.get('requiredAmount').invalid && existingLoanDetails.get('requiredAmount').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="existingLoanDetails.get('requiredAmount').invalid && existingLoanDetails.get('requiredAmount').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="existingLoanDetails.get('requiredAmount').errors?.['required']">Enter Required Amount</small>
+                                            </div>
+                                    </div>  
+                                    <div class="form-group col-md-4">
+                                        <label for="inputTenure">Tenure</label>
+                                        <input formControlName="tenure" type="number" class="form-control" placeholder="PAN Number">
+    
+                                        <ng-container *ngIf="existingLoanDetails.get('tenure').invalid && existingLoanDetails.get('tenure').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="existingLoanDetails.get('tenure').invalid && existingLoanDetails.get('tenure').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="existingLoanDetails.get('tenure').errors?.['required']">Enter Father Name</small>
+                                            </div>
+                                    </div>  
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="form-btn"> 
+                                <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
+                            </div>
+                            <div class="form-btn">
+                                
+                                <a (click)="saveExistingLoanDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i> Next</button></a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="detail-div">
+                    <div class="row">                        
+                        <div *ngIf="currentStep >7; else elseBlock">
+                            <div class="completed-step"> <i class="fa fa-check"></i></div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
+                        </ng-template>
+                    
+                    <h3 style="padding-top:15px">Document Upload</h3>
+                    </div>
+                    <div class="vertical-line personal-form" *ngIf="currentStep == 7">
+                        <div class="form-content">
+                            <form [formGroup]="documentUploadDetails">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Customer Photo</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="customerPhoto" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('customerPhoto').invalid && documentUploadDetails.get('customerPhoto').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('customerPhoto').invalid && documentUploadDetails.get('customerPhoto').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('customerPhoto').errors?.['required']">Bank Name is required</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Blank Check 1</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="blankCheck1" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('blankCheck1').invalid && documentUploadDetails.get('blankCheck1').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('blankCheck1').invalid && documentUploadDetails.get('blankCheck1').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('blankCheck1').errors?.['required']">Bank Name is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Blank Check 2</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input formControlName="blankCheck2" id="blankCheck2" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('blankCheck2').invalid && documentUploadDetails.get('blankCheck2').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('blankCheck2').invalid && documentUploadDetails.get('blankCheck2').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('blankCheck2').errors?.['required']">Blank Check 2 is required</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">KYC Document (POI)</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="kycPOI" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('kycPOI').invalid && documentUploadDetails.get('kycPOI').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('kycPOI').invalid && documentUploadDetails.get('kycPOI').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('kycPOI').errors?.['required']">KYC (POI) is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">KYC Document (POA)</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="kycPOA" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('kycPOA').invalid && documentUploadDetails.get('kycPOA').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('kycPOA').invalid && documentUploadDetails.get('kycPOA').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('kycPOA').errors?.['required']">KYC (POA) is required</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Loan Document</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="loanDocument" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('loanDocument').invalid && documentUploadDetails.get('loanDocument').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('loanDocument').invalid && documentUploadDetails.get('loanDocument').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('loanDocument').errors?.['required']">Loan Document is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Foreclosure Letter</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="foreclosureLetter" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('foreclosureLetter').invalid && documentUploadDetails.get('foreclosureLetter').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('foreclosureLetter').invalid && documentUploadDetails.get('foreclosureLetter').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('foreclosureLetter').errors?.['required']">Foreclosure Letter is required</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">ATM Withdrawl Slip</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="atmWithdrawlSlip" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('atmWithdrawlSlip').invalid && documentUploadDetails.get('atmWithdrawlSlip').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('atmWithdrawlSlip').invalid && documentUploadDetails.get('atmWithdrawlSlip').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('atmWithdrawlSlip').errors?.['required']">ATM Withdrawl Slip is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Promissory Note</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input id="promissoryNote" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('promissoryNote').invalid && documentUploadDetails.get('promissoryNote').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('promissoryNote').invalid && documentUploadDetails.get('promissoryNote').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('promissoryNote').errors?.['required']">Promissory Note is required</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBankName">Last Page of the Agreement</label>
+                                        <div class="upload-btn">
+                                            <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label><input  id="lastPageOfAgreement" type="file" name="file-upload">
+                                        </div>
+                                            <ng-container *ngIf="documentUploadDetails.get('lastPageOfAgreement').invalid && documentUploadDetails.get('lastPageOfAgreement').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="documentUploadDetails.get('lastPageOfAgreement').invalid && documentUploadDetails.get('lastPageOfAgreement').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="documentUploadDetails.get('lastPageOfAgreement').errors?.['required']">Last Page of the agreement is required</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                  
+                              </form>
+                        </div>
+                        <div class="row">
+                            <div class="form-btn"> 
+                                <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
+                            </div>
+                            <div class="form-btn">
+                                
+                                <a (click)="saveForms()"><button type="submit" class="btn btn-success"><i class="fa fa-arrow-right"></i> Submit</button></a>
+                            </div>
+                        </div>
+                    </div>
                   </div>
               </div>
           </div>
