@@ -9,11 +9,6 @@ a , a:hover , a:focus{
 #sidebar.active {
     margin-left: -250px;
 }
-.wrapper{
-	display: flex;
-	text-decoration: none;
-	transition: all 0.3s;
-}
 
 #sidebar{
 	min-width: 250px;
@@ -24,16 +19,36 @@ a , a:hover , a:focus{
 	transition: all 0.3s;
 	height: 100vh;
 	overflow: scroll;
+	padding-right: 20px;
 }
-
-
+#sidebar ul{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#sidebar ul li{
+	position: relative;
+	width: 100%;
+	list-style: none;
+}
+#sidebar ul ul{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#sidebar ul ul ul{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
 #sidebar ul li a{
 	padding: 10px;
-	font-size: 1.2em;
-	display: block;
-	
+	font-size: 17px;
+	display: block;	
 }
-
 
 #sidebar ul li a:hover{
 	color: #fff;
@@ -45,16 +60,34 @@ a , a:hover , a:focus{
     text-decoration: none;
 }
 
+// #sidebar ul ul ul li a:hover {
+//     color: #999728;
+//     text-decoration: none;
+// }
+
 #sidebar ul ul ul li a {
     margin-left: 50px;
 }
-
+// #sidebar ul ul {
+// 	list-style-type: circle inside!important;
+// }
 #sidebar ul li a.active{
 	color:black;
-	background-color: #fff;
-
-	
+	background-color: #fff;	
 }
+#sidebar ul .title{
+	text-align: start;
+	white-space: nowrap;
+}
+
+
+
+// #sidebar ul li.active>a,
+// a[aria-expanded="true"] {
+// 	color: #000;
+// 	background-color: #fff;
+	
+// }
 
 a[data-toggle="collapse"]{
 	position: relative;
@@ -81,12 +114,12 @@ ul ul a{
 	background-color: #0000004d;
 }
 
-#content{
-	width: 100%;
-	padding: 20px;
-	min-height: 100vh;
-	transition: all 0.3s;
-}
+// #content{
+// 	width: 100%;
+// 	padding: 20px;
+// 	min-height: 100vh;
+// 	transition: all 0.3s;
+// }
 
 #sidebar.hidden {
     margin-left: 0;
@@ -109,8 +142,32 @@ ul ul a{
       margin-left: -250px;
     }
 
+/* curve outside */
+#sidebar ul li a.active ::before{
+	content: '';
+	position: absolute;
+	right: 0;
+	top: -50px;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	border-radius: 50%;
+	box-shadow: 35px 35px 0 10px white;
+}
 
+#sidebar ul li a.active ::after{
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: -50px;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	border-radius: 50%;
+	box-shadow: 35px -35px 0 10px white;
+}
 
-
-
+::-webkit-scrollbar{
+	width: 0px;
+}
 
