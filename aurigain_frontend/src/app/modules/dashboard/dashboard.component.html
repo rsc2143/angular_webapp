@@ -2,11 +2,11 @@
 <app-top-nav-bar></app-top-nav-bar>
 <div class="wrapper" style="margin-top:45px">
     <app-side-bar></app-side-bar>
-        <div id="content">
+        <div id="content" [ngStyle]="{'margin-left': toggle ? '0' : '250px' }">
     
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-info" (click)="sidenavservice.toggleSideNav()">
+                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-info" (click)="sidenavservice.toggleSideNav(); toggled()">
                         <i class="fa fa-align-left"></i>
                     </button>
                 </div>
