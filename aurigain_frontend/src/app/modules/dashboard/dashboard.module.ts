@@ -1,3 +1,6 @@
+import { ApplicationApprovalComponent } from './components/leads/application-approval/application-approval.component';
+import { UpdateStatusComponent } from './components/leads/update-status/update-status.component';
+import { ViewApplicationComponent } from './components/leads/view-application/view-application.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
@@ -45,6 +48,15 @@ const routes: Routes = [
       { 
         path: 'balance-transfer-leads/add-update', component: AddBalanceTransferLeadsComponent
       },
+      { 
+        path: 'view-applications', component: ViewApplicationComponent
+      },
+      { 
+        path: 'update-status', component: UpdateStatusComponent
+      },
+      { 
+        path: 'application-aaproval', component: ApplicationApprovalComponent
+      },
     ]
   }
 ]
@@ -61,7 +73,10 @@ const routes: Routes = [
     BalanceTransferLeadsComponent,
     AddFreshLeadsComponent,
     AddBalanceTransferLeadsComponent,
-    PersonalLeadsComponent
+    PersonalLeadsComponent,
+    ViewApplicationComponent,
+    UpdateStatusComponent,
+    ApplicationApprovalComponent
   ],
   imports: [
     CommonModule,
