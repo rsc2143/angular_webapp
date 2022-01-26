@@ -39,6 +39,7 @@ color: #778191;
 
   
 }
+
 h1{
     font-size: 32px!important;
     line-height: 44px!important;
@@ -76,4 +77,27 @@ h1{
 
 .link-color a:hover{
   color: #15549a!important;
+}
+
+/* partner us */
+.partner1{
+ nav a{
+  color: #f51f8a;
+}
+nav a:hover{
+  color: #495057;
+}
+nav a.active{
+  color: #f51f8a!important;
+}
+.control-label{
+  text-transform: uppercase;
+    color: #0a2759;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+// .bg-secondary{
+//   background: #eff3f8!important;
+// }
 }

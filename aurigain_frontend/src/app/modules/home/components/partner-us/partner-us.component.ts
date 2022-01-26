@@ -6,8 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partner-us.component.scss']
 })
 export class PartnerUsComponent implements OnInit {
+ 
+  partner:boolean = true;
 
+  navText:string= "Partner Us"
   constructor() { }
+
+  changeForm(){
+    this.partner = false;
+    this.navText = "Become Agent"
+  }
 
   ngOnInit(): void {
   }
