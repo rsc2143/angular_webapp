@@ -1,3 +1,6 @@
+import { ApplicationApprovalComponent } from './components/leads/application-approval/application-approval.component';
+import { UpdateStatusComponent } from './components/leads/update-status/update-status.component';
+import { ViewApplicationComponent } from './components/leads/view-application/view-application.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
@@ -15,6 +18,10 @@ import { AddBalanceTransferLeadsComponent } from './components/leads/add-balance
 import { PersonalLeadsComponent } from './components/leads/personal-leads/personal-leads.component';
 import { AddPersonalLeadsComponent } from './components/leads/add-personal-leads/add-personal-leads.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserRolesComponent } from './components/user-roles/user-roles.component';
+import { RoleMappingComponent } from './components/role-mapping/role-mapping.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -45,6 +52,27 @@ const routes: Routes = [
       { 
         path: 'balance-transfer-leads/add-update', component: AddBalanceTransferLeadsComponent
       },
+      { 
+        path: 'view-applications', component: ViewApplicationComponent
+      },
+      { 
+        path: 'update-status', component: UpdateStatusComponent
+      },
+      { 
+        path: 'application-aaproval', component: ApplicationApprovalComponent
+      },
+      { 
+        path: 'user-list', component: UserListComponent
+      },
+      { 
+        path: 'user-roles', component: UserRolesComponent
+      },
+      { 
+        path: 'role-mapping', component: RoleMappingComponent
+      },
+      { 
+        path: 'reset-password', component: ResetPasswordComponent
+      },
     ]
   }
 ]
@@ -61,7 +89,14 @@ const routes: Routes = [
     BalanceTransferLeadsComponent,
     AddFreshLeadsComponent,
     AddBalanceTransferLeadsComponent,
-    PersonalLeadsComponent
+    PersonalLeadsComponent,
+    ViewApplicationComponent,
+    UpdateStatusComponent,
+    ApplicationApprovalComponent,
+    UserListComponent,
+    UserRolesComponent,
+    RoleMappingComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
