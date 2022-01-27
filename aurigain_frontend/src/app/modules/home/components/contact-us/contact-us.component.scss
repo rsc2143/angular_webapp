@@ -49,7 +49,7 @@ h1{
 }
 
 .btn{
-  font-size: 14px;
+  // font-size: 14px;
   border-radius: 2px;
   line-height: 12px;
   letter-spacing: 1px;
@@ -90,13 +90,19 @@ h1{
   line-height: 28px
   }
   
-  .bottom-content .text-big {
+  .bottom-content .text-big a{
     font-size: 20px;
     color: #f51f8a;
+    text-decoration: none;
     font-weight: 600;
     margin-bottom: 0px;
   }
-
+  
+  .card-shadow a{
+    
+    color: #f51f8a;
+    text-decoration: none;
+  }
 .fas{
     font-size: 48px;
     color: #15549a;
@@ -124,5 +130,16 @@ h1{
 .map{
     padding-bottom: 20px;
     
+}
+form{
+        padding: 30px;
+        margin-top: -1px;
+        border-top: 0px;
+}
+form input{
+  font-size: 18px;
+}
+form .custom-select{
+  font-size: 18px;
 }
 }

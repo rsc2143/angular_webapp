@@ -17,6 +17,11 @@ import { AppBootStrapModule } from 'src/app/shared/modules/bootstrap/bootstrap-m
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { FaqComponent } from './components/faq/faq.component';
+import { GoldLoanComponent } from './components/products/gold-loan/gold-loan.component';
+import { PersonalLoanComponent } from './components/products/personal-loan/personal-loan.component';
+import { HomeLoanComponent } from './components/products/home-loan/home-loan.component';
+import { VehicleLoanComponent } from './components/products/vehicle-loan/vehicle-loan.component';
+import { MsmeLoanComponent } from './components/products/msme-loan/msme-loan.component';
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -43,8 +48,20 @@ const routes: Routes = [
         path: 'contact-us', component: ContactUsComponent 
       },
       {
-        path: '', component: HomePageComponent 
-      }
+        path: 'gold-loan', component: GoldLoanComponent
+      },
+      {
+        path: 'vehicle-loan', component: VehicleLoanComponent
+      },
+      {
+        path: 'home-loan', component: HomeLoanComponent
+      },
+      {
+        path: 'msme-loan', component: MsmeLoanComponent
+      },
+      {
+        path: 'personal-loan', component: PersonalLoanComponent
+      },
       // We will not make the below routes as footer, top-navbar and top-navbar-bottom do not have individual pages
       // {
       //   path: 'footer', component: FooterComponent 
@@ -72,7 +89,12 @@ const routes: Routes = [
     PartnerUsComponent,
     FooterComponent,
     BlogComponent,
-    FaqComponent
+    FaqComponent,
+    GoldLoanComponent,
+    PersonalLoanComponent,
+    HomeLoanComponent,
+    VehicleLoanComponent,
+    MsmeLoanComponent
   ],
   imports: [
   

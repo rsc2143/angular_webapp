@@ -8,23 +8,23 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link " href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link " routerLink="/">Home</a></li>
                     <!-- Dropdown -->
 
                     <li ngbDropdown class="nav-item dropdown">
-                        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#!" id="navbarFeatures" role="button"
+                        <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="navbarFeatures" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Products 
                         </a>
                         <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarFeatures">
 
-                            <li ngbDropdownItem><a class="dropdown-item" href="https://aurigain.com/gold-loan"> Gold Loan</a></li>
-                            <li ngbDropdownItem><a class="dropdown-item" href="https://aurigain.com/personal-loan"> Personal Loan</a>
+                            <li ngbDropdownItem><a class="dropdown-item" routerLink="/gold-loan"> Gold Loan</a></li>
+                            <li ngbDropdownItem><a class="dropdown-item" routerLink="/personal-loan"> Personal Loan</a>
                             </li>
-                            <li ngbDropdownItem><a class="dropdown-item" href="https://aurigain.com/home-loan"> Home Loan</a></li>
-                            <li ngbDropdownItem><a class="dropdown-item" href="https://aurigain.com/loan-against-property"> MSME
+                            <li ngbDropdownItem><a class="dropdown-item" routerLink="/home-loan"> Home Loan</a></li>
+                            <li ngbDropdownItem><a class="dropdown-item" routerLink="/msme-loan"> MSME
                                     Loan</a></li>
-                            <li ngbDropdownItem><a class="dropdown-item" href="https://aurigain.com/vehicle-loan"> Vehicle Loan</a></li>
+                            <li ngbDropdownItem><a class="dropdown-item" routerLink="/vehicle-loan"> Vehicle Loan</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link " routerLink="/blog">Blog</a></li>

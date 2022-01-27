@@ -45,23 +45,23 @@
     -webkit-animation: bounce 1s infinite alternate;
 }
 
-.whatsapp {
+.apply {
     position: fixed;
-    bottom: 13px;
+    bottom: 110px;
     z-index: 999999;
     right: 20px;
 }
 
-.whatsapp > a {
-    height: 50px;
-    width: 50px;
-    background: #5bd234;
+.apply > a {
+    height: 40px;
+    width: 40px;
+    background: #15549a;
     display: inline-block;
     color: #fff;
     font-size: 30px;
     text-align: center;
     border-radius: 50%;
-    line-height: 50px;
+    line-height: 38px;
     animation: bounce 1s infinite alternate;
     -webkit-animation: bounce 1s infinite alternate;
 }
@@ -69,6 +69,33 @@
       @media (min-width:1000px) {
       .mobile-call {
    display:none;
+}
+}
+
+.whatsapp {
+  position: fixed;
+  bottom: 70px;
+  z-index: 999998;
+  right: 20px;
+}
+
+.whatsapp > a {
+  height: 40px;
+  width: 40px;
+  background: #5bd234;
+  display: inline-block;
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 38px;
+  animation: bounce 1s infinite alternate;
+  -webkit-animation: bounce 1s infinite alternate;
+}
+
+    @media (min-width:1000px) {
+    .mobile-call {
+ display:none;
 }
 }
   }
