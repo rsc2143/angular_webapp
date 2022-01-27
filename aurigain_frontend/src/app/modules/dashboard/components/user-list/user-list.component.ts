@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-update-status',
-  templateUrl: './update-status.component.html',
-  styleUrls: ['./update-status.component.scss']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class UpdateStatusComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
   constructor(
     private formbuilder: FormBuilder,
@@ -100,6 +100,5 @@ export class UpdateStatusComponent implements OnInit {
        type: ['']
      })
   }
-
 
 }

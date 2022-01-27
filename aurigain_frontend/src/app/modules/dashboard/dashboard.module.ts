@@ -18,6 +18,10 @@ import { AddBalanceTransferLeadsComponent } from './components/leads/add-balance
 import { PersonalLeadsComponent } from './components/leads/personal-leads/personal-leads.component';
 import { AddPersonalLeadsComponent } from './components/leads/add-personal-leads/add-personal-leads.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserRolesComponent } from './components/user-roles/user-roles.component';
+import { RoleMappingComponent } from './components/role-mapping/role-mapping.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -57,6 +61,18 @@ const routes: Routes = [
       { 
         path: 'application-aaproval', component: ApplicationApprovalComponent
       },
+      { 
+        path: 'user-list', component: UserListComponent
+      },
+      { 
+        path: 'user-roles', component: UserRolesComponent
+      },
+      { 
+        path: 'role-mapping', component: RoleMappingComponent
+      },
+      { 
+        path: 'reset-password', component: ResetPasswordComponent
+      },
     ]
   }
 ]
@@ -76,7 +92,11 @@ const routes: Routes = [
     PersonalLeadsComponent,
     ViewApplicationComponent,
     UpdateStatusComponent,
-    ApplicationApprovalComponent
+    ApplicationApprovalComponent,
+    UserListComponent,
+    UserRolesComponent,
+    RoleMappingComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
