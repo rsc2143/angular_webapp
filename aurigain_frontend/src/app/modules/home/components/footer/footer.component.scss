@@ -26,21 +26,21 @@
 
   .mobile-call .fas {
     position: fixed;
-    bottom: 13px;
+    bottom: 70px;
     z-index: 999999;
-    left: 20px;
+    left: 15px;
 }
 
 .mobile-call > a > .fas{
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     background: #0b6590;
     display: inline-block;
     color: #fff;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     border-radius: 50%;
-    line-height: 50px;
+    line-height: 38px;
     animation: bounce 1s infinite alternate;
     -webkit-animation: bounce 1s infinite alternate;
 }
