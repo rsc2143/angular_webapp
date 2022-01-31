@@ -16,11 +16,11 @@ export class UpdateStatusComponent implements OnInit {
   editStatus: FormGroup;
 
   originalArray = [
-  {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
-  {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: null, type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: null, type: 'pending',DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: null,type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
+  {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: 'mohit@gmail.com', type: 'pending',DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: 'gg@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: 'pinkj@gmail.com',type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
   {Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved',DateOfBirth: '0001-01-01T00:00:00', },
   {Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
   {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
@@ -54,6 +54,7 @@ export class UpdateStatusComponent implements OnInit {
 
 
   }
+
   filter(query: string){
     this.filterArray = [];
     console.log(query);

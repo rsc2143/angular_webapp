@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -10,50 +11,98 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private formbuilder: FormBuilder,
+    private router: Router,
   ) { }
 
+  successMsg:string;
   selectedForm: FormGroup;
-  editStatus: FormGroup;
-
+  editUserForm: FormGroup;
+  addUserForm:FormGroup;
+  
+  p:any;
+  
   originalArray = [
-  {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
-  {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: null, type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: null, type: 'pending',DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: null,type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved',DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00', },
-  {Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar',  Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
-
-  ];
+    {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
+    {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: 'mohit@gmail.com', type: 'pending',DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: 'gg@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: 'pinkj@gmail.com',type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved',DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00', },
+    {Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar',  Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
+  
+    ];
   filterArray = [];
   fullname;
   fathername;
 
-  updateStatus(id){
+
+  createUser(){
+    this.successMsg= null;
+    
+    // this.addUserForm = this.formbuilder.group({
+    //   // FullName: [''],
+    //   // FatherName: [''],
+    //   // Dob: [''],
+    //   // Email: [''],
+    // })
+  }
+
+  
+  editUser(id){
     console.log(id);
-    this.fullname = null;
-    this.fathername = null;
+    // this.fullname = null;
+    // this.fathername = null;
 
     for (let i = 0; i < this.originalArray.length; i++) {
         if (this.originalArray[i]['Id'] == id) {
           
           console.log(this.originalArray[i]);
-          this.fullname = this.originalArray[i]['FullName'];
-          this.fathername = this.originalArray[i]['FatherName']
-          
-          // this.editStatus.patchValue({
-          //   FullName: this.originalArray[i]['FullName'],
-          //   FatherName: this.originalArray[i]['FatherName'],
-          // })
+
+          this.editUserForm.patchValue({
+            FullName: this.originalArray[i]['FullName'],
+            FatherName: this.originalArray[i]['FatherName'],
+            Email: this.originalArray[i]['Email'],
+            Dob: this.originalArray[i]['DateOfBirth'],
+          })
 
         }
       }
 
 
   }
+
+  deleteUser(id){
+    this.successMsg = null;
+
+    if (confirm("Do you really want to delete this user?")){
+      //Api call to delete user
+      for (let i = 0; i < this.originalArray.length; i++) {
+     
+        if (this.originalArray[i]['Id'] == id){
+          
+          this.originalArray.splice(i, 1)
+        }
+        
+      }
+      console.log(this.originalArray);
+    //  this.router.navigateByUrl('/user-list')
+    }
+    
+
+    // for (let i = 0; i < this.originalArray.length; i++) {
+     
+    //   if (this.originalArray[i]['Id'] == id){
+        
+    //     this.originalArray.splice(i, 1)
+    //   }
+      
+    // }
+    // console.log(this.originalArray);
+  }
+
   filter(query: string){
     this.filterArray = [];
     console.log(query);
@@ -77,11 +126,45 @@ export class UserListComponent implements OnInit {
   }
 
 
-  submitUpdateStatus(){
+  submitEditedUser(){
     console.log("Inside Update Status")
-    const type = this.editStatus.value.type;
+    const FullName = this.editUserForm.value.FullName;
+    const FatherName = this.editUserForm.value.FatherName;
+    const Email = this.editUserForm.value.Email;
+    const Dob = this.editUserForm.value.Dob;
+
+    let formData = {
+      FullName: FullName,
+      FatherName: FatherName,
+      Email: Email,
+      Dob: Dob,
+    }
+
+    console.log(formData);
+    this.successMsg = "Edit Success!";
   //////// API call to save data    
-    console.log(type);
+    
+    
+  }
+  
+  submitCreatedUser(){
+    console.log("Inside Update Status")
+    const FullName = this.addUserForm.value.FullName;
+    const FatherName = this.addUserForm.value.FatherName;
+    const Email = this.addUserForm.value.Email;
+    const Dob = this.addUserForm.value.Dob;
+
+    let formData = {
+      FullName: FullName,
+      FatherName: FatherName,
+      Email: Email,
+      Dob: Dob,
+    }
+
+    console.log(formData);
+    this.successMsg = "User Created Success!";
+  //////// API call to save data    
+    
     
   }
 
@@ -94,10 +177,19 @@ export class UserListComponent implements OnInit {
      console.log(this.originalArray);
 
 
-     this.editStatus = this.formbuilder.group({
+     this.editUserForm = this.formbuilder.group({
        FullName: [''],
        FatherName: [''],
-       type: ['']
+       type: [''],
+       Dob: [''],
+       Email: [''],
+     })
+
+     this.addUserForm = this.formbuilder.group({
+       FullName: [''],
+       FatherName: [''],
+       Dob: [''],
+       Email: [''],
      })
   }
 
