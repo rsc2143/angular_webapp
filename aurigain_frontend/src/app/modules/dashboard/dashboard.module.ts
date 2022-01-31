@@ -22,6 +22,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserRolesComponent } from './components/user-roles/user-roles.component';
 import { RoleMappingComponent } from './components/role-mapping/role-mapping.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 const routes: Routes = [
@@ -103,6 +104,7 @@ const routes: Routes = [
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule]

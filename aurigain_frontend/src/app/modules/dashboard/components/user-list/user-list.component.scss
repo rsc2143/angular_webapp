@@ -56,3 +56,37 @@
 .upper-card p{
     margin: 0;
 }
+
+
+.menu{
+
+
+    button{
+        border: none;
+        background-color: transparent;
+    }
+    
+    .dropdown-toggle::after{
+        content: none;
+    }
+}
+
+// .menu{
+//     position: relative;
+//     display: inline-block;
+//     float: right;
+
+//     i:hover {
+//         cursor: pointer;
+//     }
+// }
+
+
+// .menu:hover .dropdown-menu {
+//     display: block;
+
+// }
+
+// .menu:hover .menu-button{
+//     background-color: transparent;
+// } 
