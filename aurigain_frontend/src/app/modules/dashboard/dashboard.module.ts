@@ -23,6 +23,8 @@ import { UserRolesComponent } from './components/user-roles/user-roles.component
 import { RoleMappingComponent } from './components/role-mapping/role-mapping.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AgentMappingComponent } from './components/agent-mapping/agent-mapping.component';
+import { AgentPerformanceComponent } from './components/agent-performance/agent-performance.component';
 
 
 const routes: Routes = [
@@ -74,6 +76,12 @@ const routes: Routes = [
       { 
         path: 'reset-password', component: ResetPasswordComponent
       },
+      { 
+        path: 'agent-mapping', component: AgentMappingComponent
+      },
+      { 
+        path: 'agent-performance', component: AgentPerformanceComponent
+      },
     ]
   }
 ]
@@ -97,7 +105,9 @@ const routes: Routes = [
     UserListComponent,
     UserRolesComponent,
     RoleMappingComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AgentMappingComponent,
+    AgentPerformanceComponent
   ],
   imports: [
     CommonModule,

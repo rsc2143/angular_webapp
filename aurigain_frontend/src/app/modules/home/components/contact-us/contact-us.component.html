@@ -15,9 +15,6 @@
             </div>
         </div>
     </div>
-    
-    
-    
     <div class="contact">
         <div class="container mt-3 mb-5 mt30">
             <div class="row bgcolor justify-content-center">
@@ -26,28 +23,41 @@
                         <h1>Get In Touch</h1>
                         <p>Reach out to us & we will respond as soon as we can.</p>
                     </div>
-                    <form method="POST" action="https://aurigain.com/login">
+                    <form [formGroup]="contactForm">
                         <div class="form-row">
                             <div class="form-group col-md-6">
     
-                                <input type="text" class="form-control" id="inputName" placeholder="Name" value=""
-                                    required>
+                                <input [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="inputName" placeholder="Name" formControlName="name" required>
+                                    <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
+                                        <small *ngIf="name.errors?.['required']" class="text-danger">Name is required</small>
+                                        <small *ngIf="name.errors?.['minlength']" class="text-danger">Name must be atleast 2
+                                          characters</small>
+                                          <small *ngIf="name.errors?.['pattern']" class="text-danger">Enter only alphabets without spaces</small>
+                                        </div>
                             </div>
                             <div class="form-group col-md-6">
     
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Email" value=""
+                                <input [class.is-invalid]="email.invalid && email.touched" type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"
                                     required>
+                                    <div style="margin-left: 10px;" *ngIf="email.invalid && email.touched">
+                                        <small *ngIf="email.errors?.['required']" class="text-danger">Email is required</small>
+                                        <small *ngIf="email.errors?.['pattern']" class="text-danger">Check the email pattern again</small>
+                                        </div>
                             </div>
                         </div>
                         <div class="form-group">
     
                             <input type="text" class="form-control" id="inputphone" placeholder="Phone" maxlength="12"
-                                value="" required>
+                            formControlName="phone" required>
+                                <div style="margin-left: 10px;" *ngIf="phone.invalid && phone.touched">
+                                <small *ngIf="phone.errors?.['required']" class="text-danger">Phone Number is required</small>
+                                <small *ngIf="phone.errors?.['pattern']" class="text-danger">Enter only numbers without spaces</small>
+                                </div>
                         </div>
                         <div class="input-group mb-3">
                             
-                            <select class="custom-select" id="inputGroupSelect01">
-                              <option selected>Select Query</option>
+                            <select class="custom-select" id="inputGroupSelect01" formControlName="query">
+                              <option value="" selected>Select Query</option>
                               <option value="1">One</option>
                               <option value="2">Two</option>
                               <option value="3">Three</option>
@@ -57,12 +67,15 @@
     
                             <textarea type="text" class="form-control" rows="7" id="inputMessage" placeholder="Message"
                                 value="" required></textarea>
+                                <!-- <div style="margin-left: 10px;" *ngIf="message.invalid && message.touched">
+                                    <small *ngIf="message.errors?.['required']" class="text-danger">Message is required</small>
+                                </div> -->
                         </div>
     
                         <div class="form-group row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-lg btn-primary">Submit your query</button>
-    
+                                <a (click)="contactUs()"><button  type="submit" class="btn btn-lg btn-primary">Submit your query</button>
+                                </a>
                             </div>
                         </div>
     
