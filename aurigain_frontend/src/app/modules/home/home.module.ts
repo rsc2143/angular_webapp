@@ -22,6 +22,7 @@ import { PersonalLoanComponent } from './components/products/personal-loan/perso
 import { HomeLoanComponent } from './components/products/home-loan/home-loan.component';
 import { VehicleLoanComponent } from './components/products/vehicle-loan/vehicle-loan.component';
 import { MsmeLoanComponent } from './components/products/msme-loan/msme-loan.component';
+import { EmiCalculatorComponent } from './components/emi-calculator/emi-calculator.component';
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -62,6 +63,9 @@ const routes: Routes = [
       {
         path: 'personal-loan', component: PersonalLoanComponent
       },
+      {
+        path: 'emicalculator', component: EmiCalculatorComponent
+      },
       // We will not make the below routes as footer, top-navbar and top-navbar-bottom do not have individual pages
       // {
       //   path: 'footer', component: FooterComponent 
@@ -94,7 +98,8 @@ const routes: Routes = [
     PersonalLoanComponent,
     HomeLoanComponent,
     VehicleLoanComponent,
-    MsmeLoanComponent
+    MsmeLoanComponent,
+    EmiCalculatorComponent
   ],
   imports: [
   
