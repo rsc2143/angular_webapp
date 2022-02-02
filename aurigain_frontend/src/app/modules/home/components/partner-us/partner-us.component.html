@@ -16,41 +16,39 @@
         </div>
     </div>
 
-
-
     <div class="partner" *ngIf="partner">
         <div class="container mt-3 mb-5 mt30">
             <div class="row bgcolor justify-content-center">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
                     <div class="col-xl-12 col-lg-12 col-sm-12 col-12 text-center mt-3">
                         <h1>Become our Partner</h1>
-                        <p>Beome our partner and earn. To know more send us your details.</p>
+                        <p>Become our partner and earn. To know more send us your details.</p>
                     </div>
                     <div class="m-5">
-                        <form method="POST" action="https://aurigain.com/login">
+                        <form [formGroup]="partnerForm">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     
-                                    <input type="text" class="form-control" id="inputName" placeholder="Name" value=""   required>
+                                    <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" value=""   required>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"  required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 
-                                <input type="text" class="form-control" id="inputphone" placeholder="Phone" value=""   required>
+                                <input type="text" class="form-control" id="inputphone" placeholder="Phone" formControlName="phone"   required>
                             </div>
                             <div class="form-group">
                                 
                                 <textarea type="text" class="form-control" id="inputMessage"
-                                    placeholder="Message" value=""   required></textarea>
+                                    placeholder="Message" formControlName="message"   required></textarea>
                             </div>
     
                             <div class="form-group row">
                                 <div class="col-12 ">
-                                    <button type="submit" class="btn btn-primary btn-lg mr-2">Apply</button>
+                                    <button type="submit" (click)="submitPatnerForm()" class="btn btn-primary btn-lg mr-2">Apply</button>
                                                     <a (click)="changeForm()"><button type="button" class="btn btn-primary btn-lg">Join as Agent</button></a>
                                     
                                 </div>
@@ -77,116 +75,128 @@
                         <div class="m-5">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="basic-tab" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-basic" aria-selected="true">Basic Details</a>
+                                    <a class="nav-item nav-link"
+                                    [ngClass]="{'active': currentStep == 1}"
+                                    id="basic-tab" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-basic" aria-selected="true" (click)="setStep(1)">Basic Details</a>
                                     
-                                    <a class="nav-item nav-link" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false">Address Details</a>
+                                    <a class="nav-item nav-link" 
+                                    [ngClass]="{'active': currentStep == 2}" id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false" (click)="setStep(2)">Address Details</a>
                                     
-                                    <a class="nav-item nav-link" id="nav-kyc-tab" data-toggle="tab" href="#nav-kyc" role="tab" aria-controls="nav-kyc" aria-selected="false">KYC & Qualification Details</a>
+                                    <a class="nav-item nav-link" 
+                                    [ngClass]="{'active': currentStep == 3}" id="nav-kyc-tab" data-toggle="tab" href="#nav-kyc" role="tab" aria-controls="nav-kyc" aria-selected="false" (click)="setStep(3)">KYC & Qualification Details</a>
                                     
-                                    <a class="nav-item nav-link" id="nav-bank-tab" data-toggle="tab" href="#nav-bank" role="tab" aria-controls="nav-bank" aria-selected="false">Bank & Nominee Details</a>
+                                    <a class="nav-item nav-link" 
+                                    [ngClass]="{'active': currentStep == 4}"
+                                    id="nav-bank-tab" data-toggle="tab" href="#nav-bank" role="tab" aria-controls="nav-bank" aria-selected="false" (click)="setStep(4)">Bank & Nominee Details</a>
                                     
-                                    <a class="nav-item nav-link" id="nav-referral-tab" data-toggle="tab" href="#nav-referral" role="tab" aria-controls="nav-referral" aria-selected="false">Referral Code</a>
+                                    <a class="nav-item nav-link" 
+                                    [ngClass]="{'active': currentStep == 5}"
+                                    id="nav-referral-tab" data-toggle="tab" href="#nav-referral" role="tab" aria-controls="nav-referral" aria-selected="false" (click)="setStep(2)">Referral Code</a>
                                 </div>
                               </nav>
                               <div class="tab-content  bg-light p-5" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
-                                    <form>
+                                <div class="tab-pane fade" [ngClass]="{'show active': currentStep == 1}" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab">
+                                    <form [formGroup]="basciDetailForm">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                
-                                                <input type="text" class="form-control" id="inputName" placeholder="Full Name" value=""   required>
+                                                <input type="text" class="form-control" id="inputName" placeholder="Full Name" formControlName="name"  required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="email" class="form-control" id="inputPhone" placeholder="Phone" value=""   required>
+                                                <input type="number" class="form-control" id="inputPhone" placeholder="Phone" formControlName="phoneNumber1"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputFathername" placeholder="Father Name" value=""   required>
+                                                <input type="text" class="form-control" id="inputFathername" placeholder="Father Name" formControlName="fatherName"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputdob" placeholder="Date of Birth" value="Date of Birth"   required>
+                                                <input type="date" class="form-control" id="inputdob" placeholder="Date of Birth" formControlName="dob"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputName" placeholder="email" value="Email"   required>
+                                                <input type="email" class="form-control" id="inputName" placeholder="email" formControlName="email"   required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                  <option>Select Gender</option>
-                                                  <option>Male</option>
-                                                  <option>Female</option>
-                                                  <option>Other</option>
+                                                <select class="form-control" formControlName="gender" id="exampleFormControlSelect1">
+                                                  <option value="">Select Gender</option>
+                                                  <option value="male">Male</option>
+                                                  <option value="female"> Female</option>
+                                                  <option value="other">Other</option>
                                                   
                                                 </select>
                                               </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-12 mt-2">
-                                                <button type="submit" class="btn btn-primary">Next</button>
+                                                <a (click)="stepUp()">
+                                                    <button type="submit" class="btn btn-primary">Next</button>
+                                                </a>
                                             </div>
                                         </div>
                 
                                     </form>
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
-                                    <form>
+                                <div class="tab-pane fade" [ngClass]="{'show active': currentStep == 2}" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+                                    <form [formGroup]="addressDetailForm">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputLine1" placeholder="Address Line 1" value=""   required>
+                                                <input type="text" class="form-control" id="inputLine1" placeholder="Address Line 1" formControlName="addressLine1"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="email" class="form-control" id="inputLine2" placeholder="Address Line 2" value=""   required>
+                                                <input type="email" class="form-control" id="inputLine2" placeholder="Address Line 2" formControlName="addressLine1"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputPincode" placeholder="Pincode" value=""   required>
+                                                <input type="number" class="form-control" id="inputPincode" placeholder="Pincode" formControlName="pinCode"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputdistrict" placeholder="District" value="Date of Birth"   required>
+                                                <input type="text" class="form-control" id="inputdistrict" placeholder="District" formControlName="district"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputEmail" placeholder="City" value=""   required>
+                                                <input type="text" class="form-control" id="inputEmail" placeholder="City" formControlName="city"   required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputState" placeholder="State" value=""   required>
+                                                <input type="text" class="form-control" id="inputState" placeholder="State" formControlName="state"   required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-12 mt-2">
-                                                <button type="submit" class="btn btn-primary">Next</button>
+                                                <a (click)="stepUp()">
+                                                    <button type="submit" class="btn btn-primary">Next</button>
+                                                </a>
                                             </div>
                                         </div>
                 
                                     </form>
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-kyc" role="tabpanel" aria-labelledby="nav-kyc-tab">
+                                <div class="tab-pane fade" [ngClass]="{'show active': currentStep == 3}" id="nav-kyc" role="tabpanel" aria-labelledby="nav-kyc-tab">
+                                   <form [formGroup]="kycDetailForm">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                              <option>Select Qualification</option>
-                                              <option>10th</option>
-                                              <option>12th</option>
-                                              <option>Graduate</option>
-                                              <option>Post Graduate</option>
-                                              <option>Other</option>
+                                            <select class="form-control" id="exampleFormControlSelect1" formControlName="qualification">
+                                              <option value="">Select Qualification</option>
+                                              <option value="10">10th</option>
+                                              <option value="12">12th</option>
+                                              <option value="graduate">Graduate</option>
+                                              <option value="postGraduate">Post Graduate</option>
+                                              <option value="other">Other</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             
-                                            <input type="text" class="form-control" id="inputAadhar" placeholder="AADHAR Number Name" value=""   required>
+                                            <input type="text" class="form-control" id="inputAadhar" placeholder="AADHAR Number Name"  formControlName="adhaarNumber"   required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             
-                                            <input type="email" class="form-control" id="inputPan" placeholder="PAN Number" value=""   required>
+                                            <input type="email" class="form-control" id="inputPan" placeholder="PAN Number" formControlName="panNumber"      required>
                                         </div>
                                         
                                         <div class="form-group col-md-12">
@@ -205,7 +215,7 @@
                                             <div class="input-group mb-2">
 
                                                   <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile02">
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                   </div>
                                               </div>
@@ -216,7 +226,7 @@
                                             <div class="input-group mb-2">
 
                                                   <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile03">
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                   </div>
                                               </div>
@@ -227,7 +237,7 @@
                                             <div class="input-group mb-2">
 
                                                   <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile04">
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                   </div>
                                               </div>
@@ -235,25 +245,28 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12 mt-2">
-                                            <button type="submit" class="btn btn-primary">Next</button>
+                                            <a (click)="stepUp()">
+                                                <button type="submit" class="btn btn-primary">Next</button>
+                                            </a>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
+                                <div class="tab-pane fade" [ngClass]="{'show active': currentStep == 4}" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab">
+                                    <form [formGroup]="bankDetailForm">
                                     <div class="form-row">
                                         
                                         <div class="form-group col-md-6">
-                                            
-                                            <input type="text" class="form-control" id="inputBank-name" placeholder="Bank Name" value=""   required>
+                                            <input type="text" class="form-control" id="inputBank-name" placeholder="Bank Name" formControlName="bankName" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             
-                                            <input type="email" class="form-control" id="inputAccount" placeholder="Account Number" value=""   required>
+                                            <input type="number" class="form-control" id="inputAccount" placeholder="Account Number" formControlName="accountNumber"      required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             
-                                            <input type="email" class="form-control" id="inputifsc" placeholder="IFSC Code" value=""   required>
+                                            <input type="number" class="form-control" id="inputifsc" placeholder="IFSC Code" formControlName="ifscCode"   required>
                                         </div>
                                         
                                         <div class="form-group col-md-12">
@@ -261,7 +274,7 @@
                                             <div class="input-group mb-2">
 
                                                   <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile05">
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                   </div>
                                               </div>
@@ -269,30 +282,29 @@
 
                                         <div class="form-group col-md-6">
                                             
-                                            <input type="email" class="form-control" id="inputName-nominee" placeholder="Name of Nominee" value=""   required>
+                                            <input type="email" class="form-control" id="inputName-nominee" placeholder="Name of Nominee" formControlName="nameOfNominee"      required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             
-                                            <input type="email" class="form-control" id="inputRelation" placeholder="Relation with Nominee" value=""   required>
-                                        </div>
-                                        
-                                        
-
-                                        
+                                            <input type="email" class="form-control" id="inputRelation" placeholder="Relation with Nominee" formControlName="relationshipWithNominee" required>
+                                        </div>                    
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-12 mt-2">
-                                            <button type="submit" class="btn btn-primary">Next</button>
+                                            <a (click)="stepUp()">
+                                                <button type="submit" class="btn btn-primary">Next</button>
+                                            </a>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                                 
-                                <div class="tab-pane fade" id="nav-referral" role="tabpanel" aria-labelledby="nav-referral-tab">
-                                    <form>
+                                <div class="tab-pane fade" [ngClass]="{'show active': currentStep == 5}" id="nav-referral" role="tabpanel" aria-labelledby="nav-referral-tab">
+                                    <form [formGroup]="refrralDetailForm">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 
-                                                <input type="text" class="form-control" id="inputReferral" placeholder=" Enter Referral Code" value=""   required>
+                                                <input type="text" class="form-control" id="inputReferral" placeholder=" Enter Referral Code" formControlName="referralCode"   required>
                                             </div>                      
                                         </div>
                                         <!-- <div class="form-group row">
@@ -300,7 +312,13 @@
                                                 <button type="submit" class="btn btn-primary">Next</button>
                                             </div>
                                         </div> -->
-                
+                                        <div class="form-group row">
+                                            <div class="col-12 mt-2">
+                                                <a (click)="submitAgentForm()">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </a>
+                                            </div>
+                                        </div> 
                                     </form>
                                 </div>
                               </div>
