@@ -26,13 +26,21 @@
 .mt20{
     margin-top: 30px;
 }
-/*
- Responsive layout - makes a one column-layout instead of a two-column layout 
-@media (max-width: 767px) {
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 468px) {
   .carousel-caption {    
-    text-align: center;
+    
+    right: 0%!important;
+    
+    left: 4%!important;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    text-align: left!important;
+    font-weight: bold!important;
   }
-} */
+} 
 /* carousal end */
 
 /* rate section */ 
