@@ -10,7 +10,7 @@ export class GoldLoanComponent implements OnInit {
 
   newLoanForm: FormGroup;
   detailForm: FormGroup;
-  balanceTrasferForm: FormGroup;
+  balanceTransferForm: FormGroup;
   otp:number;
   isChecked:boolean = false;
 
@@ -65,24 +65,24 @@ export class GoldLoanComponent implements OnInit {
   }
 
   get bName(){
-    return this.balanceTrasferForm.get('name');
+    return this.balanceTransferForm.get('name');
   }
   
   get bPhone(){
-    return this.balanceTrasferForm.get('phone');
+    return this.balanceTransferForm.get('phone');
   }
 
   get bEmail(){
-    return this.balanceTrasferForm.get('email');
+    return this.balanceTransferForm.get('email');
   }
   get bPinCode(){
-    return this.balanceTrasferForm.get('pinCode');
+    return this.balanceTransferForm.get('pinCode');
   }
   get bExistingLoanFrom(){
-    return this.balanceTrasferForm.get('existingLoanFrom');
+    return this.balanceTransferForm.get('existingLoanFrom');
   }
   get bCurrentOutstandingAmount(){
-    return this.balanceTrasferForm.get('currentOutstandingAmount');
+    return this.balanceTransferForm.get('currentOutstandingAmount');
   }
 
 
@@ -102,15 +102,15 @@ export class GoldLoanComponent implements OnInit {
     this.isOtpForm = true;
   }
   
-  submitBalanceTrasferForm(){
-    const name = this.balanceTrasferForm.value.name;
-    const phone = this.balanceTrasferForm.value.phone;
-    const email = this.balanceTrasferForm.value.email;
-    const pinCode = this.balanceTrasferForm.value.pinCode;
-    const existingLoanFrom = this.balanceTrasferForm.value.existingLoanFrom;
-    const currentOutstandingAmount = this.balanceTrasferForm.value.currentOutstandingAmount;
+  submitBalanceTransferForm(){
+    const name = this.balanceTransferForm.value.name;
+    const phone = this.balanceTransferForm.value.phone;
+    const email = this.balanceTransferForm.value.email;
+    const pinCode = this.balanceTransferForm.value.pinCode;
+    const existingLoanFrom = this.balanceTransferForm.value.existingLoanFrom;
+    const currentOutstandingAmount = this.balanceTransferForm.value.currentOutstandingAmount;
     const subscribe = this.isChecked;
-
+    const otp = this.balanceTransferForm.value.otp;
     let formData = {
       name: name,
       email: email,
@@ -121,6 +121,14 @@ export class GoldLoanComponent implements OnInit {
       subscribe: subscribe,
     }
     console.log(formData);
+
+    if(otp) {
+      let otpData = {
+        otp: otp,
+      }
+      console.log(otpData);
+    }
+    
   }
 
   onChange(event){
@@ -135,14 +143,15 @@ export class GoldLoanComponent implements OnInit {
       subscribe: [],
     })
 
-    this.balanceTrasferForm = this.formbuilder.group({
+    this.balanceTransferForm = this.formbuilder.group({
       name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
       phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
       email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
       pinCode: ['',[Validators.required,]],
       existingLoanFrom: ['', [Validators.required]],
       currentOutstandingAmount: ['', [Validators.required]],
-      subscribe: []
+      subscribe: [],
+      otp: [],
     })    
 
   }

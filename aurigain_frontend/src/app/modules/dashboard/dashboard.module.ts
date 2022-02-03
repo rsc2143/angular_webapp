@@ -25,6 +25,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AgentMappingComponent } from './components/agent-mapping/agent-mapping.component';
 import { AgentPerformanceComponent } from './components/agent-performance/agent-performance.component';
+import { CommissionSettingComponent } from './components/commission-setting/commission-setting.component';
+import { CommissionReversalComponent } from './components/commission-reversal/commission-reversal.component';
 
 
 const routes: Routes = [
@@ -82,6 +84,12 @@ const routes: Routes = [
       { 
         path: 'agent-performance', component: AgentPerformanceComponent
       },
+      { 
+        path: 'commissions-setting', component: CommissionSettingComponent
+      },
+      { 
+        path: 'commissions-reversal', component: CommissionReversalComponent
+      },
     ]
   }
 ]
@@ -107,7 +115,9 @@ const routes: Routes = [
     RoleMappingComponent,
     ResetPasswordComponent,
     AgentMappingComponent,
-    AgentPerformanceComponent
+    AgentPerformanceComponent,
+    CommissionSettingComponent,
+    CommissionReversalComponent
   ],
   imports: [
     CommonModule,
