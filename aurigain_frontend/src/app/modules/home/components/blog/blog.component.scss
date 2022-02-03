@@ -8,7 +8,12 @@
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(	https://aurigain.com/images/blog.jpg) no-repeat center;
     background-size: cover;
 }
-
+@media (max-width: 468px) {
+    .page-header8 {    
+        margin: 0;
+        width: 100%;
+    }
+}
 .list ol{
     list-style: none;  
     text-transform: uppercase;
