@@ -26,9 +26,9 @@ export class CommissionSettingComponent implements OnInit {
   }
 
   submitCommissionSetting(){
-    const selectAgent = this.selectAgentForm.get('selectAgent');
-    const selectCommissionType = this.selectAgentForm.get('selectCommissionType');
-    const commissionPercentage = this.selectAgentForm.get('commissionPercentage')
+    const selectAgent = this.selectAgentForm.value.selectAgent;
+    const selectCommissionType = this.selectAgentForm.value.selectCommissionType;
+    const commissionPercentage = this.selectAgentForm.value.commissionPercentage;
 
     let finalData = {
       selectAgent: selectAgent,

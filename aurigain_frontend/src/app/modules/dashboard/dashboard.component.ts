@@ -16,6 +16,12 @@ export class DashboardComponent implements OnInit {
     this.toggle = !this.toggle
   }
   ngOnInit(): void {
+    // this.toggle = this.sidenavservice.hideSideNav;
+    this.sidenavservice.hideStatus.subscribe(
+      data => {
+        console.log("toggledata", data);
+          this.toggle = data;
+    });
   }
 
 }
