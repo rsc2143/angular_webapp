@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="box-end">
-        <a (click)="createUser()"><button class="btn btn-primary" data-toggle="modal" data-target="#createNewUser">Add User</button></a>
+        <a routerLink="/dashboard/add-user"><button class="btn btn-primary">Add User</button></a>
     </div> 
     <form [formGroup]="selectedForm" class="form-inline box-end my-2 my-lg-0">
         <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -41,7 +41,8 @@
                 <div ngbDropdown class="float-right menu">
                     <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                     <div ngbDropdownMenu >
-                        <a ngbDropdownItem href="#" (click)="editUser(user.Id)" data-toggle="modal" data-target="#staticBackdrop">Edit User</a>
+                        <a ngbDropdownItem [routerLink]="['/dashboard/edit-user', user.Id,]">Edit User</a>
+                        <!-- (click)="editUser(user.Id)" data-toggle="modal" data-target="#staticBackdrop" -->
                         <a ngbDropdownItem (click)="deleteUser(user.Id)">Delete User</a>
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,11 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class SideNavBarService {
 
-  hideSideNav: boolean = false;
+  hideSideNav: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  hideStatus = this.hideSideNav.asObservable();
 
 
-  toggleSideNav(): void {
-    this.hideSideNav = !this.hideSideNav;
+  toggleSideNav(status): void {
+    console.log('toggle clicked');
+    this.hideSideNav.next(status);
   }
   constructor(  ) { }
 

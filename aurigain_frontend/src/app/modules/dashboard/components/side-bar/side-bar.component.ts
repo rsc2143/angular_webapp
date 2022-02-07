@@ -12,13 +12,17 @@ export class SideBarComponent implements OnInit {
     public sidenavservice: SideNavBarService
   ) { }
   // hideSideNav: boolean = false;
-
+    toggle: boolean = false;
 
   // toggleSideNav(): void {
   //   this.hideSideNav = !this.hideSideNav;
   // }
   ngOnInit(): void {
-
+    this.sidenavservice.hideStatus.subscribe(
+      data => {
+        console.log("toggledata", data);
+          this.toggle = data;
+    });
 		// $(document).ready(function () {
 		// 	$('#sidebarCollapse').on('click', function () {
 		// 		$('#sidebar').toggleClass('active');

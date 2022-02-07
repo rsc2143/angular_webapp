@@ -31,8 +31,9 @@
                 <div class="form-group">
                     <label for="inputAgent">Select Commissions Type</label>
                     <select [class.is-invalid]="commissionType.invalid && commissionType.touched" id="inputState" class="form-control" formControlName="selectCommissionType" >
-                        <option value="" selected>Select Supervisor</option>
-                        <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor">{{supervisor | titlecase}}</option>
+                        <option value="" selected>Select Commissions Type</option>
+                        <option value="Normal Days">Normal Days</option>
+                        <option value="Campaign Days">Campaign Days</option>
                     </select>
                     <div style="margin-left: 10px;" *ngIf="commissionType.invalid && commissionType.touched">
                         <small *ngIf="commissionType.errors?.['required']" class="text-danger">Commission Type is required</small>
@@ -41,8 +42,10 @@
                 <div class="form-group">
                     <label for="inputAgent">Commissions Percentage</label>
                     <select [class.is-invalid]="commissionPercentage.invalid && commissionPercentage.touched" id="inputState" class="form-control" formControlName="commissionPercentage" >
-                        <option value="" selected>Select Supervisor</option>
-                        <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor">{{supervisor | titlecase}}</option>
+                        <option value="" selected>Select Percentage</option>
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
                     </select>
                     <div style="margin-left: 10px;" *ngIf="commissionPercentage.invalid && commissionPercentage.touched">
                         <small *ngIf="commissionPercentage.errors?.['required']" class="text-danger">Commission Percentage is required</small>

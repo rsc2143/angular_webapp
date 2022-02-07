@@ -27,6 +27,8 @@ import { AgentMappingComponent } from './components/agent-mapping/agent-mapping.
 import { AgentPerformanceComponent } from './components/agent-performance/agent-performance.component';
 import { CommissionSettingComponent } from './components/commission-setting/commission-setting.component';
 import { CommissionReversalComponent } from './components/commission-reversal/commission-reversal.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 const routes: Routes = [
@@ -90,6 +92,12 @@ const routes: Routes = [
       { 
         path: 'commissions-reversal', component: CommissionReversalComponent
       },
+      { 
+        path: 'add-user', component: AddUserComponent
+      },
+      { 
+        path: 'edit-user/:id', component: EditUserComponent
+      },
     ]
   }
 ]
@@ -117,7 +125,9 @@ const routes: Routes = [
     AgentMappingComponent,
     AgentPerformanceComponent,
     CommissionSettingComponent,
-    CommissionReversalComponent
+    CommissionReversalComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
