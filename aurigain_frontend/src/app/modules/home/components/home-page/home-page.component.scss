@@ -41,6 +41,21 @@
     font-weight: bold!important;
   }
 } 
+
+@media (max-width: 768px) {
+  .carousel-caption {    
+    
+    right: 0%!important;
+    
+    left: 4%!important;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    text-align: left!important;
+    font-weight: bold!important;
+  }
+} 
 /* carousal end */
 
 /* rate section */ 
