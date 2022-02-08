@@ -37,44 +37,47 @@
         
             <div class="row m-0">
                 <div class="container bg-white">
-                  <table class="table table-responsive table-striped mat">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Father Name</th>
-                        <th>Product</th>
-                        <th>Pincode</th>
-                        <th>Mobile Number</th>
-                        <th>Loan Amount</th>
-                        <th>Lead Status</th>
-                        <th>Lead Source By</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let user of filterArray; let i = index">
-                        <td>{{i}}</td>
-                        <td> <span>N</span> {{user.FullName}}</td>
-                        <td>{{user.FatherName}}</td>
-                        <td>Product</td>
-                        <td>110059</td>
-                        <td>95400558622</td>
-                        <td>98622</td>
-                        <td> <button class="btn-theme-primary">New</button></td>
-                        <td>Mayank</td>
-                        <td>
-                            <div ngbDropdown class="float-right menu">
-                                <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                <div ngbDropdownMenu >                           
-                                    <a ngbDropdownItem href="#" data-toggle="modal" data-target="#staticBackdrop">Edit User</a>
-                                    <a ngbDropdownItem>Delete User</a>
-                                </div>
-                            </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="table-responsive table-striped mat">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Full Name</th>
+                          <th>Father Name</th>
+                          <th>Product</th>
+                          <th>Pincode</th>
+                          <th>Mobile Number</th>
+                          <th>Loan Amount</th>
+                          <th>Lead Status</th>
+                          <th>Lead Source By</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let user of filterArray; let i = index">
+                          <td>{{i}}</td>
+                          <td> <span>N</span> {{user.FullName}}</td>
+                          <td>{{user.FatherName}}</td>
+                          <td>Product</td>
+                          <td>110059</td>
+                          <td>95400558622</td>
+                          <td>98622</td>
+                          <td> <button class="btn-theme-primary">New</button></td>
+                          <td>Mayank</td>
+                          <td>
+                              <div ngbDropdown class="float-right menu">
+                                  <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                  <div ngbDropdownMenu >                           
+                                      <a ngbDropdownItem href="#" data-toggle="modal" data-target="#staticBackdrop">Edit User</a>
+                                      <a ngbDropdownItem>Delete User</a>
+                                  </div>
+                              </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
                   <div class="container mt-3 mb-3 text-center">
                     <div class="d-flex justify-content-center mb-3">
                       <div class="p-2">
@@ -99,8 +102,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
+            </div>
         </div>
       </div>
     </div>
