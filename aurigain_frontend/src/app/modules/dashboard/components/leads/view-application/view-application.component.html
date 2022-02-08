@@ -1,3 +1,122 @@
+<div class="layout-px-spacing h-100">
+    <div class="row h-100" style="min-height: 100vh;">
+      <div class="col-xl-12 col-lg-12 col-md-12">
+          <div class="widget bg-white h-100">
+              <div class="widget-header">
+              <div
+              class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+              <div>
+                <nav class="custom-breadcrum">
+                    <ol class="breadcrumb justify-content-center justify-content-sm-start" >
+                        <li class="breadcrumb-item">
+                        <a routerlink="/dashboard" href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                        <a href="javascript:void(0)"> Loan Application</a
+                        >
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item active">
+                        Lead Generation
+                        </li>
+                    </ol>
+                </nav>
+                <h1>Gold Loan Fresh Lead</h1>
+                  
+              </div>
+              </div>
+              </div>
+              <form [formGroup]="selectedForm" class="form-inline my-2 pt-3 my-lg-0">
+                <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <select id="inputState" class="form-control" formControlName="selectCategory" (change)="searchedCategory()">
+                    <option value="" selected>Select Product</option>
+                    <option value="approved">Approved</option>
+                    <option value="pending">Pending</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </form>
+        
+            <div class="row m-0">
+                <div class="container bg-white">
+                  <table class="table table-responsive table-striped mat">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Father Name</th>
+                        <th>Product</th>
+                        <th>Pincode</th>
+                        <th>Mobile Number</th>
+                        <th>Loan Amount</th>
+                        <th>Lead Status</th>
+                        <th>Lead Source By</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let user of filterArray; let i = index">
+                        <td>{{i}}</td>
+                        <td> <span>N</span> {{user.FullName}}</td>
+                        <td>{{user.FatherName}}</td>
+                        <td>Product</td>
+                        <td>110059</td>
+                        <td>95400558622</td>
+                        <td>98622</td>
+                        <td> <button class="btn-theme-primary">New</button></td>
+                        <td>Mayank</td>
+                        <td>
+                            <div ngbDropdown class="float-right menu">
+                                <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                <div ngbDropdownMenu >                           
+                                    <a ngbDropdownItem href="#" data-toggle="modal" data-target="#staticBackdrop">Edit User</a>
+                                    <a ngbDropdownItem>Delete User</a>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="container mt-3 mb-3 text-center">
+                    <div class="d-flex justify-content-center mb-3">
+                      <div class="p-2">
+                        <p>Items per page: <span> 10 </span> </p>
+                      </div>
+                      <div class="p-2">Flex item 2</div>
+                      <div class="p-2">
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination justify-content-end">
+                            <li class="page-item disabled">
+                              <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                              <a class="page-link" href="#">Next</a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="box bg-white h-100">
     <div class="widget-header">
@@ -24,7 +143,7 @@
     </div>
 
     <!-- [formGroup]="selectedForm" -->
-        <form [formGroup]="selectedForm" class="form-inline my-2 my-lg-0">
+        <!-- <form [formGroup]="selectedForm" class="form-inline my-2 my-lg-0">
             <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <select id="inputState" class="form-control" formControlName="selectCategory" (change)="searchedCategory()">
                 <option value="" selected>Select Product</option>
@@ -32,9 +151,10 @@
                 <option value="pending">Pending</option>
                 <option value="rejected">Rejected</option>
             </select>
-        </form>
+        </form> -->
 
-    <div class="row m-4">
+    
+    <!-- <div class="row m-4">
         <div class="col-sm-6" *ngFor="let user of filterArray">
         <div class="card mb-4 shadow">
             <div class="card-body">
@@ -44,23 +164,5 @@
             </div>
         </div>
         </div>
-        <!-- <div class="col-sm-6">
-        <div class="card shadow">
-            <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        </div>
-        <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        </div> -->
-    </div>
+    </div> -->
 </div>
