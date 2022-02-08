@@ -61,7 +61,8 @@
 
 
 .menu{
-
+    position: absolute;
+    z-index: 1;
 
     button{
         border: none;
