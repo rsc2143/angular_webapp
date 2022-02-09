@@ -37,11 +37,11 @@
 //     justify-content: space-evenly;
 // }
 
-.form-inline{
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 20px 20px 0;
-}
+// .form-inline{
+//     display: flex;
+//     justify-content: flex-end;
+//     padding: 0 20px 20px 0;
+// }
 
 .widget {
     padding: 0;
@@ -112,5 +112,14 @@ thead{
     
     .dropdown-toggle::after{
         content: none;
+    }
+}
+
+.popup-box{
+    label{
+        display: block;
+        font-size: 15px;
+        color: #000;
+        font-weight: 800;
     }
 }
