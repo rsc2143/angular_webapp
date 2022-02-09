@@ -7,10 +7,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./view-application.component.scss']
 })
 export class ViewApplicationComponent implements OnInit {
-
+  rowFilter: number = 1;
+  updateStatusForm:FormGroup;
+  AppointmentDetailForm:FormGroup;
   constructor(
     private formbuilder: FormBuilder,
   ) { }
+
+  get pinCode(){
+    return this.AppointmentDetailForm.get('pinCode');
+  }
+  
+  p:number = 1;
 
   selectedForm: FormGroup;
   originalArray = [
@@ -27,20 +35,18 @@ export class ViewApplicationComponent implements OnInit {
 
   ];
   filterArray = [];
-    
+  
+  
+  itemsFilter(value){
+    this.rowFilter = value;
+  }
+
   filter(query: string){
     this.filterArray = [];
-    console.log(query);
-    
-      // for (let i = 0; i < this.originalArray.length; i++) {
-      //   if (this.originalArray[i]['name'] == query) {
-      //     this.filterArray.push(this.originalArray[i]);
-      //     console.log(this.filterArray);
-      //   }
-      // }
-      
+    console.log(query);   
       this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray; 
       console.log(this.filterArray);
+      this.rowFilter = this.filterArray.length;
   }
     
   searchedCategory(){
@@ -49,6 +55,25 @@ export class ViewApplicationComponent implements OnInit {
     this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray; 
     console.log(this.filterArray);
   }
+
+  changeStatus(){
+    const status = this.updateStatusForm.value.status;
+    const remark = this.updateStatusForm.value.remark;
+
+    let formData = {
+      status: status,
+      remark: remark
+    }
+    console.log(formData);
+  }
+  submitAppointmentDetails(){
+    const pinCode = this.AppointmentDetailForm.value.pinCode;
+    const branch = this.AppointmentDetailForm.value.branch;
+    const dateOfAppointment = this.AppointmentDetailForm.value.dateOfAppointment;
+    const timeOfAppointment = this.AppointmentDetailForm.value.timeOfAppointment;
+
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
@@ -56,6 +81,18 @@ export class ViewApplicationComponent implements OnInit {
       selectCategory: ['']    
      })
      console.log(this.originalArray);
+
+    this.updateStatusForm = this.formbuilder.group({
+      status : ['', Validators.required],
+      remark : [''],
+    })
+    
+    this.AppointmentDetailForm = this.formbuilder.group({
+      pinCode : ['', Validators.required],
+      branch : ['', Validators.required],
+      dateOfAppointment : ['', Validators.required],
+      timeOfAppointment : ['', Validators.required],
+    })
   }
 
 }
