@@ -1,208 +1,129 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ConstantsService } from 'src/app/config/constants.service';
+
 @Component({
   selector: 'app-fresh-leads',
   templateUrl: './fresh-leads.component.html',
   styleUrls: ['./fresh-leads.component.scss']
 })
 export class FreshLeadsComponent implements OnInit {
-
+  rowFilter: number = 1;
+  updateStatusForm:FormGroup;
+  AppointmentDetailForm:FormGroup;
+  suc
+  successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
-    private conts: ConstantsService,
-  ) {
-    this.tabelData = [];
-   }
-  currentStep: number = 1; 
-  personalDetails: FormGroup;
-  documentDetails: FormGroup;
-  jewelleryDetails: FormGroup;
-  appointmentDetails: FormGroup;
-  tabelData:any
-  ngOnInit(): void {
-    this.personalDetails = this.formbuilder.group({
-      product: ['', [Validators.required,]],
-      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      fatherName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      dob: ['', [Validators.required,]],
-      gender: ['', [Validators.required,]],
-      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      phoneNumber2: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      loanAmount: ['', [Validators.required,]],
-      loanPurpose: ['', [Validators.required,]],
-      tenure: ['', [Validators.required,]]
-    })
-  }
+  ) { }
 
-  stepUp(){
-    console.log("clicked")
-    this.currentStep +=1;
-    console.log(this.currentStep);
-  }
-  stepDown(){
-    this.currentStep-=1;
-    console.log(this.currentStep);
-  }
+  deleteUser(id){
+    this.successMsg = null;
 
-  addJewellery(){
-    // const jewelleryType = this.jewelleryDetails.value.jewelleryType;
-    // const quantity = this.jewelleryDetails.value.quantity;
-    // const weight = this.jewelleryDetails.value.weight;
-    // const karats = this.jewelleryDetails.value.karats;
-
-    this.tabelData.push(this.jewelleryDetails.value);
-    this.jewelleryDetails.reset();
-
-  }
-
-  removeItem(item){
-    this.tabelData.forEach((value, index) => {
-      if(value == item){
-        this.tabelData.splice(index,1)
+    if (confirm("Do you really want to delete this user?")){
+      //Api call to delete user
+      for (let i = 0; i < this.originalArray.length; i++) {
+     
+        if (this.originalArray[i]['Id'] == id){
+          
+          this.originalArray.splice(i, 1)
+        }
+        
       }
-    })
+      console.log(this.originalArray);
+    //  this.router.navigateByUrl('/user-list')
+    }
+    
+
+    // for (let i = 0; i < this.originalArray.length; i++) {
+     
+    //   if (this.originalArray[i]['Id'] == id){
+        
+    //     this.originalArray.splice(i, 1)
+    //   }
+      
+    // }
+    // console.log(this.originalArray);
   }
 
-  savePersonalDetails(){
-    this.stepUp();
-    console.log("inside save personal details")
-    let personalDetailData:any;
-    const product = this.personalDetails.value.product;
-    const name = this.personalDetails.value.name;
-    const fatherName = this.personalDetails.value.fatherName;
-    const dob = this.personalDetails.value.dob;
-    const gender = this.personalDetails.value.gender;
-    const email = this.personalDetails.value.email;
-    const phoneNumber1 = this.personalDetails.value.phoneNumber1;
-    const phoneNumber2 = this.personalDetails.value.phoneNumber2;
-    const loanAmount = this.personalDetails.value.loanAmount;
-    const loanPurpose = this.personalDetails.value.loanPurpose;
-    const tenure = this.personalDetails.value.tenure;
-
-    personalDetailData = {
-      product: product,
-      name: name,
-      fatherName: fatherName,
-      dob: dob,
-      gender: gender,
-      email: email,
-      phoneNumber1: phoneNumber1,
-      phoneNumber2: phoneNumber2,
-      loanAmount: loanAmount,
-      loanPurpose: loanPurpose,
-      tenure: tenure,
-    }
-    console.log(personalDetailData);
-
-    this.documentDetails = this.formbuilder.group({
-      documentType: ['', [Validators.required,]],
-      documentNumber: ['', [Validators.required]],
-      panNumber: ['', [Validators.required,]],
-      pinCode: ['', [Validators.required,]],
-      areaName: ['', [Validators.required,]],
-      addressLine1: ['', [Validators.required,]],
-      addressLine2: ['', [Validators.required,]],
-    })
+  get pinCode(){
+    return this.AppointmentDetailForm.get('pinCode');
   }
   
-  saveDocumentDetails(){
-    this.stepUp();
-    console.log("inside save document details")
-    let documentDetailData:any;
-    const documentType = this.documentDetails.value.documentType;
-    const documentNumber = this.documentDetails.value.documentNumber;
-    const panNumber = this.documentDetails.value.panNumber;
-    const pinCode = this.documentDetails.value.pinCode;
-    const areaName = this.documentDetails.value.areaName;
-    const addressLine1 = this.documentDetails.value.addressLine1;
-    const addressLine2 = this.documentDetails.value.addressLine2;
+  p:number = 1;
 
-    documentDetailData = {
-      documentType: documentType,
-      documentNumber: documentNumber,
-      panNumber: panNumber,
-      pinCode: pinCode,
-      areaName: areaName,
-      addressLine1: addressLine1,
-      addressLine2: addressLine2,
-      
-    }
-    console.log(documentDetailData);
+  selectedForm: FormGroup;
+  originalArray = [
+  {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
+  {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: null, type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: null, type: 'pending',DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: null,type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved',DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00', },
+  {Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar',  Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', },
 
-    this.jewelleryDetails = this.formbuilder.group({
-      jewelleryType: ['', [Validators.required,]],
-      quantity: ['', [Validators.required]],
-      weight: ['', [Validators.required,]],
-      karats: ['', [Validators.required,]],
-    })
+  ];
+  filterArray = [];
+  
+  
+  itemsFilter(value){
+    this.rowFilter = value;
   }
 
-  saveJewelleryDetails(){
-    this.stepUp();
-    console.log(this.tabelData);
+  filter(query: string){
+    this.filterArray = [];
+    console.log(query);   
+      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray; 
+      console.log(this.filterArray);
+      this.rowFilter = this.filterArray.length;
+  }
     
-    this.appointmentDetails = this.formbuilder.group({
-      branch: ['', [Validators.required,]],
-      dateOfAppointment: ['', [Validators.required]],
-      timeOfAppointment: ['', [Validators.required,]],
+  searchedCategory(){
+    this.filterArray = [];
+    let category = this.selectedForm.value.selectCategory;
+    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray; 
+    console.log(this.filterArray);
+  }
+
+  changeStatus(){
+    const status = this.updateStatusForm.value.status;
+    const remark = this.updateStatusForm.value.remark;
+
+    let formData = {
+      status: status,
+      remark: remark
+    }
+    console.log(formData);
+  }
+  submitAppointmentDetails(){
+    const pinCode = this.AppointmentDetailForm.value.pinCode;
+    const branch = this.AppointmentDetailForm.value.branch;
+    const dateOfAppointment = this.AppointmentDetailForm.value.dateOfAppointment;
+    const timeOfAppointment = this.AppointmentDetailForm.value.timeOfAppointment;
+
+  }
+
+  ngOnInit(): void {
+    // this.filterArray = this.originalArray;
+    this.filter('');
+    this.selectedForm = this.formbuilder.group({
+      selectCategory: ['']    
+     })
+     console.log(this.originalArray);
+
+    this.updateStatusForm = this.formbuilder.group({
+      status : ['', Validators.required],
+      remark : [''],
+    })
+    
+    this.AppointmentDetailForm = this.formbuilder.group({
+      pinCode : ['', Validators.required],
+      branch : ['', Validators.required],
+      dateOfAppointment : ['', Validators.required],
+      timeOfAppointment : ['', Validators.required],
     })
   }
 
-  saveForms(){
-
-  const product = this.personalDetails.value.product;
-  const name = this.personalDetails.value.name;
-  const fatherName = this.personalDetails.value.fatherName;
-  const dob = this.personalDetails.value.dob;
-  const gender = this.personalDetails.value.gender;
-  const email = this.personalDetails.value.email;
-  const phoneNumber1 = this.personalDetails.value.phoneNumber1;
-  const phoneNumber2 = this.personalDetails.value.phoneNumber2;
-  const loanAmount = this.personalDetails.value.loanAmount;
-  const loanPurpose = this.personalDetails.value.loanPurpose;
-  const tenure = this.personalDetails.value.tenure;
-
-  const documentType = this.documentDetails.value.documentType;
-  const documentNumber = this.documentDetails.value.documentNumber;
-  const panNumber = this.documentDetails.value.panNumber;
-  const pinCode = this.documentDetails.value.pinCode;
-  const areaName = this.documentDetails.value.areaName;
-  const addressLine1 = this.documentDetails.value.addressLine1;
-  const addressLine2 = this.documentDetails.value.addressLine2;
-
-  const branch = this.appointmentDetails.value.branch;
-  const dateOfAppointment= this.appointmentDetails.value.dateOfAppointment;
-  const timeOfAppointment = this.appointmentDetails.value.timeofAppointment;
-
-  let finalData= {
-  product: product,
-  name: name,
-  fatherName: fatherName,
-  dob: dob,
-  gender: gender,
-  email: email,
-  phoneNumber1: phoneNumber1,
-  phoneNumber2: phoneNumber2,
-  loanAmount: loanAmount,
-  loanPurpose: loanPurpose,
-  tenure: tenure,
-
-  documentType: documentType,
-  documentNumber: documentNumber,
-  panNumber: panNumber,
-  pinCode: pinCode,
-  areaName: areaName,
-  addressLine1: addressLine1,
-  addressLine2: addressLine2,
-
-  jewelleryDetails: this.tabelData,
-
-  branch: branch,
-  dateOfAppointment: dateOfAppointment,
-  timeOfAppointment: timeOfAppointment,
-  }
-  console.log("final form data", finalData);
-  }
 }

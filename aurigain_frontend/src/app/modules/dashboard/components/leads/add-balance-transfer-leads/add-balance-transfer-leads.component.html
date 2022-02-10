@@ -6,33 +6,40 @@
               <div
               class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
               <div>
-                  <h1>Balance Transfer Gold Loan</h1>
                   <nav class="custom-breadcrum">
-                  <ol class="breadcrumb justify-content-center justify-content-sm-start" >
-                      <li class="breadcrumb-item">
-                      <a routerlink="/dashboard" href="/dashboard">Home</a>
-                      </li>
-                      <li class="breadcrumb-item">
-                      <a routerLink="/dashboard/balance-transfer-leads"> Balance Transfer Gold Loan</a
-                      >
-                      </li>
-                      <li aria-current="page" class="breadcrumb-item active">
-                      Add new lead
-                      </li>
-                  </ol>
-                  </nav>
-              </div>
-              <button
-                  routerLink="/dashboard/fresh-leads"
-                  class="btn btn-dark btn-sm mt-2 mt-sm-0"
-                  tabindex="0">
-                  <i class="fas fa-arrow-left"></i> Back
-              </button>
+                      <ol class="breadcrumb justify-content-center justify-content-sm-start" >
+                          <li class="breadcrumb-item">
+                              <a routerlink="/dashboard" routerLink="/dashboard">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a routerLink="/dashboard/balance-transfer-leads"> Balance Transfer Gold Loan</a
+                                    >
+                                </li>
+                                <li aria-current="page" class="breadcrumb-item active">
+                                    Add new lead
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1>Balance Transfer Gold Loan</h1>
               </div>
               </div>
-              <div class="main-container">
+              </div>
+
+            <div class="d-flex flex-md-row px-3 mt-4 flex-column-reverse">
+                <div class="col-md-4">
+                    <ul id="progressbar">
+                        <li class="active StepProgress-item" [ngClass]="{'active': currentStep >= 1}"><span class="span1">Personal Details</span></li>
+                        <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 2}"><span class="span1">Document Details</span></li>
+                        <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 3}"><span class="span1">Jewellery Details</span></li>
+                        <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 4}"><span class="span1">Appointment Details</span></li>
+                      </ul>
+                  </div>
+
+              
+              
+              <div class="main-container col-md-8">
                   <div class="detail-div">
-                      <div class="row">                        
+                      <!-- <div class="row">                        
                               <div *ngIf="currentStep >1; else elseBlock">
                                   <div class="completed-step"> <i class="fa fa-check"></i></div>
                               </div>
@@ -40,7 +47,7 @@
                                   <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
                               </ng-template>
                           <h3 style="padding-top:15px">Personal Detials</h3>
-                      </div>
+                      </div> -->
                       <div class="vertical-line personal-form" *ngIf="currentStep == 1">
                           <div class="form-content">
                               <form [formGroup]="personalDetails">
@@ -175,15 +182,6 @@
                       </div>
                   </div>
                   <div class="detail-div">
-                      <div class="row">                        
-                              <div *ngIf="currentStep >2; else elseBlock">
-                                  <div class="completed-step"> <i class="fa fa-check"></i></div>
-                              </div>
-                              <ng-template #elseBlock>
-                                  <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                              </ng-template>
-                          <h3 style="padding-top:15px">Address Detials</h3>
-                      </div>
                       <div class="vertical-line personal-form" *ngIf="currentStep == 2">
                         <div class="form-content">
                             <form [formGroup]="addressDetails">
@@ -245,16 +243,7 @@
                   </div>
                   
                   <div class="detail-div">
-                      <div class="row">                        
-                          <div *ngIf="currentStep >3; else elseBlock">
-                              <div class="completed-step"> <i class="fa fa-check"></i></div>
-                          </div>
-                          <ng-template #elseBlock>
-                              <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                          </ng-template>
                       
-                      <h3 style="padding-top:15px">Jewellery Detials</h3>
-                      </div>
                       <div class="vertical-line personal-form" *ngIf="currentStep == 3">
                           <div class="form-content">
                               <form [formGroup]="jewelleryDetails">
@@ -353,16 +342,7 @@
                       </div>
                   </div>
                   <div class="detail-div">
-                      <div class="row">                        
-                          <div *ngIf="currentStep >4; else elseBlock">
-                              <div class="completed-step"> <i class="fa fa-check"></i></div>
-                          </div>
-                          <ng-template #elseBlock>
-                              <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                          </ng-template>
                       
-                      <h3 style="padding-top:15px">Appointment Details </h3>
-                      </div>
                       <div class="vertical-line personal-form" *ngIf="currentStep == 4">
                           <div class="form-content">
                               <form [formGroup]="appointmentDetails">
@@ -427,16 +407,7 @@
                       </div>
                   </div>
                   <div class="detail-div">
-                    <div class="row">                        
-                        <div *ngIf="currentStep >5; else elseBlock">
-                            <div class="completed-step"> <i class="fa fa-check"></i></div>
-                        </div>
-                        <ng-template #elseBlock>
-                            <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                        </ng-template>
                     
-                    <h3 style="padding-top:15px">Document Details </h3>
-                    </div>
                     <div class="vertical-line personal-form" *ngIf="currentStep == 5">
                         <div class="form-content">
                             <form [formGroup]="documentDetails">
@@ -511,16 +482,7 @@
                   </div>
 
                   <div class="detail-div">
-                    <div class="row">                        
-                        <div *ngIf="currentStep >6; else elseBlock">
-                            <div class="completed-step"> <i class="fa fa-check"></i></div>
-                        </div>
-                        <ng-template #elseBlock>
-                            <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                        </ng-template>
                     
-                    <h3 style="padding-top:15px">Existing Loan Details </h3>
-                    </div>
                     <div class="vertical-line personal-form" *ngIf="currentStep == 6">
                         <div class="form-content">
                             <form [formGroup]="existingLoanDetails">
@@ -618,16 +580,7 @@
                     </div>
                   </div>
                   <div class="detail-div">
-                    <div class="row">                        
-                        <div *ngIf="currentStep >7; else elseBlock">
-                            <div class="completed-step"> <i class="fa fa-check"></i></div>
-                        </div>
-                        <ng-template #elseBlock>
-                            <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
-                        </ng-template>
                     
-                    <h3 style="padding-top:15px">Document Upload</h3>
-                    </div>
                     <div class="vertical-line personal-form" *ngIf="currentStep == 7">
                         <div class="form-content">
                             <form [formGroup]="documentUploadDetails">
@@ -759,6 +712,7 @@
                     </div>
                   </div>
               </div>
+            </div>
           </div>
       </div>
     </div>

@@ -17,7 +17,6 @@
         border-top-right-radius: 6px;
         border-top-left-radius: 6px;
         background: #d3def1;
-        margin-bottom:10px;
     }
     .widget-header:before {
         display: table;
@@ -51,16 +50,15 @@
     height:65px;
     width:65px;
     border-radius: 50%;
-    margin: 0 10px;
-    
+    margin: 5px 20px;
 }
 
 .completed-step{
     height:65px;
     width:65px;
     border-radius: 50%;
-    margin: 0px 10px;
-    background-color: rgb(118, 238, 138);
+    margin: 5px 20px;
+    background-color: green;
 
     i{
         color: white;
@@ -72,15 +70,11 @@
 
 
 .detail-div .row{
-    padding: 5px 10px;
-
-    h3{
-        margin-left: 10px;
-    }
+    padding: 10px;
 }
 
 .personal-form{
-    margin: 0 36px;
+    margin: 36px;
     border: 0;
     position: relative;
     
@@ -106,23 +100,12 @@
     border-radius: 25px;
 }
 
-
-.vertical-line{
-    position:relative;
-	padding:10px;
-	border-left:5px solid rgb(118, 238, 138);
-	position:relative;
-    // margin-left:1em;
-    padding-left:2em;
-}
-
-    .vertical-line::before{
+.vertical-line::before{
     content: "";
     position: absolute;
     left: 0;
     border-left: 1px solid black;
 }
-
 .bg-white {
     background-color: #fff!important;
 }
@@ -146,41 +129,144 @@
     }
 }
 
-
-.upload-btn{
-    position: relative;
-    display: block;
-    border: 2px dotted #dae0ff ;
-    font-size: 20px;
-    border-radius:15px;
-    background: #fff;
-  }
-  
-  .file-upload__label {
-    display: block;
-    padding: 10px 0;
-    color: #4361ee;
-    text-align: center;
-    transition: background .3s;
-    
-    i{
-        margin-right: 10px;
-    }
-    
-  }
-  
-  .file-upload__label:hover {
-       cursor: pointer;
-       
-    }
-  
-  .upload-btn input[type=file] {
+#progressbar {
+	margin: 30px 0;
+    padding: 0;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    width: 100%;
-    z-index: 999999999;
-    cursor: pointer;
-  }
+    // padding-left: 45px;
+    list-style: none;
+}
+
+#progressbar li {
+	
+    list-style-type: none;
+	color: black;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 100%;
+	float: left;
+	position: relative;
+    
+    span{
+        // display: block;
+        font-size: 18px;
+        margin: -10px 0 10px 10px;
+        padding-bottom: 20px;
+    }
+}
+#progressbar li:before {
+	content: counter(step);
+    counter-increment: step;
+    width: 50px;
+    line-height: 47px;
+    display: inline-block;
+    font-size: 36px;
+    color: #333;
+    background: white;
+    border-radius: 50%;
+    border: 1px solid grey;
+    background-color: grey;
+    // margin: 0 auto 5px auto;
+    height: 50px;
+    padding-left: 13px;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+    width: 3px;
+    height: 111px;
+    background: #BDBDBD;
+    position: absolute;
+    left: 23px;
+    top: -111px;
+    z-index: 10; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
+
+
+// .StepProgress {
+//     position: relative;
+//     padding-left: 45px;
+//     list-style: none;
+//     counter-reset: step;
+//   }
   
+//   .StepProgress::before {
+//     display: inline-block;
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 15px;
+//     width: 10px;
+//     height: 100%;
+//   }
+//   .StepProgress-item {
+//     position: relative;
+//   }
+//   .StepProgress-item:not(:last-child) {
+//     padding-bottom: 20px;
+//   }
+//   .StepProgress-item::before {
+//     content: counter(step);
+//     counter-increment: step;
+//     display: inline-block;
+//     content: "";
+//     position: absolute;
+//     left: -30px;
+//     height: 100%;
+//     width: 10px;
+//     border-left: 2px solid #ccc;
+//   }
+//   .StepProgress-item:last-child::before {
+//     border-left: 0px solid #ccc;
+//   }
+
+//   .StepProgress-item::after {
+//     content: counter(step);
+//     counter-increment: step - 1 ;
+//     // content: "";
+//     display: inline-block;
+//     position: absolute;
+//     top: 0;
+//     left: -44px;
+//     width: 30px;
+//     height: 30px;
+//     border: 2px solid #ccc;
+//     border-radius: 50%;
+//     background-color: grey;
+//     border: 1px solid grey;
+//     color: #fff;
+//   }
+
+//   .StepProgress-item.active::after {
+//       background-color: greenyellow;
+//       border: 1px solid greenyellow;
+//   }
+  
+//   .StepProgress strong {
+//     display: block;
+//   }
+
+
+
+.StepProgress-item {
+    position: relative;
+    margin: 20px;
+  }
+  .StepProgress-item:not(:last-child) {
+    padding-bottom: 70px;
+  }

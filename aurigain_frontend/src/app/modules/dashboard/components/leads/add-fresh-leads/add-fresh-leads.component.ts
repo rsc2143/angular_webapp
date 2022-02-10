@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConstantsService } from 'src/app/config/constants.service';
-
 @Component({
   selector: 'app-add-fresh-leads',
   templateUrl: './add-fresh-leads.component.html',
