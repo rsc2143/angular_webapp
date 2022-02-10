@@ -68,9 +68,6 @@ table{
     color: #212529;
 }
 
-.th{
-    width: 100%;
-}
 .table-responsive{
     border-radius: 15px;
     
@@ -101,7 +98,6 @@ thead{
       border: 1px solid #ccc;  
     }
 }
-
 .menu{
 
 
@@ -113,6 +109,36 @@ thead{
     .dropdown-toggle::after{
         content: none;
     }
+
+    .sub-menu{
+        padding: 0!important;
+        max-height: 134px;
+        overflow-x: auto;
+        border: none!important;
+        box-shadow: 0 0 30px #667897!important;
+        border-radius: 16px!important;
+    }
+    .sub-menu a{
+        font-size: 14px;
+        width: 100%;
+        border-bottom: 1px solid #f1f1f1;
+        margin: 0; 
+        font-weight: 500; 
+        cursor: pointer; 
+    }  
+    .edit{
+        background: #e9f9f6!important;
+    } 
+    .change{
+        background: #fff7df!important;
+    } 
+    .delete{
+        background: #f5f0ff!important;
+    } 
+    .booking{
+        background: #e2eaf1!important;
+    } 
+
 }
 
 .popup-box{
@@ -121,5 +147,39 @@ thead{
         font-size: 15px;
         color: #000;
         font-weight: 800;
+    }
+}
+.modal-dialog{
+    .modal-content{
+        border-radius: 25px;
+        overflow: hidden;
+        border: none;
+    }
+    .modal-header {
+        background: #3f51b5;
+    }
+    .modal-title{
+        font-size: 21px;
+    }
+    .close{
+        font-size: 30px;
+    }
+}
+.modal-body{
+    label{
+        font-size: 15px;
+        color: #000;
+        font-weight: 500;
+    }
+}
+.modal-footer{
+    .btn-look1{
+        color: #fff!important;
+        background-color: #1abc9c;
+        border-color: #1abc9c;
+        box-shadow: 0 10px 20px -10px #1abc9c;
+    }
+    .btn-look1:hover{
+        box-shadow: none;
     }
 }
