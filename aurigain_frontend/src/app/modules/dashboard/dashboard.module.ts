@@ -29,6 +29,7 @@ import { CommissionSettingComponent } from './components/commission-setting/comm
 import { CommissionReversalComponent } from './components/commission-reversal/commission-reversal.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { DetailComponent } from './components/leads/detail/detail.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,9 @@ const routes: Routes = [
       },
       { 
         path: 'fresh-leads/add-update', component: AddFreshLeadsComponent
+      },
+      { 
+        path: 'fresh-leads/detail', component: DetailComponent
       },
       { 
         path: 'personal-leads', component: PersonalLeadsComponent
@@ -127,7 +131,8 @@ const routes: Routes = [
     CommissionSettingComponent,
     CommissionReversalComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,

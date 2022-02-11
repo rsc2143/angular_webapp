@@ -1,13 +1,4 @@
 
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-
 /* top header container */
 .header-container {
     z-index: 99999;
@@ -74,12 +65,35 @@ ul {
     position: unset;
     font-weight: 700;
 }
-
-a{
-    text-decoration: none;
-    background-color: initial;
+.dropdown-item-img {
+    height: 80px;
+    width: 80px;
+    overflow: hidden;
+    background: #000;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    box-shadow: 0 0 20px #ddd;
+    border: none;
 }
-
+.dropdown-item-img img{
+    width: 100%;
+}
+.dropdown-item-name {
+    white-space: normal;
+    line-height: 22px;
+    margin: 10px 0 5px;
+    text-transform: capitalize;
+}
+.dropdown-item .top-text a{
+    display: block!important;
+    color: #3b3f5c;
+    font-size: 13px!important;
+    font-weight: 600!important;
+    padding: 1px 5px!important;
+}
 .navbar-expand-sm .navbar-item {
     display: flex;
     /* flex-direction: column; */
@@ -94,19 +108,12 @@ a{
 }
 }
 
-.align-items-center {
-    align-items: center!important;
-}
 
 @media (min-width: 992px){
 .d-lg-flex {
     display: flex!important;
 }
 }
-
-/* .mr-2, .mx-2 {
-    margin-right: 0.5rem!important;
-} */
 
 .theme-change-btn-grp a {
     height: 20px;
@@ -133,7 +140,7 @@ a{
     background: #24695c!important;
 }
 
-a {
+a{
     color: #515365;
     outline: none;
 }
@@ -236,15 +243,6 @@ a {
     text-transform: capitalize;
 }
 
-
-/* .navbar .navbar-item .nav-item .user-profile-dropdown .dropdown-menu .dropdown-item a {
-    display: block;
-    color: #3b3f5c;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 9px 14px;
-} */
-
 .text-danger {
     color: #e7515a!important;
 }
@@ -257,172 +255,5 @@ a {
     color: #002767!important;
 }
 /* top header complete */
-
-
-
-/* sidebar */
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-a,
-a:hover,
-a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    // margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
-
-
-#sidebar {
-    position: fixed;
-    top: 95px;
-    height: 100vh;
-    min-width: 250px;
-    max-width: 250px;
-    background: #002767;
-    color: #fff!important;
-    transition: all 0.3s;
-}
-
-#sidebar.collapse:not(.show){
-    display: block;
-    margin-left: -250px;
-  }
-  #sidebar.collapse:not(.show) ~ #content{
-    width: 100%;
-    margin-left: 0px;
-  }
-
-#sidebar.active {
-    margin-left: -250px;
-    
-}
-
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    color: #fff;
-    font-size: 1.1em;
-    display: block;
-}
-
-#sidebar ul li a:hover {
-    color: #FF8400;
-    /* background: #fff; */
-    text-decoration: none;
-}
-
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-    color: black;
-    background: white; 
-    border-radius: 20px;
-}
-
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-     background: #002767; 
-}
-
-ul.CTAs {
-    padding: 20px;
-}
-
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-/* a.download {
-    background: #fff;
-    color: #7386D5;
-} */
-
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-#content {
-    /* width: 100%; */
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    margin-left: 250px; 
-    width: calc(100% - 250px);
-}
-
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
-}
-
-.sticky-bottom{
-    position: sticky;
-    top:45px;
-    z-index: 9999;
-}
 
 
