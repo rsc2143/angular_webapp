@@ -31,6 +31,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { BanksComponent } from './components/banks/banks.component';
 import { AddBanksComponent } from './components/add-banks/add-banks.component';
+import { DetailComponent } from './components/leads/detail/detail.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,9 @@ const routes: Routes = [
       },
       { 
         path: 'fresh-leads/add-update', component: AddFreshLeadsComponent
+      },
+      { 
+        path: 'fresh-leads/detail', component: DetailComponent
       },
       { 
         path: 'personal-leads', component: PersonalLeadsComponent
@@ -137,7 +141,8 @@ const routes: Routes = [
     AddUserComponent,
     EditUserComponent,
     BanksComponent,
-    AddBanksComponent
+    AddBanksComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,
