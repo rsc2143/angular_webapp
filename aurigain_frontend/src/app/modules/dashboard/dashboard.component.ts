@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
    getScreenSize(event?) {
          this.screenHeight = window.innerHeight;
          this.screenWidth = window.innerWidth;
-         console.log(this.screenHeight, this.screenWidth);
+        //  console.log(this.screenHeight, this.screenWidth);
 
          if(this.screenWidth > 992){
            this.marginWidth = 250 + 'px';
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
     // this.toggle = this.sidenavservice.hideSideNav;
     this.sidenavservice.hideStatus.subscribe(
       data => {
-        console.log("toggledata", data);
+        // console.log("toggledata", data);
           this.toggle = data;
     });
   }

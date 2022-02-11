@@ -29,6 +29,8 @@ import { CommissionSettingComponent } from './components/commission-setting/comm
 import { CommissionReversalComponent } from './components/commission-reversal/commission-reversal.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { BanksComponent } from './components/banks/banks.component';
+import { AddBanksComponent } from './components/add-banks/add-banks.component';
 
 
 const routes: Routes = [
@@ -58,6 +60,12 @@ const routes: Routes = [
       },
       { 
         path: 'balance-transfer-leads/add-update', component: AddBalanceTransferLeadsComponent
+      },
+      { 
+        path: 'manager/banks', component: BanksComponent
+      },
+      { 
+        path: 'manager/banks/add-bank', component: AddBanksComponent
       },
       { 
         path: 'view-applications', component: ViewApplicationComponent
@@ -127,7 +135,9 @@ const routes: Routes = [
     CommissionSettingComponent,
     CommissionReversalComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    BanksComponent,
+    AddBanksComponent
   ],
   imports: [
     CommonModule,
