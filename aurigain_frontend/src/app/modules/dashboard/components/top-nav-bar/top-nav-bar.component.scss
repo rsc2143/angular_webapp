@@ -19,7 +19,9 @@
     justify-content: flex-start;
 }
 }
-
+header .m-29{
+    margin-left: -29px;
+}
 .navbar-expand-sm .navbar-item {
     display: flex;
     /* flex-direction: column; */
@@ -64,6 +66,12 @@ ul {
     text-transform: none;
     position: unset;
     font-weight: 700;
+}
+@media (max-width: 767px){
+.navbar .theme-brand li.theme-text {
+    display: none;
+    margin-right: 0;
+}
 }
 .dropdown-item-img {
     height: 80px;
