@@ -9,9 +9,12 @@ import { ConstantsService } from 'src/app/config/constants.service';
 })
 export class PartnerUsComponent implements OnInit {
 
+  sentOtpField: boolean = false;
+  verifyOtpField: boolean = true;
+  otpVerifiedSuccessfully: boolean = false;
   partner:boolean = true;
   partnerForm: FormGroup;
-  basciDetailForm: FormGroup;
+  basicDetailForm: FormGroup;
   addressDetailForm: FormGroup;
   kycDetailForm: FormGroup;
   bankDetailForm: FormGroup;
@@ -24,24 +27,27 @@ export class PartnerUsComponent implements OnInit {
   ) { }
 
   get name(){
-    return this.basciDetailForm.get('name');
+    return this.basicDetailForm.get('name');
   }
 
   get fatherName(){
-    return this.basciDetailForm.get('fatherName');
+    return this.basicDetailForm.get('fatherName');
   }
   get dob(){
-    return this.basciDetailForm.get('dob');
+    return this.basicDetailForm.get('dob');
   }
   get email(){
-    return this.basciDetailForm.get('email');
+    return this.basicDetailForm.get('email');
   }
   get phoneNumber1(){
-    return this.basciDetailForm.get('phoneNumber1');
+    return this.basicDetailForm.get('phoneNumber1');
+  }
+  get otp(){
+    return this.basicDetailForm.get('otp');
   }
 
   get gender(){
-    return this.basciDetailForm.get('gender');
+    return this.basicDetailForm.get('gender');
   }
 
   get pinCode(){
@@ -93,6 +99,10 @@ export class PartnerUsComponent implements OnInit {
     this.navText = "Become Agent"
   }
 
+  verifyOtp(){
+    this.otpVerifiedSuccessfully = true;
+
+  }
   submitPatnerForm(){
     const name = this.partnerForm.value.name;
     const email = this.partnerForm.value.email;
@@ -110,12 +120,13 @@ export class PartnerUsComponent implements OnInit {
 
   submitAgentForm(){
 
-  const name = this.basciDetailForm.value.name;
-  const fatherName = this.basciDetailForm.value.fatherName;
-  const dob = this.basciDetailForm.value.dob;
-  const gender = this.basciDetailForm.value.gender;
-  const email = this.basciDetailForm.value.email;
-  const phoneNumber1 = this.basciDetailForm.value.phoneNumber1;
+  const name = this.basicDetailForm.value.name;
+  const fatherName = this.basicDetailForm.value.fatherName;
+  const dob = this.basicDetailForm.value.dob;
+  const gender = this.basicDetailForm.value.gender;
+  const email = this.basicDetailForm.value.email;
+  const phoneNumber1 = this.basicDetailForm.value.phoneNumber1;
+
 
 
   const pinCode = this.addressDetailForm.value.pinCode;
@@ -175,6 +186,12 @@ export class PartnerUsComponent implements OnInit {
   stepUp(){
     this.currentStep += 1;
   }
+
+  sendOTP(phoneNumber){
+    console.log(phoneNumber);
+    this.sentOtpField = true;
+    this.verifyOtpField = false
+  }
   ngOnInit(): void {
     // this.partnerForm = this.formbuilder.group({
     //   name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
@@ -183,13 +200,14 @@ export class PartnerUsComponent implements OnInit {
     //   message: ['', [Validators.required,]],
     // })
 
-    this.basciDetailForm = this.formbuilder.group({
+    this.basicDetailForm = this.formbuilder.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
       fatherName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
       dob: ['', [Validators.required,]],
       gender: ['', [Validators.required,]],
       email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
       phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
+      otp: ['', [Validators.required,]]
     })
 
     this.addressDetailForm = this.formbuilder.group({
