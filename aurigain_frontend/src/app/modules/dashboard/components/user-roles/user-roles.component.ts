@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-roles',
@@ -13,6 +14,7 @@ export class UserRolesComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
+    private toastr: ToastrService
   ) { }
   roleTitle:string = '';
   saveRoleFooter:string = '';
@@ -35,7 +37,7 @@ export class UserRolesComponent implements OnInit {
     {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', Role: ''},
     {Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00',Role: '' },
     {Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar',  Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', Role: ''},
-  
+
     ];
   filterArray = [];
   fullname;
@@ -43,11 +45,11 @@ export class UserRolesComponent implements OnInit {
 
 
   createRole(){
-  
+
     this.successMsg= null;
   }
 
-  
+
   editUser(id){
     this.currentUserId = id;
     this.roleTitle = "Edit Role";
@@ -58,7 +60,7 @@ export class UserRolesComponent implements OnInit {
 
     for (let i = 0; i < this.originalArray.length; i++) {
         if (this.originalArray[i]['Id'] == id) {
-          
+
           console.log(this.originalArray[i]);
 
           this.editUserForm.patchValue({
@@ -78,12 +80,12 @@ export class UserRolesComponent implements OnInit {
     if (confirm("Do you really want to delete this user?")){
       //Api call to delete user
       for (let i = 0; i < this.originalArray.length; i++) {
-     
+
         if (this.originalArray[i]['Id'] == id){
-          
+
           this.originalArray.splice(i, 1)
         }
-        
+
       }
       console.log(this.originalArray);
     //  this.router.navigateByUrl('/user-list')
@@ -91,12 +93,12 @@ export class UserRolesComponent implements OnInit {
 
 
     // for (let i = 0; i < this.originalArray.length; i++) {
-     
+
     //   if (this.originalArray[i]['Id'] == id){
-        
+
     //     this.originalArray.splice(i, 1)
     //   }
-      
+
     // }
     // console.log(this.originalArray);
   }
@@ -112,7 +114,7 @@ export class UserRolesComponent implements OnInit {
 
     for (let i = 0; i < this.originalArray.length; i++) {
         if (this.originalArray[i]['Id'] == id) {
-          
+
           console.log(this.originalArray[i]);
 
           this.editUserForm.patchValue({
@@ -123,28 +125,28 @@ export class UserRolesComponent implements OnInit {
         }
       }
   }
-  
+
 
   filter(query: string){
     this.filterArray = [];
     console.log(query);
-    
+
       // for (let i = 0; i < this.originalArray.length; i++) {
       //   if (this.originalArray[i]['name'] == query) {
       //     this.filterArray.push(this.originalArray[i]);
       //     console.log(this.filterArray);
       //   }
       // }
-      
-      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray; 
+
+      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray;
       console.log(this.filterArray);
   }
-    
+
   searchedCategory(){
     this.filterArray = [];
     let category = this.selectedForm.value.selectCategory;
     // console.log(category);
-    this.filterArray = (category) ? this.originalArray.filter(p => p.Role.includes(category)) : this.originalArray; 
+    this.filterArray = (category) ? this.originalArray.filter(p => p.Role.includes(category)) : this.originalArray;
     console.log(this.filterArray);
   }
 
@@ -159,7 +161,7 @@ export class UserRolesComponent implements OnInit {
         console.log(this.originalArray);
       }
     }
-    
+
 
     let formData = {
       Role: Role
@@ -167,15 +169,15 @@ export class UserRolesComponent implements OnInit {
 
     console.log(formData);
     this.successMsg = "Edit Success!";
-  //////// API call to save data    
-    
-    
+  //////// API call to save data
+
+
   }
-  
+
   submitCreatedRole(){
     console.log("Inside Submit Role")
     const Role = this.addRoleForm.value.Role;
-  
+
     this.Roles.push(Role);
     console.log(this.Roles);
 
@@ -185,16 +187,16 @@ export class UserRolesComponent implements OnInit {
 
     console.log(formData);
     this.successMsg = "Role Submitted Successfully!";
-  //////// API call to save data    
-    
-    
+  //////// API call to save data
+    this.toastr.success('Role Submitted Successfully!');
+
   }
 
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
     this.selectedForm = this.formbuilder.group({
-      selectCategory: ['']    
+      selectCategory: ['']
      })
      console.log(this.originalArray);
 

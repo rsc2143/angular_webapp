@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailComponent } from './detail.component';
+import { AgentApprovalPanelComponent } from './agent-approval-panel.component';
 
-describe('DetailComponent', () => {
-  let component: DetailComponent;
-  let fixture: ComponentFixture<DetailComponent>;
+describe('AgentApprovalPanelComponent', () => {
+  let component: AgentApprovalPanelComponent;
+  let fixture: ComponentFixture<AgentApprovalPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetailComponent ]
+      declarations: [ AgentApprovalPanelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailComponent);
+    fixture = TestBed.createComponent(AgentApprovalPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

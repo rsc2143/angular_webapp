@@ -31,83 +31,95 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { BanksComponent } from './components/banks/banks.component';
 import { AddBanksComponent } from './components/add-banks/add-banks.component';
-import { DetailComponent } from './components/leads/detail/detail.component';
-
+import { FreshLeadDetailComponent } from './components/leads/fresh-lead-detail/fresh-lead-detail.component';
+import { BalanceTransferDetailComponent } from './components/leads/balance-transfer-detail/balance-transfer-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AgentApprovalPanelComponent } from './components/agent-approval-panel/agent-approval-panel.component';
+import { AgentApprovalDetailComponent } from './components/agent-approval-detail/agent-approval-detail.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent,
     children: [
-      { 
+      {
         path: '', component: DashboardHomeComponent
       },
-      { 
+      {
         path: 'door-step-agent', component: DoorStepAgentListComponent
       },
-      { 
+      {
         path: 'fresh-leads', component: FreshLeadsComponent
       },
-      { 
-        path: 'fresh-leads/add-update', component: AddFreshLeadsComponent
+      {
+        path: 'fresh-leads/add-update/:id', component: AddFreshLeadsComponent
       },
-      { 
-        path: 'fresh-leads/detail', component: DetailComponent
+      {
+        path: 'fresh-leads/detail/:id', component: FreshLeadDetailComponent
       },
-      { 
+      {
         path: 'personal-leads', component: PersonalLeadsComponent
       },
-      { 
-        path: 'personal-leads/add-update', component: AddPersonalLeadsComponent
+      {
+        path: 'personal-leads/add-update/:id', component: AddPersonalLeadsComponent
       },
-      { 
+      {
         path: 'balance-transfer-leads', component: BalanceTransferLeadsComponent
       },
-      { 
-        path: 'balance-transfer-leads/add-update', component: AddBalanceTransferLeadsComponent
+      {
+        path: 'balance-transfer-leads/add-update/:id', component: AddBalanceTransferLeadsComponent
       },
-      { 
+      {
+        path: 'balance-transfer-leads/detail/:id', component: BalanceTransferDetailComponent
+      },
+      {
         path: 'manager/banks', component: BanksComponent
       },
-      { 
+      {
         path: 'manager/banks/add-bank', component: AddBanksComponent
       },
-      { 
+      {
         path: 'view-applications', component: ViewApplicationComponent
       },
-      { 
+      {
         path: 'update-status', component: UpdateStatusComponent
       },
-      { 
+      {
         path: 'application-aaproval', component: ApplicationApprovalComponent
       },
-      { 
+      {
         path: 'user-list', component: UserListComponent
       },
-      { 
+      {
         path: 'user-roles', component: UserRolesComponent
       },
-      { 
+      {
         path: 'role-mapping', component: RoleMappingComponent
       },
-      { 
+      {
         path: 'reset-password', component: ResetPasswordComponent
       },
-      { 
+      {
         path: 'agent-mapping', component: AgentMappingComponent
       },
-      { 
+      {
         path: 'agent-performance', component: AgentPerformanceComponent
       },
-      { 
+      {
         path: 'commissions-setting', component: CommissionSettingComponent
       },
-      { 
+      {
+        path: 'agent-approval-panel', component: AgentApprovalPanelComponent
+      },
+      {
+        path: 'agent-approval-panel/detail/:id', component: AgentApprovalDetailComponent
+      },
+      {
         path: 'commissions-reversal', component: CommissionReversalComponent
       },
-      { 
+      {
         path: 'add-user', component: AddUserComponent
       },
-      { 
+      {
         path: 'edit-user/:id', component: EditUserComponent
       },
     ]
@@ -142,7 +154,11 @@ const routes: Routes = [
     EditUserComponent,
     BanksComponent,
     AddBanksComponent,
-    DetailComponent
+    FreshLeadDetailComponent,
+    BalanceTransferDetailComponent,
+    AddPersonalLeadsComponent,
+    AgentApprovalPanelComponent,
+    AgentApprovalDetailComponent
   ],
   imports: [
     CommonModule,
@@ -150,6 +166,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule]

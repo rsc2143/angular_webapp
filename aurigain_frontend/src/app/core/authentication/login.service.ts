@@ -39,6 +39,13 @@ export class LoginService {
       );
   }
 
+  searchBank(ifscCode) {
+    return this.http.get(`https://ifsc.razorpay.com/${ifscCode}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   setToken(user) {
     try {
       this.cookie.set('_l_a_t', user['token'], this.constsvc.LOGIN_EXPIRY_TIME, '/');
@@ -58,7 +65,7 @@ export class LoginService {
             console.log(err);
           },
           complete: () => {
-            
+
             this.loginRedirect();
           }
         })

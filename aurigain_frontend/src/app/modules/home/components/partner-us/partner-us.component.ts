@@ -8,7 +8,7 @@ import { ConstantsService } from 'src/app/config/constants.service';
   styleUrls: ['./partner-us.component.scss']
 })
 export class PartnerUsComponent implements OnInit {
- 
+
   partner:boolean = true;
   partnerForm: FormGroup;
   basciDetailForm: FormGroup;
@@ -23,46 +23,74 @@ export class PartnerUsComponent implements OnInit {
     private conts: ConstantsService,
   ) { }
 
+  get name(){
+    return this.basciDetailForm.get('name');
+  }
+
+  get fatherName(){
+    return this.basciDetailForm.get('fatherName');
+  }
+  get dob(){
+    return this.basciDetailForm.get('dob');
+  }
+  get email(){
+    return this.basciDetailForm.get('email');
+  }
+  get phoneNumber1(){
+    return this.basciDetailForm.get('phoneNumber1');
+  }
+
+  get gender(){
+    return this.basciDetailForm.get('gender');
+  }
+
+  get pinCode(){
+    return this.addressDetailForm.get('pinCode');
+  }
+  get addressLine1(){
+    return this.addressDetailForm.get('addressLine1');
+  }
+  get addressLine2(){
+    return this.addressDetailForm.get('addressLine2');
+  }
+  get city(){
+    return this.addressDetailForm.get('city');
+  }
+  get state(){
+    return this.addressDetailForm.get('state');
+  }
+  get district(){
+    return this.addressDetailForm.get('district');
+  }
+
+  get qualification(){
+    return this.kycDetailForm.get('qualification');
+  }
+  get panNumber(){
+    return this.kycDetailForm.get('panNumber');
+  }
+  get adhaarNumber(){
+    return this.kycDetailForm.get('adhaarNumber');
+  }
+  get occupation(){
+    return this.kycDetailForm.get('occupation');
+  }
+
+
+
+  get bankName(){
+    return this.bankDetailForm.get('bankName');
+  }
+  get accountNumber(){
+    return this.bankDetailForm.get('accountNumber');
+  }
+  get ifscCode(){
+    return this.bankDetailForm.get('ifscCode');
+  }
+
   changeForm(){
     this.partner = false;
     this.navText = "Become Agent"
-
-    this.basciDetailForm = this.formbuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      fatherName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      dob: ['', [Validators.required,]],
-      gender: ['', [Validators.required,]],
-      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-    })
-    
-    this.addressDetailForm = this.formbuilder.group({
-      pinCode: ['', [Validators.required,]],
-      addressLine1: ['', [Validators.required,]],
-      addressLine2: ['', [Validators.required,]],
-      city: ['', [Validators.required,]],
-      state: ['', [Validators.required,]],
-      district: ['', [Validators.required,]],
-    })
-    
-    this.kycDetailForm = this.formbuilder.group({
-      qualification: [''],
-      panNumber: ['', [Validators.required,]],
-      adhaarNumber: ['', [Validators.required,]],
-
-    })
-    
-    this.bankDetailForm = this.formbuilder.group({
-      bankName: ['', [Validators.required,]],
-      accountNumber: ['', [Validators.required,]],
-      ifscCode: ['', [Validators.required,]],
-      nameOfNominee: ['', [Validators.required]],
-      relationshipWithNominee: ['', [Validators.required]],
-    })
-    
-    this.refrralDetailForm = this.formbuilder.group({
-      referralCode: ['']
-    })
   }
 
   submitPatnerForm(){
@@ -81,14 +109,14 @@ export class PartnerUsComponent implements OnInit {
   }
 
   submitAgentForm(){
-    
+
   const name = this.basciDetailForm.value.name;
   const fatherName = this.basciDetailForm.value.fatherName;
   const dob = this.basciDetailForm.value.dob;
   const gender = this.basciDetailForm.value.gender;
   const email = this.basciDetailForm.value.email;
   const phoneNumber1 = this.basciDetailForm.value.phoneNumber1;
-  
+
 
   const pinCode = this.addressDetailForm.value.pinCode;
   const district = this.addressDetailForm.value.district;
@@ -96,17 +124,17 @@ export class PartnerUsComponent implements OnInit {
   const state = this.addressDetailForm.value.state;
   const addressLine1 = this.addressDetailForm.value.addressLine1;
   const addressLine2 = this.addressDetailForm.value.addressLine2;
-  
+
   const qualification = this.kycDetailForm.value.qualification;
   const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
-  const panNumber = this.kycDetailForm.value.panNumber; 
+  const panNumber = this.kycDetailForm.value.panNumber;
 
   const bankName = this.bankDetailForm.value.bankName;
   const accountNumber = this.bankDetailForm.value.accountNumber;
   const ifscCode= this.bankDetailForm.value.ifscCode;
   const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
   const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
-  
+
   const referralCode= this.refrralDetailForm.value.referralCode;
 
   const agentFormData ={
@@ -116,7 +144,7 @@ export class PartnerUsComponent implements OnInit {
     gender: gender,
     email: email,
     phoneNumber1: phoneNumber1,
-    
+
     pinCode: pinCode,
     district: district,
     addressLine1: addressLine1,
@@ -127,13 +155,13 @@ export class PartnerUsComponent implements OnInit {
     qualification: qualification,
     adhaarNumber: adhaarNumber,
     panNumber: panNumber,
-    
+
     bankName: bankName,
     accountNumber: accountNumber,
     ifscCode: ifscCode,
     nameOfNominee: nameOfNominee,
     relationshipWithNominee: relationshipWithNominee,
-    
+
     referralCode: referralCode,
   }
 
@@ -148,12 +176,51 @@ export class PartnerUsComponent implements OnInit {
     this.currentStep += 1;
   }
   ngOnInit(): void {
-    this.partnerForm = this.formbuilder.group({
-      name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      message: ['', [Validators.required,]],
+    // this.partnerForm = this.formbuilder.group({
+    //   name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+    //   email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
+    //   phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
+    //   message: ['', [Validators.required,]],
+    // })
+
+    this.basciDetailForm = this.formbuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      fatherName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      dob: ['', [Validators.required,]],
+      gender: ['', [Validators.required,]],
+      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
+      phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
     })
+
+    this.addressDetailForm = this.formbuilder.group({
+      pinCode: ['', [Validators.required,]],
+      addressLine1: ['', [Validators.required,]],
+      addressLine2: ['', [Validators.required,]],
+      city: ['', [Validators.required,]],
+      state: ['', [Validators.required,]],
+      district: ['', [Validators.required,]],
+    })
+
+    this.kycDetailForm = this.formbuilder.group({
+      qualification: [''],
+      panNumber: ['', [Validators.required,]],
+      adhaarNumber: ['', [Validators.required,]],
+      occupation: ['', [Validators.required,]],
+    })
+
+    this.bankDetailForm = this.formbuilder.group({
+      bankName: ['', [Validators.required,]],
+      accountNumber: ['', [Validators.required,]],
+      ifscCode: ['', [Validators.required,]],
+      // nameOfNominee: ['', [Validators.required]],
+      // relationshipWithNominee: ['', [Validators.required]],
+    })
+
+    this.refrralDetailForm = this.formbuilder.group({
+      referralCode: ['']
+    })
+
+
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConstantsService } from 'src/app/config/constants.service';
 
 @Component({
@@ -8,15 +9,19 @@ import { ConstantsService } from 'src/app/config/constants.service';
   styleUrls: ['./add-balance-transfer-leads.component.scss']
 })
 export class AddBalanceTransferLeadsComponent implements OnInit {
+  currentUserId: number;
 
- 
+
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
+    private route: ActivatedRoute,
+    private router: Router,
+
   ) {
     this.tabelData = [];
    }
-  currentStep: number = 1; 
+  currentStep: number = 1;
   personalDetails: FormGroup;
   documentDetails: FormGroup;
   jewelleryDetails: FormGroup;
@@ -24,8 +29,38 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
   addressDetails: FormGroup;
   existingLoanDetails: FormGroup;
   documentUploadDetails: FormGroup;
-  tabelData:any
+  loanDetails: FormGroup;
+  tabelData:any;
+
+  originalArray = [
+    {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'active'},
+    {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', status: 'inactive'},
+    {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: 'mohit@gmail.com', type: 'pending',DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
+    {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: 'gg@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
+    {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: 'pinkj@gmail.com',type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'InActive'},
+    {Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved',DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
+    {Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
+    {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'InActive'},
+    {Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
+    {Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar',  Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00',status: 'Active' },
+
+    ];
+
+
+  get loanAccountNumber(){
+    return this.loanDetails.get('loanAccountNumber')
+  }
+  get loanAmount(){
+    return this.loanDetails.get('loanAmount')
+  }
+  get loanDate(){
+    return this.loanDetails.get('loanDate')
+  }
+
   ngOnInit(): void {
+    this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log(this.currentUserId);
+
     this.personalDetails = this.formbuilder.group({
       product: ['', [Validators.required,]],
       name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
@@ -39,6 +74,75 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
       loanNumber: ['', [Validators.required,]],
       loanPurpose: ['', [Validators.required,]]
     })
+
+    this.loanDetails = this.formbuilder.group({
+      loanAccountNumber: ['', [Validators.required,]],
+      loanAmount: ['', [Validators.required,]],
+      loanDate: ['', [Validators.required,]],
+    })
+
+    this.addressDetails = this.formbuilder.group({
+      pinCode: ['', [Validators.required,]],
+      area: ['', [Validators.required]],
+      addressLine1: ['', [Validators.required,]],
+      addressLine2: ['', [Validators.required]],
+    })
+
+    this.jewelleryDetails = this.formbuilder.group({
+      jewelleryType: ['', [Validators.required,]],
+      quantity: ['', [Validators.required]],
+      weight: ['', [Validators.required,]],
+      karats: ['', [Validators.required,]],
+    })
+
+    this.existingLoanDetails = this.formbuilder.group({
+      bankName: ['', [Validators.required,]],
+      amountOld: ['', [Validators.required]],
+      dateOld: ['', [Validators.required,]],
+      valuation: ['', [Validators.required,]],
+      outstandingAmount: ['', [Validators.required,]],
+      balanceTransferAmount: ['', [Validators.required,]],
+      requiredAmount: ['', [Validators.required,]],
+      tenure: ['', [Validators.required,]],
+    })
+
+    this.appointmentDetails = this.formbuilder.group({
+      bank: ['', [Validators.required,]],
+      branch: ['', [Validators.required,]],
+      dateOfAppointment: ['', [Validators.required]],
+      timeOfAppointment: ['', [Validators.required,]],
+    })
+    this.documentDetails = this.formbuilder.group({
+      documentType: ['', [Validators.required,]],
+      documentNumber: ['', [Validators.required]],
+      documentTypePOA: ['', [Validators.required,]],
+      documentNumberPOA: ['', [Validators.required]],
+      panNumber: ['', [Validators.required,]],
+    })
+
+    this.documentUploadDetails = this.formbuilder.group({
+      customerPhoto: ['', [Validators.required,]],
+      blankCheck1: ['', [Validators.required]],
+      blankCheck2: ['', [Validators.required]],
+      kycPOI: ['', [Validators.required,]],
+      kycPOA: ['', [Validators.required,]],
+      loanDocument: ['', [Validators.required]],
+      foreclosureLetter: ['', [Validators.required,]],
+      atmWithdrawlSlip: ['', [Validators.required,]],
+      promissoryNote: ['', [Validators.required,]],
+      lastPageOfAgreement: ['', [Validators.required,]],
+    })
+
+    if (this.currentUserId !== 0){
+
+      for (let i = 0; i < this.originalArray.length; i++) {
+        if (this.originalArray[i]['Id'] == this.currentUserId){
+          this.personalDetails.patchValue({
+            name: this.originalArray[i]['FullName'],
+          })
+        }
+      }
+    }
   }
 
   stepUp(){
@@ -100,84 +204,39 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
       loanPurpose: loanPurpose,
     }
     console.log(personalDetailData);
-    
-    this.addressDetails = this.formbuilder.group({
-      pinCode: ['', [Validators.required,]],
-      area: ['', [Validators.required]],
-      addressLine1: ['', [Validators.required,]],
-      addressLine2: ['', [Validators.required]],
-    })
+
+
   }
 
   saveAddressDetails(){
     this.stepUp();
-    
-    this.jewelleryDetails = this.formbuilder.group({
-      jewelleryType: ['', [Validators.required,]],
-      quantity: ['', [Validators.required]],
-      weight: ['', [Validators.required,]],
-      karats: ['', [Validators.required,]],
-    })
+
+
   }
-  
+
   saveDocumentDetails(){
     this.stepUp();
 
-    this.existingLoanDetails = this.formbuilder.group({
-      bankName: ['', [Validators.required,]],
-      amountOld: ['', [Validators.required]],
-      dateOld: ['', [Validators.required,]],
-      valuation: ['', [Validators.required,]],
-      outstandingAmount: ['', [Validators.required,]],
-      balanceTransferAmount: ['', [Validators.required,]],
-      requiredAmount: ['', [Validators.required,]],
-      tenure: ['', [Validators.required,]],
-    })
-    
+
+
   }
-  
+
   saveJewelleryDetails(){
     this.stepUp();
     console.log(this.tabelData);
-    
-    this.appointmentDetails = this.formbuilder.group({
-      bank: ['', [Validators.required,]],
-      branch: ['', [Validators.required,]],
-      dateOfAppointment: ['', [Validators.required]],
-      timeOfAppointment: ['', [Validators.required,]],
-    })
+
+
   }
-  
+
   saveAppointmentDetails(){
     this.stepUp();
-    
-    
-    this.documentDetails = this.formbuilder.group({
-      documentType: ['', [Validators.required,]],
-      documentNumber: ['', [Validators.required]],
-      documentTypePOA: ['', [Validators.required,]],
-      documentNumberPOA: ['', [Validators.required]],
-      panNumber: ['', [Validators.required,]],
-    })
-    
+
 
   }
 
   saveExistingLoanDetails(){
     this.stepUp();
-    
-    this.documentUploadDetails = this.formbuilder.group({
-      customerPhoto: ['', [Validators.required,]],
-      blankCheck1: ['', [Validators.required]],
-      blankCheck2: ['', [Validators.required]],
-      kycPOI: ['', [Validators.required,]],
-      kycPOA: ['', [Validators.required,]],
-      loanDocument: ['', [Validators.required]],
-      foreclosureLetter: ['', [Validators.required,]],
-      atmWithdrawlSlip: ['', [Validators.required,]],
-      promissoryNote: ['', [Validators.required,]],
-      lastPageOfAgreement: ['', [Validators.required,]],
-    })
+
   }
 
   saveForms(){
@@ -198,19 +257,19 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
   const area = this.addressDetails.value.area;
   const addressLine1 = this.addressDetails.value.addressLine1;
   const addressLine2 = this.addressDetails.value.addressLine2;
-  
+
   const documentType = this.documentDetails.value.documentType;
   const documentNumber = this.documentDetails.value.documentNumber;
   const documentTypePOA = this.documentDetails.value.documentTypePOA;
   const documentNumberPOA = this.documentDetails.value.documentNumberPOA;
   const panNumber = this.documentDetails.value.panNumber;
-  
+
 
   const bank = this.appointmentDetails.value.bank;
   const branch = this.appointmentDetails.value.branch;
   const dateOfAppointment= this.appointmentDetails.value.dateOfAppointment;
   const timeOfAppointment = this.appointmentDetails.value.timeofAppointment;
-  
+
   const bankName = this.existingLoanDetails.value.bankName;
   const amountOld = this.existingLoanDetails.value.amountOld;
   const dateOld= this.existingLoanDetails.value.dateOld;
@@ -219,7 +278,7 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
   const balanceTransferAmount = this.existingLoanDetails.value.balanceTransferAmount;
   const requiredAmount = this.existingLoanDetails.value.requiredAmount;
   const tenure = this.existingLoanDetails.value.tenure;
-  
+
   // const customerPhoto = this.documentUploadDetails.value.customerPhoto;
   // const blankCheck1 = this.documentUploadDetails.value.blankCheck1;
   // const blankCheck2= this.documentUploadDetails.value.blankCheck2;
@@ -275,17 +334,17 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
   let atmWithdrawlSlip: File;
   let promissoryNote: File;
   let lastPageOfAgreement: File;
-  
-  
+
+
   customerPhoto = (<HTMLInputElement>document.getElementById('customerPhoto')).files[0];
   finalData.append("cusomerPhoto", customerPhoto);
-  
+
   blankCheck1 = (<HTMLInputElement>document.getElementById('blankCheck1')).files[0];
   finalData.append("blankCheck1", blankCheck1);
-  
+
   blankCheck2 = (<HTMLInputElement>document.getElementById('blankCheck2')).files[0];
   finalData.append("blankCheck2", blankCheck2);
-  
+
   kycPOI = (<HTMLInputElement>document.getElementById('kycPOI')).files[0];
   finalData.append("kycPOI", kycPOI);
 
@@ -300,15 +359,15 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
 
   atmWithdrawlSlip = (<HTMLInputElement>document.getElementById('atmWithdrawlSlip')).files[0];
   finalData.append("atmWithdrawlSlip", atmWithdrawlSlip);
-  
+
   promissoryNote = (<HTMLInputElement>document.getElementById('promissoryNote')).files[0];
   finalData.append("promissoryNote", promissoryNote);
-  
+
   lastPageOfAgreement = (<HTMLInputElement>document.getElementById('lastPageOfAgreement')).files[0];
   finalData.append("lastPageOfAgreement", lastPageOfAgreement);
-  
-  
-  
+
+
+
   // let finalData= {
     // product: product,
     // name: name,
@@ -321,26 +380,26 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
     // loanAmount: loanAmount,
     // loanNumber: loanNumber,
     // loanPurpose: loanPurpose,
-    
+
     // pinCode: pinCode,
     // area: area,
     // addressLine1: addressLine1,
     // addressLine2: addressLine2,
-    
+
     // documentType: documentType,
     // documentNumber: documentNumber,
     // documentTypePOA: documentTypePOA,
     // documentNumberPOA: documentNumberPOA,
     // panNumber: panNumber,
-    
-    
+
+
     // jewelleryDetails: this.tabelData,
-    
+
     // bank: bank,
     // branch: branch,
     // dateOfAppointment: dateOfAppointment,
     // timeOfAppointment: timeOfAppointment,
-    
+
     // bankName: bankName,
     // amountOld: amountOld,
     // dateOld: dateOld,
@@ -348,12 +407,12 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
     // outstandingAmount: outstandingAmount,
     // balanceTransferAmount: balanceTransferAmount,
     // requiredAmount: requiredAmount,
-    // tenure: tenure,  
+    // tenure: tenure,
     // }
-    
-    
 
-  
+
+
+
 
   // console.log("image form data", imageData);
   console.log("final form data", finalData);
