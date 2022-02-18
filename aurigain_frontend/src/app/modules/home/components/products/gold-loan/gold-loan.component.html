@@ -134,60 +134,33 @@
                   <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3">
                       <div class="st-tabs">
-                        <ul
-                          class="nav nav-tabs nav-fill"
-                          id="myTab"
-                          role="tablist"
-                        >
+                        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                           <li class="nav-item">
-                            <a
-                              class="nav-link active"
-                              id="new-loan-tab"
-                              data-toggle="pill"
-                              href="#new-loan"
-                              role="tab"
-                              aria-controls="new-loan"
-                              aria-selected="true"
-                              >New Loan</a
-                            >
+                            <a class="nav-link active" id="new-loan-tab" data-toggle="pill" href="#new-loan" role="tab"
+                              aria-controls="new-loan" aria-selected="true">New Loan</a>
                           </li>
                           <li class="nav-item">
-                            <a
-                              class="nav-link"
-                              id="pills-profile-tab"
-                              data-toggle="pill"
-                              href="#pills-profile"
-                              role="tab"
-                              aria-controls="pills-profile"
-                              aria-selected="false"
-                              >Balance Transfer</a
-                            >
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                              role="tab" aria-controls="pills-profile" aria-selected="false">Balance Transfer</a>
                           </li>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-                          <div
-                            class="tab-pane fade show active"
-                            id="new-loan"
-                            role="tabpanel"
-                            aria-labelledby="new-loan-tab"
-                          >
+                          <div class="tab-pane fade show active" id="new-loan" role="tabpanel"
+                            aria-labelledby="new-loan-tab">
                             <form [formGroup]="newLoanForm" (ngSubmit)="submitLoanForm()" *ngIf="isLoanForm">
                               <div class="form-row">
                                 <div class="form-group col-md-6">
-                                  <input [class.is-invalid]="name.invalid && name.touched"
-                                    type="text"
-                                    class="form-control"
-                                    id="inputName"
-                                    placeholder="Enter Your Full Name"
-                                    formControlName="name"
-                                    required
-                                  />
+                                  <input [class.is-invalid]="name.invalid && name.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Enter Your Full Name"
+                                    formControlName="name" required />
                                   <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
-                                    <small *ngIf="name.errors?.['required']" class="text-danger">Name is required</small>
+                                    <small *ngIf="name.errors?.['required']" class="text-danger">Name is
+                                      required</small>
                                     <small *ngIf="name.errors?.['minlength']" class="text-danger">Name must be atleast 2
                                       characters</small>
-                                      <small *ngIf="name.errors?.['pattern']" class="text-danger">Enter only alphabets without spaces</small>
-                                    </div>
+                                    <small *ngIf="name.errors?.['pattern']" class="text-danger">Enter only alphabets
+                                      without spaces</small>
+                                  </div>
                                 </div>
                                 <!-- <div class="form-group col-md-6">
                                   <input
@@ -200,19 +173,15 @@
                                   />
                                 </div> -->
                                 <div class="form-group col-md-6">
-                                  <input
-                                  [class.is-invalid]="phone.invalid && phone.touched"
-                                  type="number"
-                                    class="form-control"
-                                    id="inputMobile"
-                                    placeholder="Mobile Number"
-                                    formControlName="phone"
-                                    required
-                                  />
-                                    <div style="margin-left: 10px;" *ngIf="phone.invalid && phone.touched">
-                                        <small *ngIf="phone.errors?.['required']" class="text-danger">Phone Number is required</small>
-                                        <small *ngIf="phone.errors?.['pattern']" class="text-danger">Enter only numbers without spaces</small>
-                                    </div>
+                                  <input [class.is-invalid]="phone.invalid && phone.touched" type="number"
+                                    class="form-control" id="inputMobile" placeholder="Mobile Number"
+                                    formControlName="phone" required />
+                                  <div style="margin-left: 10px;" *ngIf="phone.invalid && phone.touched">
+                                    <small *ngIf="phone.errors?.['required']" class="text-danger">Phone Number is
+                                      required</small>
+                                    <small *ngIf="phone.errors?.['pattern']" class="text-danger">Enter only numbers
+                                      without spaces</small>
+                                  </div>
                                 </div>
                                 <!-- <div class="form-group col-md-6">
                                   <input
@@ -256,14 +225,8 @@
                                 </div> -->
                                 <div class="form-group col-md-12">
                                   <p>
-                                    <input
-                                      type="checkbox"
-                                      id="vehicle1"
-                                      name="vehicle1"
-                                      (change)="onChange($event)"
-                                      formControlName="subscribe"
-                                      required
-                                    />
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" (change)="onChange($event)"
+                                      formControlName="subscribe" required />
                                     I authorize Aurigain and its Consultants to
                                     call / SMS / email towards this application
                                     and other products/services. This consent
@@ -282,192 +245,126 @@
                             </form>
 
                             <div *ngIf="isOtpForm" class="otpDiv">
-                                <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp" placeholder="Enter OTP" aria-label="Username" aria-describedby="basic-addon1" required>
-                                <button [disabled]="!newLoanForm.valid" type="button" (click)="submitOTP()" [ngStyle]="{'font-family': 'Poppins'}" class="btn mt-4 btnSendOtp btn-block">Verify OTP</button>
-                                <button type="button" (click)="sendOTP()" [ngStyle]="{'font-family': 'Poppins'}" class="btn btn-primary btn-block">Resend OTP</button>
-                                
+                              <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp"
+                                placeholder="Enter OTP" aria-label="Username" aria-describedby="basic-addon1" required>
+                              <button [disabled]="!newLoanForm.valid" type="button" (click)="submitOTP()"
+                                [ngStyle]="{'font-family': 'Poppins'}" class="btn mt-4 btnSendOtp btn-block">Verify
+                                OTP</button>
+                              <button type="button" (click)="sendOTP()" [ngStyle]="{'font-family': 'Poppins'}"
+                                class="btn btn-primary btn-block">Resend OTP</button>
+
                             </div>
-                            <form *ngIf="!isLoanForm && !isOtpForm" (ngSubmit)="submitDetailForm()" [formGroup]="detailForm">
-                                <div class="form-row">
-                                    
-                                    <div class="form-group col-md-6">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="inputMail"
-                                        placeholder="Your Email"
-                                        formControlName="email"
-                                        required
-                                      />
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="inputResidence"
-                                        placeholder="Place of residence(PINCODE)"
-                                        formControlName="pinCode"
-                                        required
-                                      />
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="inputAmount-need"
-                                        placeholder="Loan amount Needed"
-                                        formControlName="loanAmount"
-                                        required
-                                      />
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="inputWeight"
-                                        placeholder="Weight of Gold in Grams"
-                                        formControlName="weightOfGold"
-                                        required
-                                      />
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="inputNeed"
-                                        placeholder="How Soon you need the loan"
-                                        formControlName="dateOfLoan"
-                                        required
-                                      />
-                                    </div>
-                                    
-                                  </div>
-                                  <div class="form-group row">
-                                    <div class="col-12 mt-2">
-                                      <button type="submit" class="btn btn-primary">
-                                        Submit
-                                      </button>
-                                    </div>
-                                  </div>
+                            <form *ngIf="!isLoanForm && !isOtpForm" (ngSubmit)="submitDetailForm()"
+                              [formGroup]="detailForm">
+                              <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputMail" placeholder="Your Email"
+                                    formControlName="email" required />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputResidence"
+                                    placeholder="Place of residence(PINCODE)" formControlName="pinCode" required />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputAmount-need"
+                                    placeholder="Loan amount Needed" formControlName="loanAmount" required />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputWeight"
+                                    placeholder="Weight of Gold in Grams" formControlName="weightOfGold" required />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputNeed"
+                                    placeholder="How Soon you need the loan" formControlName="dateOfLoan" required />
+                                </div>
+
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-12 mt-2">
+                                  <button type="submit" class="btn btn-primary">
+                                    Submit
+                                  </button>
+                                </div>
+                              </div>
                             </form>
                           </div>
-                          <div
-                            class="tab-pane fade"
-                            id="pills-profile"
-                            role="tabpanel"
+                          <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <form [formGroup]="balanceTransferForm" (ngSubmit)="submitBalanceTransferForm()">
                               <div class="form-row">
                                 <div class="form-group col-md-6">
-                                  <input
-                                    [class.is-invalid]="bName.invalid && bName.touched"
-                                    type="text"
-                                    class="form-control"
-                                    id="inputName"
-                                    placeholder="Enter Your Full Name"
-                                    formControlName="name"
-                                    required
-                                  />
+                                  <input [class.is-invalid]="bName.invalid && bName.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Enter Your Full Name"
+                                    formControlName="name" required />
                                   <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
-                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Full Name is required</small>
+                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Full Name is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bEmail.invalid && bEmail.touched" type="text"
+                                    class="form-control" id="inputMail" placeholder="Your Email" formControlName="email"
+                                    required />
+                                  <div style="margin-left: 10px;" *ngIf="bEmail.invalid && bEmail.touched">
+                                    <small *ngIf="bEmail.errors?.['required']" class="text-danger">Email is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bPinCode.invalid && bPinCode.touched" type="text"
+                                    class="form-control" id="inputResidence" placeholder="Place of residence (PINCODE)"
+                                    formControlName="pinCode" required />
+                                  <div style="margin-left: 10px;" *ngIf="bPinCode.invalid && bPinCode.touched">
+                                    <small *ngIf="bPinCode.errors?.['required']" class="text-danger">Please provide pin
+                                      code</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bExistingLoanFrom.invalid && bExistingLoanFrom.touched"
+                                    type="text" class="form-control" id="inputAmount-need"
+                                    placeholder="Existing Loan from" formControlName="existingLoanFrom" required />
+                                  <div style="margin-left: 10px;"
+                                    *ngIf="bExistingLoanFrom.invalid && bExistingLoanFrom.touched">
+                                    <small *ngIf="bExistingLoanFrom.errors?.['required']" class="text-danger">Please
+                                      provide existing loan from</small>
                                   </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                   <input
-                                  [class.is-invalid]="bEmail.invalid && bEmail.touched"
-                                    type="text"
-                                    class="form-control"
-                                    id="inputMail"
-                                    placeholder="Your Email"
-                                    formControlName="email"
-                                    required
-                                  />
-                                  <div style="margin-left: 10px;" *ngIf="bEmail.invalid && bEmail.touched">
-                                    <small *ngIf="bEmail.errors?.['required']" class="text-danger">Email is required</small>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <input
-                                    [class.is-invalid]="bPinCode.invalid && bPinCode.touched"
-                                    type="text"
-                                    class="form-control"
-                                    id="inputResidence"
-                                    placeholder="Place of residence (PINCODE)"
-                                    formControlName="pinCode"
-                                    required
-                                  />
-                                  <div style="margin-left: 10px;" *ngIf="bPinCode.invalid && bPinCode.touched">
-                                    <small *ngIf="bPinCode.errors?.['required']" class="text-danger">Please provide pin code</small>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <input
-                                  [class.is-invalid]="bExistingLoanFrom.invalid && bExistingLoanFrom.touched"
-                                    type="text"
-                                    class="form-control"
-                                    id="inputAmount-need"
-                                    placeholder="Existing Loan from"
-                                    formControlName="existingLoanFrom"
-                                    required
-                                  />
-                                  <div style="margin-left: 10px;" *ngIf="bExistingLoanFrom.invalid && bExistingLoanFrom.touched">
-                                    <small *ngIf="bExistingLoanFrom.errors?.['required']" class="text-danger">Please provide existing loan from</small>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <input
-                                  [class.is-invalid]="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched"
-                                    type="text"
-                                    class="form-control"
-                                    id="inputWeight"
-                                    placeholder="Current Outstanding Amount"
-                                    formControlName="currentOutstandingAmount"
-                                    required
-                                  />
-                                  <div style="margin-left: 10px;" *ngIf="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched">
-                                    <small *ngIf="bCurrentOutstandingAmount.errors?.['required']" class="text-danger">Existing Loan Amount is Required</small>
-                                    </div>
+                                    [class.is-invalid]="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched"
+                                    type="text" class="form-control" id="inputWeight"
+                                    placeholder="Current Outstanding Amount" formControlName="currentOutstandingAmount"
+                                    required />
+                                  <div style="margin-left: 10px;"
+                                    *ngIf="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched">
+                                    <small *ngIf="bCurrentOutstandingAmount.errors?.['required']"
+                                      class="text-danger">Existing Loan Amount is Required</small>
+                                  </div>
                                 </div>
 
                                 <div class="form-row">
                                   <div class="form-group col-md-8">
-                                    <input
-                                    [class.is-invalid]="bPhone.invalid && bPhone.touched"
-                                      type="number"
-                                      class="form-control"
-                                      id="inputMobile"
-                                      placeholder="Mobile Number"
-                                      formControlName="phone"
-                                      required
-                                    />
+                                    <input [class.is-invalid]="bPhone.invalid && bPhone.touched" type="number"
+                                      class="form-control" id="inputMobile" placeholder="Mobile Number"
+                                      formControlName="phone" required />
                                     <button class="ml-5 btn-sm btn-primary">Send OTP</button>
                                     <div style="margin-left: 10px;" *ngIf="bPhone.invalid && bPhone.touched">
-                                      <small *ngIf="bPhone.errors?.['required']" class="text-danger">Phone number is required</small>
-                                      </div>
+                                      <small *ngIf="bPhone.errors?.['required']" class="text-danger">Phone number is
+                                        required</small>
+                                    </div>
                                   </div>
                                   <div class="form-group col-md-4">
-                                    <input
-                                      type="email"
-                                      class="form-control"
-                                      id="inputMobile"
-                                      placeholder="OTP"
-                                      formControlName="otp"
-                                      required
-                                    />
+                                    <input type="email" class="form-control" id="inputMobile" placeholder="OTP"
+                                      formControlName="otp" required />
                                   </div>
                                 </div>
 
                                 <div class="form-group col-md-12">
                                   <p>
-                                    <input
-                                      type="checkbox"
-                                      id="vehicle1"
-                                      name="vehicle1"
-                                      formControlName="subscribe"
-                                      (change)="onChange($event)"
-                                      required
-                                    />
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" formControlName="subscribe"
+                                      (change)="onChange($event)" required />
                                     I authorize Aurigain and its Consultants to
                                     call / SMS / email towards this application
                                     and other products/services. This consent
@@ -545,25 +442,15 @@
                   <div class="card mb-1">
                     <div class="card-header" id="faqOne">
                       <h4 class="mb-0">
-                        <a
-                          href="#!"
-                          class=""
-                          data-toggle="collapse"
-                          data-target="#collapseOne"
-                          aria-expanded="true"
-                          aria-controls="collapseOne"
-                        >
+                        <a href="#!" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                          aria-controls="collapseOne">
                           <i class="fa fa-plus-circle mr-1"></i>
                           Why should I take a gold loan
                         </a>
                       </h4>
                     </div>
-                    <div
-                      id="collapseOne"
-                      class="collapse show"
-                      aria-labelledby="faqOne"
-                      data-parent="#Faqaccordionsone"
-                    >
+                    <div id="collapseOne" class="collapse show" aria-labelledby="faqOne"
+                      data-parent="#Faqaccordionsone">
                       <div class="card-body">
                         If you have any short-term goals or may need some
                         financial assistance it could be medical expense or an
@@ -584,26 +471,15 @@
                   <div class="card mb-1">
                     <div class="card-header" id="faqTwo">
                       <h4 class="mb-0">
-                        <a
-                          href="#!"
-                          class="collapsed"
-                          data-toggle="collapse"
-                          data-target="#collapseTwo"
-                          aria-expanded="false"
-                          aria-controls="collapseTwo"
-                        >
+                        <a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                          aria-expanded="false" aria-controls="collapseTwo">
                           <i class="fa fa-plus-circle mr-1"></i>
                           What are the things to keep in mind when taking a gold
                           loan?
                         </a>
                       </h4>
                     </div>
-                    <div
-                      id="collapseTwo"
-                      class="collapse"
-                      aria-labelledby="faqTwo"
-                      data-parent="#Faqaccordionsone"
-                    >
+                    <div id="collapseTwo" class="collapse" aria-labelledby="faqTwo" data-parent="#Faqaccordionsone">
                       <div class="card-body">
                         As far as urgent funds or emergency loans are concerned,
                         as long as you have the collateral, a gold loan is your
@@ -622,25 +498,14 @@
                   <div class="card mb-1">
                     <div class="card-header" id="faqThree">
                       <h4 class="mb-0">
-                        <a
-                          href="#!"
-                          class="collapsed"
-                          data-toggle="collapse"
-                          data-target="#collapseThree"
-                          aria-expanded="false"
-                          aria-controls="collapseThree"
-                        >
+                        <a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseThree"
+                          aria-expanded="false" aria-controls="collapseThree">
                           <i class="fa fa-plus-circle mr-1"></i>
                           Is a CIBIL score required for a gold loan?
                         </a>
                       </h4>
                     </div>
-                    <div
-                      id="collapseThree"
-                      class="collapse"
-                      aria-labelledby="faqThree"
-                      data-parent="#Faqaccordionsone"
-                    >
+                    <div id="collapseThree" class="collapse" aria-labelledby="faqThree" data-parent="#Faqaccordionsone">
                       <div class="card-body">
                         CIBIL scores aren't always required while you are
                         applying for a loan. One of the several perks of
