@@ -164,7 +164,7 @@
                       />
                       <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
                         <small *ngIf="name.errors?.['required']" class="text-danger">Name is required</small><br>
-                        <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br>
+                        <!-- <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br> -->
                         <small *ngIf="name.errors?.['minlength']" class="text-danger">Name should not contain atleast 2 characters</small>
                       </div>
                     </div>

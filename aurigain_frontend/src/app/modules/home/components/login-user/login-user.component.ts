@@ -19,7 +19,7 @@ export class LoginUserComponent implements OnInit {
     private router: Router, 
     private conts: ConstantsService,
     private authservice: AuthService,
-    private loginservice: LoginService
+    private loginservice: LoginService,
     
     ) { }
     
@@ -108,7 +108,8 @@ export class LoginUserComponent implements OnInit {
         password: password
       }
       console.log(userObj);
-      this.authservice.login(userObj).subscribe(
+      this.authservice.login(JSON.stringify(userObj), '/api/users/login/')
+      .subscribe(
         user=> {
           console.log(user)
           this.errors = '';

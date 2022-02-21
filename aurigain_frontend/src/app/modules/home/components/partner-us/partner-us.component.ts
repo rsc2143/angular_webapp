@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ConstantsService } from 'src/app/config/constants.service';
+import { AuthService } from 'src/app/core/authentication/auth.service';
+import { NetworkRequestService } from 'src/app/core/services/network-request.service';
+import { UtilsService } from 'src/app/core/services/utils.service';
 
 @Component({
   selector: 'app-partner-us',
@@ -21,11 +25,18 @@ export class PartnerUsComponent implements OnInit {
   refrralDetailForm: FormGroup;
   navText:string= "Partner Us"
   currentStep:number = 1;
+  registrationData;
+
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
+    private auth: AuthService,
+    private utils: UtilsService,
+    private toastr: ToastrService,
+    private networkRequest: NetworkRequestService,
+    
   ) { }
-
+  errors;
   get name(){
     return this.basicDetailForm.get('name');
   }
@@ -176,6 +187,52 @@ export class PartnerUsComponent implements OnInit {
     referralCode: referralCode,
   }
 
+  //Addition made by Rohit - Start
+  const user = {
+    user: {
+      phonenumber: phoneNumber1,
+      fullname: name
+    }
+  };
+  if (name && phoneNumber1) {
+    this.auth.register(JSON.stringify(user), '/api/users/register/').subscribe(
+      user => {
+        console.log("user", user);
+        if (user['user']) {
+          // this.bt.openModal('otp', user); 
+          this.registrationData = user;
+          // this.misc.sendOtp(phoneNumber1).subscribe();
+          // if (!this.signupAsStudent) {
+            const userData = {
+              user_group: 'agent'
+            }
+            const decoded_token = this.utils.decodeToken(user['user']['token']);
+            console.log("decoded_token ", decoded_token);
+            const user_id = decoded_token['id'];
+            this.networkRequest.putWithoutHeaders(userData, `/api/profile/usergroup/${user_id}/`)
+            .subscribe(
+              data => {
+                console.log("role updated ", data);
+              },
+              error => {
+              });
+          // }
+          // this.sendOTPRegister();
+        }
+      },
+      error => {
+        // this.misc.hideLoader()
+        const emailError = error.message['email'];
+        const phoneError = error.message['phonenumber'];
+
+        this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
+        this.toastr.error(this.errors, 'Error!', {
+          timeOut: 4000,
+        });
+      }
+    );
+  }
+  //Addition made by Rohit - end
   console.log(agentFormData);
   }
 
@@ -201,8 +258,12 @@ export class PartnerUsComponent implements OnInit {
     // })
 
     this.basicDetailForm = this.formbuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      fatherName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      name: ['', [Validators.required, Validators.minLength(2)
+        // , Validators.pattern("^[a-zA-Z\-\']+")
+      ]],
+      fatherName: ['', [Validators.required, Validators.minLength(2), 
+        // Validators.pattern("^[a-zA-Z\-\']+")
+      ]],
       dob: ['', [Validators.required,]],
       gender: ['', [Validators.required,]],
       email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
