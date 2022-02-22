@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { ConstantsService } from 'src/app/config/constants.service';
+import { AuthService } from 'src/app/core/authentication/auth.service';
+import { NetworkRequestService } from 'src/app/core/services/network-request.service';
+import { UtilsService } from 'src/app/core/services/utils.service';
+
 @Component({
   selector: 'app-banks',
   templateUrl: './banks.component.html',
@@ -13,7 +19,41 @@ export class BanksComponent implements OnInit {
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
+    private conts: ConstantsService,
+    private auth: AuthService,
+    private utils: UtilsService,
+    private toastr: ToastrService,
+    private networkRequest: NetworkRequestService,
+
   ) { }
+
+  submitFile() {
+    const excel = (<HTMLInputElement>document.getElementById('excel')).files[0];
+
+    if (!excel) {
+      this.toastr.error('Please upload excel file!', 'Error!', {
+        timeOut: 4000,
+      });
+      return;
+    }
+
+    let formData: FormData = new FormData();
+    formData.append("excel_file", excel);
+    this.networkRequest.postFormData(formData, '/api/bulkdistrictupload/').subscribe(
+      data => {
+        console.log("Tags successfully updated", data);
+        this.toastr.success('FTag created successfully!', 'Created!', {
+          timeOut: 4000,
+        });
+      },
+      error => {
+        console.log("error ", error);
+        this.toastr.error(error['message']['message'], 'Error!', {
+          timeOut: 4000,
+        });
+      }
+    )
+  }
 
   deleteUser(id){
     this.successMsg = null;

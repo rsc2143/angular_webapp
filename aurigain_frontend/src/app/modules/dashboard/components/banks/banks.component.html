@@ -83,8 +83,12 @@
             </div>
             <pagination-controls (pageChange)="p =$event" class="float-right mt-5"></pagination-controls>
           </div>
+          <div style="float: right;">
+            <input type="file" id="excel" ng2FileSelect />
+            <button type="button" class="btn btn-success" (click)="submitFile()" id="std">Upload File</button>
+          </div>
+      
         </div>
       </div>
     </div>
-
   </div>
