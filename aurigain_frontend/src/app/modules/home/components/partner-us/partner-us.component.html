@@ -161,7 +161,7 @@
                         placeholder="Full Name"
                         formControlName="name"
                         required
-    
+
                         />
                       <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
                         <small *ngIf="name.errors?.['required']" class="text-danger">Name is required</small><br>
@@ -263,7 +263,7 @@
                       <a (click)="stepUp()">
                         <button
                         [disabled]="basicDetailForm.invalid"
-                        [hidden]="!otpVerifiedSuccessfully" type="submit" class="btn btn-primary">
+                        type="submit" class="btn btn-primary">
                           Next
                         </button>
                       </a>
