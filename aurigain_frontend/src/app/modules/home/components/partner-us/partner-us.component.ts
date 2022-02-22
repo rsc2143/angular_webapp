@@ -13,6 +13,10 @@ import { UtilsService } from 'src/app/core/services/utils.service';
 })
 export class PartnerUsComponent implements OnInit {
 
+  autheticationForm: FormGroup;
+  isAutheticationForm: boolean = true;
+  isBasicDetailForm: boolean = false;
+  otp:number;
   sentOtpField: boolean = false;
   verifyOtpField: boolean = true;
   otpVerifiedSuccessfully: boolean = false;
@@ -26,6 +30,7 @@ export class PartnerUsComponent implements OnInit {
   navText:string= "Partner Us"
   currentStep:number = 1;
   registrationData;
+  isOtpForm: boolean = false;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -34,11 +39,15 @@ export class PartnerUsComponent implements OnInit {
     private utils: UtilsService,
     private toastr: ToastrService,
     private networkRequest: NetworkRequestService,
-    
+
   ) { }
   errors;
+
   get name(){
-    return this.basicDetailForm.get('name');
+    return this.autheticationForm.get('name');
+  }
+  get phoneNumber1(){
+    return this.autheticationForm.get('phoneNumber1');
   }
 
   get fatherName(){
@@ -49,12 +58,6 @@ export class PartnerUsComponent implements OnInit {
   }
   get email(){
     return this.basicDetailForm.get('email');
-  }
-  get phoneNumber1(){
-    return this.basicDetailForm.get('phoneNumber1');
-  }
-  get otp(){
-    return this.basicDetailForm.get('otp');
   }
 
   get gender(){
@@ -114,31 +117,35 @@ export class PartnerUsComponent implements OnInit {
     this.otpVerifiedSuccessfully = true;
 
   }
-  submitPatnerForm(){
-    const name = this.partnerForm.value.name;
-    const email = this.partnerForm.value.email;
-    const phone = this.partnerForm.value.phone;
-    const message = this.partnerForm.value.message;
+  // submitPatnerForm(){
+  //   const name = this.partnerForm.value.name;
+  //   const email = this.partnerForm.value.email;
+  //   const phone = this.partnerForm.value.phone;
+  //   const message = this.partnerForm.value.message;
 
-    const formData = {
-      name: name,
-      email: email,
-      phone: phone,
-      message: message,
-    }
-    console.log(formData);
+  //   const formData = {
+  //     name: name,
+  //     email: email,
+  //     phone: phone,
+  //     message: message,
+  //   }
+  //   console.log(formData);
+  // }
+
+  submitOTP(){
+    this.isOtpForm = false;
+    this.isBasicDetailForm = true;
+
   }
-
   submitAgentForm(){
 
-  const name = this.basicDetailForm.value.name;
+  const name = this.autheticationForm.value.name;
+  const phoneNumber1 = this.autheticationForm.value.phoneNumber1;
+
   const fatherName = this.basicDetailForm.value.fatherName;
   const dob = this.basicDetailForm.value.dob;
   const gender = this.basicDetailForm.value.gender;
   const email = this.basicDetailForm.value.email;
-  const phoneNumber1 = this.basicDetailForm.value.phoneNumber1;
-
-
 
   const pinCode = this.addressDetailForm.value.pinCode;
   const district = this.addressDetailForm.value.district;
@@ -199,7 +206,7 @@ export class PartnerUsComponent implements OnInit {
       user => {
         console.log("user", user);
         if (user['user']) {
-          // this.bt.openModal('otp', user); 
+          // this.bt.openModal('otp', user);
           this.registrationData = user;
           // this.misc.sendOtp(phoneNumber1).subscribe();
           // if (!this.signupAsStudent) {
@@ -243,32 +250,34 @@ export class PartnerUsComponent implements OnInit {
   stepUp(){
     this.currentStep += 1;
   }
-
+  submitAutheticationForm(){
+    const phoneNumber = this.autheticationForm.value.phoneNumber1;
+    this.sendOTP(phoneNumber);
+    this.isAutheticationForm = false;
+    this.isOtpForm = true;
+  }
   sendOTP(phoneNumber){
     console.log(phoneNumber);
     this.sentOtpField = true;
     this.verifyOtpField = false
   }
   ngOnInit(): void {
-    // this.partnerForm = this.formbuilder.group({
-    //   name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-    //   email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-    //   phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-    //   message: ['', [Validators.required,]],
-    // })
 
-    this.basicDetailForm = this.formbuilder.group({
+    this.autheticationForm = this.formbuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)
         // , Validators.pattern("^[a-zA-Z\-\']+")
       ]],
-      fatherName: ['', [Validators.required, Validators.minLength(2), 
+      phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
+    })
+
+    this.basicDetailForm = this.formbuilder.group({
+
+      fatherName: ['', [Validators.required, Validators.minLength(2),
         // Validators.pattern("^[a-zA-Z\-\']+")
       ]],
       dob: ['', [Validators.required,]],
       gender: ['', [Validators.required,]],
       email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      otp: ['', [Validators.required,]]
     })
 
     this.addressDetailForm = this.formbuilder.group({
@@ -299,6 +308,12 @@ export class PartnerUsComponent implements OnInit {
       referralCode: ['']
     })
 
+    // this.partnerForm = this.formbuilder.group({
+    //   name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+    //   email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
+    //   phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
+    //   message: ['', [Validators.required,]],
+    // })
 
   }
 

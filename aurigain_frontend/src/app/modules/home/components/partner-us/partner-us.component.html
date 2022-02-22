@@ -151,7 +151,7 @@
                 role="tabpanel"
                 aria-labelledby="nav-basic-tab"
               >
-                <form [formGroup]="basicDetailForm">
+                <form [formGroup]="autheticationForm" *ngIf="isAutheticationForm" (ngSubmit)="submitAutheticationForm()">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <input [class.is-invalid]="name.invalid && name.touched"
@@ -168,9 +168,8 @@
                         <small *ngIf="name.errors?.['minlength']" class="text-danger">Name should not contain atleast 2 characters</small>
                       </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
                       <input
-                      [readonly]="sentOtpField"
                       [class.is-invalid]="phoneNumber1.invalid && phoneNumber1.touched" type="number"
                         class="form-control"
                         id="inputPhone"
@@ -182,34 +181,22 @@
                         <small *ngIf="phoneNumber1.errors?.['required']" class="text-danger">Phone Number is required</small><br>
                         <small *ngIf="phoneNumber1.errors?.['pattern']" class="text-danger">Phone Number must be of 10 digit</small>
                       </div>
-                      <a (click)="sendOTP(phoneNumber1.value)">
-                        <button #buttonCheck
-                        [hidden]="sentOtpField"
-                        [hidden]="phoneNumber1.invalid"
-                        class="btn-sm btn-primary mt-1 ml-5"
-                        >Send OTP
-                        </button>
-                      </a>
                     </div>
-                    <div [hidden]="verifyOtpField" class="form-group col-md-2">
-                      <input [class.is-invalid]="otp.invalid && otp.touched"
-                      type="number"
-                        class="form-control"
-                        id="inputPhone"
-                        placeholder="OTP"
-                        formControlName="otp"
-                        required
-                      />
-                      <a (click)="verifyOtp()">
-                      <button [hidden]="otpVerifiedSuccessfully"
-                      class="btn-sm btn-primary mt-1 ml-3">Verify OTP</button></a>
-                      <!-- <div style="margin-left: 10px;" *ngIf="phoneNumber1.invalid && phoneNumber1.touched">
-                        <small *ngIf="phoneNumber1.errors?.['required']" class="text-danger">Phone Number is required</small>
-                      </div> -->
-                    </div>
-                    <div class="form-group col-md-1">
-                      <i *ngIf="otpVerifiedSuccessfully" class="fa-solid fa-circle-check text-success text-center pt-2"></i>
-                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" [disabled]="!autheticationForm.valid">Submit</button>
+                </form>
+                <div *ngIf="isOtpForm" class="otpDiv">
+                  <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp"
+                    placeholder="Enter OTP" aria-label="Username" aria-describedby="basic-addon1" required>
+                  <button type="button" (click)="submitOTP()"
+                    [ngStyle]="{'font-family': 'Poppins'}" class="btn mt-4 btnSendOtp btn-block">Verify
+                    OTP</button>
+                  <button type="button" (click)="sendOTP(phoneNumber1.value)" [ngStyle]="{'font-family': 'Poppins'}"
+                    class="btn btn-primary btn-block">Resend OTP</button>
+
+                </div>
+                <form [formGroup]="basicDetailForm" *ngIf="isBasicDetailForm">
+                  <div class="form-row">
                     <div class="form-group col-md-6">
                       <input
                       [class.is-invalid]="fatherName.invalid && fatherName.touched" type="text"
