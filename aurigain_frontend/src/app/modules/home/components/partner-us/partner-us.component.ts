@@ -13,8 +13,8 @@ import { UtilsService } from 'src/app/core/services/utils.service';
 })
 export class PartnerUsComponent implements OnInit {
 
-  autheticationForm: FormGroup;
-  isAutheticationForm: boolean = true;
+  authenticationForm: FormGroup;
+  isAuthenticationForm: boolean = true;
   isBasicDetailForm: boolean = false;
   otp:number;
   sentOtpField: boolean = false;
@@ -31,6 +31,8 @@ export class PartnerUsComponent implements OnInit {
   currentStep:number = 1;
   registrationData;
   isOtpForm: boolean = false;
+  successForm:any = [];
+  formCompleted: boolean = false;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -44,10 +46,10 @@ export class PartnerUsComponent implements OnInit {
   errors;
 
   get name(){
-    return this.autheticationForm.get('name');
+    return this.authenticationForm.get('name');
   }
   get phoneNumber1(){
-    return this.autheticationForm.get('phoneNumber1');
+    return this.authenticationForm.get('phoneNumber1');
   }
 
   get fatherName(){
@@ -139,8 +141,9 @@ export class PartnerUsComponent implements OnInit {
   }
   submitAgentForm(){
 
-  const name = this.autheticationForm.value.name;
-  const phoneNumber1 = this.autheticationForm.value.phoneNumber1;
+  const name = this.authenticationForm.value.name;
+  const phoneNumber1 = this.authenticationForm.value.phoneNumber1;
+  const referralCode= this.authenticationForm.value.referralCode;
 
   const fatherName = this.basicDetailForm.value.fatherName;
   const dob = this.basicDetailForm.value.dob;
@@ -164,7 +167,6 @@ export class PartnerUsComponent implements OnInit {
   const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
   const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
 
-  const referralCode= this.refrralDetailForm.value.referralCode;
 
   const agentFormData ={
     name: name,
@@ -247,13 +249,24 @@ export class PartnerUsComponent implements OnInit {
     this.currentStep = i;
   }
 
-  stepUp(){
+  stepUp(nextStep){
+    this.successForm.push(nextStep);
+    console.log(this.successForm);
     this.currentStep += 1;
   }
-  submitAutheticationForm(){
-    const phoneNumber = this.autheticationForm.value.phoneNumber1;
+  submitAuthenticationForm(){
+    const name = this.authenticationForm.value.name;
+    const phoneNumber = this.authenticationForm.value.phoneNumber1;
+    const referralCode = this.authenticationForm.value.referralCode;
+
+    let formData= {
+      name: name,
+      phonenumber: phoneNumber,
+      referralCode: referralCode
+    }
+    console.log(formData);
     this.sendOTP(phoneNumber);
-    this.isAutheticationForm = false;
+    this.isAuthenticationForm = false;
     this.isOtpForm = true;
   }
   sendOTP(phoneNumber){
@@ -263,11 +276,12 @@ export class PartnerUsComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.autheticationForm = this.formbuilder.group({
+    this.authenticationForm = this.formbuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)
         // , Validators.pattern("^[a-zA-Z\-\']+")
       ]],
       phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
+      referralCode: ['']
     })
 
     this.basicDetailForm = this.formbuilder.group({
@@ -304,9 +318,13 @@ export class PartnerUsComponent implements OnInit {
       // relationshipWithNominee: ['', [Validators.required]],
     })
 
-    this.refrralDetailForm = this.formbuilder.group({
-      referralCode: ['']
-    })
+    // if(this.successForm.length === 3) {
+    //   this.formCompleted = true;
+    // }
+
+    // this.refrralDetailForm = this.formbuilder.group({
+    //   referralCode: ['']
+    // })
 
     // this.partnerForm = this.formbuilder.group({
     //   name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
