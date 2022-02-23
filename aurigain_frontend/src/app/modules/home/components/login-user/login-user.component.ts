@@ -103,10 +103,13 @@ export class LoginUserComponent implements OnInit {
       this.errors = "Please enter a password"
     }
     if(username && password){
-      const userObj ={
-        email: username,
-        password: password
-      }
+      const userObj = {
+        user: {
+          email: username,
+          password: password
+        }
+      };
+
       console.log(userObj);
       this.authservice.login(JSON.stringify(userObj), '/api/users/login/')
       .subscribe(

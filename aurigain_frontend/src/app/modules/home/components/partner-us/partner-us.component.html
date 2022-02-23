@@ -171,7 +171,7 @@
                     </div>
                     <div class="form-group col-md-4">
                       <input
-                      [class.is-invalid]="phoneNumber1.invalid && phoneNumber1.touched" type="number"
+                      [class.is-invalid]="phoneNumber1.invalid && phoneNumber1.touched" type="text"
                         class="form-control"
                         id="inputPhone"
                         placeholder="Phone"
@@ -326,13 +326,14 @@
                         placeholder="Pincode"
                         formControlName="pinCode"
                         required
+                        (input)="searchDistrict()"
                       />
                       <div style="margin-left: 10px;" *ngIf="pinCode.invalid && pinCode.touched">
                         <small *ngIf="pinCode.errors?.['required']" class="text-danger">PinCode is required</small>
                       </div>
                     </div>
                     <div class="form-group col-md-6">
-                      <input
+                      <!-- <input
                       [class.is-invalid]="district.invalid && district.touched"
                       type="text"
                         class="form-control"
@@ -340,12 +341,21 @@
                         placeholder="District"
                         formControlName="district"
                         required
-                      />
+                      /> -->
+                      <select
+                        [class.is-invalid]="district.invalid && district.touched"
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                        formControlName="district"
+                      >
+                        <option value="" disabled>Select District</option>
+                        <option [value]="district?.id" *ngFor="let district of districts">{{district?.name}}</option>
+                      </select>
                       <div style="margin-left: 10px;" *ngIf="district.invalid && district.touched">
                         <small *ngIf="district.errors?.['required']" class="text-danger">District is required</small>
                       </div>
                     </div>
-                    <div class="form-group col-md-6">
+                    <!-- <div class="form-group col-md-6">
                       <input
                       [class.is-invalid]="city.invalid && city.touched"
                       type="text"
@@ -358,17 +368,18 @@
                       <div style="margin-left: 10px;" *ngIf="city.invalid && city.touched">
                         <small *ngIf="city.errors?.['required']" class="text-danger">City is required</small>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-6">
-                      <input
-                      [class.is-invalid]="state.invalid && state.touched"
-                      type="text"
+                      <select
+                        [class.is-invalid]="state.invalid && state.touched"
                         class="form-control"
-                        id="inputState"
-                        placeholder="State"
+                        id="exampleFormControlSelect1"
                         formControlName="state"
-                        required
-                      />
+                        readonly
+                      >
+                        <option value="" disabled>Select State</option>
+                        <option [value]="state?.id" *ngFor="let state of states" disabled>{{state?.name}}</option>
+                      </select>
                       <div style="margin-left: 10px;" *ngIf="state.invalid && state.touched">
                         <small *ngIf="state.errors?.['required']" class="text-danger">State is required</small>
                       </div>
@@ -403,10 +414,10 @@
                         formControlName="qualification"
                       >
                         <option value="">Select Qualification</option>
-                        <option value="10">10th</option>
-                        <option value="12">12th</option>
-                        <option value="graduate">Graduate</option>
-                        <option value="postGraduate">Post Graduate</option>
+                        <option value="10th">10th</option>
+                        <option value="12th">12th</option>
+                        <option value="graduation">Graduate</option>
+                        <option value="postgraduation">Post Graduate</option>
                         <option value="other">Other</option>
                       </select>
                       <div style="margin-left: 10px;" *ngIf="qualification.invalid && qualification.touched">
@@ -430,7 +441,7 @@
                     <div class="form-group col-md-6">
                       <input
                       [class.is-invalid]="panNumber.invalid && panNumber.touched"
-                      type="number"
+                      type="text"
                         class="form-control"
                         id="inputPan"
                         placeholder="PAN Number"
@@ -464,11 +475,11 @@
 
                           type="file"
                             class="custom-file-input"
-                            id="inputGroupFile01"
+                            id="profilepic"
                           />
                           <label
                             class="custom-file-label"
-                            for="inputGroupFile01"
+                            for="profilepic"
                             >Choose file</label
                           >
                         </div>
@@ -482,11 +493,11 @@
                           <input
                             type="file"
                             class="custom-file-input"
-                            id="inputGroupFile02"
+                            id="aadharfront"
                           />
                           <label
                             class="custom-file-label"
-                            for="inputGroupFile01"
+                            for="aadharfront"
                             >Choose file</label
                           >
                         </div>
@@ -500,11 +511,11 @@
                           <input
                             type="file"
                             class="custom-file-input"
-                            id="inputGroupFile03"
+                            id="aadharback"
                           />
                           <label
                             class="custom-file-label"
-                            for="inputGroupFile01"
+                            for="aadharback"
                             >Choose file</label
                           >
                         </div>
@@ -518,11 +529,11 @@
                           <input
                             type="file"
                             class="custom-file-input"
-                            id="inputGroupFile04"
+                            id="panimg"
                           />
                           <label
                             class="custom-file-label"
-                            for="inputGroupFile01"
+                            for="panimg"
                             >Choose file</label
                           >
                         </div>
@@ -551,15 +562,16 @@
                 <form [formGroup]="bankDetailForm">
                   <div class="form-row">
                     <div class="form-group col-md-6">
-                      <input
-                        [class.is-invalid]="bankName.invalid && bankName.touched"
-                        type="text"
+                      
+                      <select
+                        [class.is-invalid]="district.invalid && district.touched"
                         class="form-control"
-                        id="inputBank-name"
-                        placeholder="Bank Name"
+                        id="exampleFormControlSelect1"
                         formControlName="bankName"
-                        required
-                      />
+                      >
+                        <option value="" disabled>Select Bank</option>
+                        <option [value]="bank?.id" *ngFor="let bank of banks">{{bank?.name}}</option>
+                      </select>
                       <div style="margin-left: 10px;" *ngIf="bankName.invalid && bankName.touched">
                         <small *ngIf="bankName.errors?.['required']" class="text-danger">Bank Name is required</small>
                       </div>
@@ -581,7 +593,7 @@
                     <div class="form-group col-md-6">
                       <input
                       [class.is-invalid]="ifscCode.invalid && ifscCode.touched"
-                      type="number"
+                      type="text"
                         class="form-control"
                         id="inputifsc"
                         placeholder="IFSC Code"
@@ -600,11 +612,11 @@
                           <input
                             type="file"
                             class="custom-file-input"
-                            id="inputGroupFile05"
+                            id="cheque"
                           />
                           <label
                             class="custom-file-label"
-                            for="inputGroupFile01"
+                            for="cheque"
                             >Choose file</label
                           >
                         </div>

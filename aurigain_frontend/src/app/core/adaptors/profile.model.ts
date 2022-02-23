@@ -5,7 +5,8 @@ export class Profile {
     constructor(
         public id: string,
         public username: string,
-        public name: string,
+        public first_name: string,
+        public last_name: string,
         public email: string,
         // public profileImage: string,
         public contactNumber: string,
@@ -22,9 +23,10 @@ export class ProfileAdapter{
 
     adapt(user: any): Profile {
         return new Profile(
-            user.id,
+            user.user_id,
             user.username,
-            user.name,
+            user.first_name,
+            user.last_name,
             user.email,
             user.contactNumber,
             // new school(

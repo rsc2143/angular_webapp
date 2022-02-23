@@ -19,10 +19,10 @@ export class ConstantsService {
   
   constructor() { }
   // loginApiUrl = `https://jsonplaceholder.typicode.com/`;
-  loginApiUrl = `http://localhost:3000/api/login`;
-  signupApiUrl = `http://localhost:3000/api/register`;
+  loginApiUrl = `${environment.BASE_URL}/api/users/login/`;
+  signupApiUrl = `${environment.BASE_URL}/api/users/register/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   resetPasswordUrl = `https://jsonplaceholder.typicode.com/`;
-  getUpdateProfileUrl = `http://localhost:3000/api/auth/account`;
+  getUpdateProfileUrl = `${environment.BASE_URL}/api/profile/`;
   LOGIN_EXPIRY_TIME = 7;
 }

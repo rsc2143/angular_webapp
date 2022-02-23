@@ -29,7 +29,8 @@ export class ProfileService {
         this.http.get<Array<object>>(this.consts.getUpdateProfileUrl)
             .subscribe(
                 data => {
-                    observer.next(this.adapter.adapt(data['data']));
+                  console.log("profile data", data);
+                    observer.next(this.adapter.adapt(data['profile']));
                 },
                 error => {
                     observer.error('failed');

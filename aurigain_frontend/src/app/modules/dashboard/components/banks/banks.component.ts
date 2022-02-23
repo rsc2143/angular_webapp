@@ -144,9 +144,24 @@ export class BanksComponent implements OnInit {
 
   }
 
+  getStates() {
+    this.networkRequest.getWithHeaders('/api/allstates/').subscribe(
+      data => {
+        console.log("states", data);
+      },
+      error => {
+        console.log("error ", error);
+        this.toastr.error(error['message']['message'], 'Error!', {
+          timeOut: 4000,
+        });
+      }
+    )
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
+    this.getStates();
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']    
      })

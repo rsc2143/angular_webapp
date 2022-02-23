@@ -77,7 +77,7 @@ export class NetworkRequestService {
 
     let httpOptions = {
       headers: new HttpHeaders({
-        'Accept': '/'
+        'Accept': '*/*'
       })
     };
 

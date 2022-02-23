@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { ErrorHandlerService } from '../http/error-handler.service';
+import { NetworkRequestService } from '../services/network-request.service';
 import { AuthService } from './auth.service';
 import { ProfileService } from './user-profile.service';
 
@@ -22,9 +23,11 @@ export class LoginService {
     private auth: AuthService,
     private router: Router,
     private profileservice: ProfileService,
-
+    private networkRequest: NetworkRequestService,
   ) { }
 
+  userProfileObj;
+  
   forgotPassword(data: any) {
     return this.http.post(this.constsvc.forgotPasswordUrl, data)
       .pipe(
@@ -46,20 +49,12 @@ export class LoginService {
       );
   }
 
-  setToken(user) {
-    try {
-      this.cookie.set('_l_a_t', user['token'], this.constsvc.LOGIN_EXPIRY_TIME, '/');
-    } catch (err) {
-      this.auth.logout();
-    }
-  }
-
   processLogin(user: object) {
     console.log("process login");
     return new Observable(observer => {
       try {
-        this.setToken(user);
-        console.log("Token set successfully");
+        this.setToken(user['user']);
+        console.log("Token set successfully", user['user']);
         this.extraSteps().subscribe({
           error: err => {
             console.log(err);
@@ -76,20 +71,41 @@ export class LoginService {
   }
 
   extraSteps(): Observable<any> {
-    console.log("extra steps");
+    console.log("extra steps", this.cookie.get('_l_a_t'));
     return new Observable(observer => {
-      this.profileservice.refreshProfileData().subscribe(
+      // this.profileservice.refreshProfileData().subscribe(
+      //   data => {
+      //     console.log("profile data", data);
+      //     localStorage.setItem('userProfile', JSON.stringify(data));
+      //     this.profileservice.setUserProfileValue(data);
+      //     observer.complete();
+      //   },
+      //   error => {
+      //     observer.error('failed');
+      //   }
+      // )
+      this.networkRequest.getWithHeaders('/api/profile/').subscribe(
         data => {
-          localStorage.setItem('userProfile', JSON.stringify(data));
-          this.profileservice.setUserProfileValue(data);
-          observer.complete()
+          this.userProfileObj = data['profile'];
+  
+          observer.complete();
         },
         error => {
           observer.error('failed');
         }
-      )
+      );
+
     });
 
+  }
+
+  setToken(user) {
+    try {
+      this.cookie.set('_l_a_t', user['token'], this.constsvc.LOGIN_EXPIRY_TIME, '/');
+      console.log("usertoken", user);
+    } catch (err) {
+      this.auth.logout();
+    }
   }
 
   loginRedirect(){

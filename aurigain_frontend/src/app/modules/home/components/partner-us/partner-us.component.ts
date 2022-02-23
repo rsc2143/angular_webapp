@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { AuthService } from 'src/app/core/authentication/auth.service';
+import { LoginService } from 'src/app/core/authentication/login.service';
 import { NetworkRequestService } from 'src/app/core/services/network-request.service';
 import { UtilsService } from 'src/app/core/services/utils.service';
 
@@ -41,9 +43,14 @@ export class PartnerUsComponent implements OnInit {
     private utils: UtilsService,
     private toastr: ToastrService,
     private networkRequest: NetworkRequestService,
-
+    private loginservice: LoginService,
+    private cookie: CookieService,
   ) { }
   errors;
+  districts;
+  states;
+  selectedPinCode;
+  banks;
 
   get name(){
     return this.authenticationForm.get('name');
@@ -134,10 +141,34 @@ export class PartnerUsComponent implements OnInit {
   //   console.log(formData);
   // }
 
+  searchDistrict() {
+    const pinCode = this.addressDetailForm.value.pinCode;
+    this.networkRequest.getWithHeaders(`/api/districts/?pincode=${pinCode}`).subscribe(
+      data => {
+        this.districts = data;
+        console.log("districts", this.districts);
+      },
+      error => {
+        console.log("error", error);
+      }
+    );
+    this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
+      data => {
+        this.selectedPinCode = data[0]['id'];
+        this.addressDetailForm.patchValue({
+          state: data[0]['state']
+        })
+        console.log("pincode details", data);
+      },
+      error => {
+        console.log("error", error);
+      }
+    );
+  }
+
   submitOTP(){
     this.isOtpForm = false;
     this.isBasicDetailForm = true;
-
   }
   submitAgentForm(){
 
@@ -145,56 +176,7 @@ export class PartnerUsComponent implements OnInit {
   const phoneNumber1 = this.authenticationForm.value.phoneNumber1;
   const referralCode= this.authenticationForm.value.referralCode;
 
-  const fatherName = this.basicDetailForm.value.fatherName;
-  const dob = this.basicDetailForm.value.dob;
-  const gender = this.basicDetailForm.value.gender;
-  const email = this.basicDetailForm.value.email;
-
-  const pinCode = this.addressDetailForm.value.pinCode;
-  const district = this.addressDetailForm.value.district;
-  const city = this.addressDetailForm.value.city;
-  const state = this.addressDetailForm.value.state;
-  const addressLine1 = this.addressDetailForm.value.addressLine1;
-  const addressLine2 = this.addressDetailForm.value.addressLine2;
-
-  const qualification = this.kycDetailForm.value.qualification;
-  const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
-  const panNumber = this.kycDetailForm.value.panNumber;
-
-  const bankName = this.bankDetailForm.value.bankName;
-  const accountNumber = this.bankDetailForm.value.accountNumber;
-  const ifscCode= this.bankDetailForm.value.ifscCode;
-  const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
-  const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
-
-
-  const agentFormData ={
-    name: name,
-    fatherName: fatherName,
-    dob: dob,
-    gender: gender,
-    email: email,
-    phoneNumber1: phoneNumber1,
-
-    pinCode: pinCode,
-    district: district,
-    addressLine1: addressLine1,
-    addressLine2: addressLine2,
-    city: city,
-    state: state,
-
-    qualification: qualification,
-    adhaarNumber: adhaarNumber,
-    panNumber: panNumber,
-
-    bankName: bankName,
-    accountNumber: accountNumber,
-    ifscCode: ifscCode,
-    nameOfNominee: nameOfNominee,
-    relationshipWithNominee: relationshipWithNominee,
-
-    referralCode: referralCode,
-  }
+  // const city = this.addressDetailForm.value.city;
 
   //Addition made by Rohit - Start
   const user = {
@@ -209,15 +191,27 @@ export class PartnerUsComponent implements OnInit {
         console.log("user", user);
         if (user['user']) {
           // this.bt.openModal('otp', user);
-          this.registrationData = user;
+          this.registrationData = user['user'];
           // this.misc.sendOtp(phoneNumber1).subscribe();
           // if (!this.signupAsStudent) {
+            this.cookie.set('_l_a_t', this.registrationData['token'], this.conts.LOGIN_EXPIRY_TIME, '/');
+            
+            // this.loginservice.processLogin(user).subscribe(() => {
+            // });
             const userData = {
-              user_group: 'agent'
+              user_group: 'agent',
+              shareReferralCode: referralCode
             }
-            const decoded_token = this.utils.decodeToken(user['user']['token']);
+            const decoded_token = this.utils.decodeToken(this.registrationData['token']);
             console.log("decoded_token ", decoded_token);
             const user_id = decoded_token['id'];
+            // const user_id = this.registrationData['id'];
+            this.updateKYCDetails(user_id);
+            this.updateBankDetails(user_id);
+            this.upadateProfileImage(user_id);
+            // setTimeout(() => {
+            this.updateProfile();
+            // }, 1200);
             this.networkRequest.putWithoutHeaders(userData, `/api/profile/usergroup/${user_id}/`)
             .subscribe(
               data => {
@@ -225,6 +219,7 @@ export class PartnerUsComponent implements OnInit {
               },
               error => {
               });
+              this.loginservice.processLogin(user).subscribe();
           // }
           // this.sendOTPRegister();
         }
@@ -242,7 +237,150 @@ export class PartnerUsComponent implements OnInit {
     );
   }
   //Addition made by Rohit - end
-  console.log(agentFormData);
+  }
+
+  updateProfile() {
+    var firstName = '';
+    var fullname = (this.authenticationForm.value.name).split(' ');
+    var lastName;
+    if (fullname.length > 1) {
+      for (let i = 0; i < fullname.length - 1; i++) {
+        if (i == 0) {
+          firstName = fullname[0];
+        }
+        else {
+          firstName = firstName + ' ' + fullname[i];
+        }
+        
+      }
+      lastName = fullname[fullname.length -1];
+    }
+    else {
+      firstName = fullname[0];
+      lastName = '';
+    }
+
+    const pincode = this.selectedPinCode;
+    const district = this.addressDetailForm.value.district;
+    // const city = this.addressDetailForm.value.city;
+    const state = this.addressDetailForm.value.state;
+    const addressLine1 = this.addressDetailForm.value.addressLine1;
+    const addressLine2 = this.addressDetailForm.value.addressLine2;
+    const fatherName = this.basicDetailForm.value.fatherName;
+    const dob = this.basicDetailForm.value.dob;
+    const gender = this.basicDetailForm.value.gender;
+    const email = this.basicDetailForm.value.email;
+    
+    const formData = {
+      first_name: firstName,
+      last_name: lastName || '',
+      address_line1: addressLine1 || null,
+      address_line2: addressLine2 || null,
+      pincode: pincode,
+      email: email,
+      district: district,
+      state: state,
+      father_name: fatherName,
+      gender: gender,
+      dob: dob
+    }
+
+    this.networkRequest.putWithHeaders(formData, '/api/updateprofile/').subscribe(
+      data => {
+        // Set Profile Status
+        console.log("updated", data);
+        // this.getProfile();
+      },
+      error => {
+      }
+    );
+  }
+
+  updateBankDetails(userid) {
+    const bankName = this.bankDetailForm.value.bankName;
+    const accountNumber = this.bankDetailForm.value.accountNumber;
+    const ifscCode= this.bankDetailForm.value.ifscCode;
+    const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
+    const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
+    let cheque: File;
+    cheque = (<HTMLInputElement>document.getElementById('cheque')).files[0];
+    
+    let formData: FormData = new FormData();
+    formData.append("user", userid);
+    formData.append("bank", bankName);
+    formData.append("account_number", accountNumber);
+    formData.append("ifsc_code", ifscCode);
+    formData.append("nominee_name", nameOfNominee);
+    formData.append("nominee_relation", relationshipWithNominee);
+    formData.append("cancelled_cheque_image", cheque);
+    this.networkRequest.postFormData(formData, '/api/createuserbank/').subscribe(
+      user => {
+        console.log("user bank details", user);
+      },
+      error => {
+        this.toastr.error(this.errors, 'Error!', {
+          timeOut: 4000,
+        });
+      }
+    );
+  }
+
+  updateKYCDetails(userid) {
+    const qualification = this.kycDetailForm.value.qualification;
+    const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
+    const panNumber = this.kycDetailForm.value.panNumber;
+    const occupation = this.kycDetailForm.value.occupation;
+    let aadharfront: File;
+    aadharfront = (<HTMLInputElement>document.getElementById('aadharfront')).files[0];
+    let aadharback: File;
+    aadharback = (<HTMLInputElement>document.getElementById('aadharback')).files[0];
+    let panimg: File;
+    panimg = (<HTMLInputElement>document.getElementById('panimg')).files[0];
+    let formData: FormData = new FormData();
+    formData.append("user", userid);
+    formData.append("qualification", qualification);
+    formData.append("aadhar_number", adhaarNumber);
+    formData.append("pan_number", panNumber);
+    formData.append("occupation", occupation);
+    formData.append("aadhar_front_image", aadharfront);
+    formData.append("aadhar_back_image", aadharback);
+    formData.append("pan_image", panimg);
+      this.networkRequest.postFormData(formData, '/api/userkyc/').subscribe(
+        user => {
+          console.log("userkyc", user);
+        },
+        error => {
+          // this.misc.hideLoader()
+          const emailError = error.message['email'];
+          const phoneError = error.message['phonenumber'];
+  
+          this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
+          this.toastr.error(this.errors, 'Error!', {
+            timeOut: 4000,
+          });
+        }
+      );
+  }
+
+  upadateProfileImage(userid) {
+
+    /**
+     * User Profile Update
+     */
+
+    let imageFile: File;
+    imageFile = (<HTMLInputElement>document.getElementById('profilepic')).files[0];
+ 
+    const formData: FormData = new FormData();
+    formData.append('image', imageFile);
+    console.log("aa");
+    // Send User image to server
+    this.networkRequest.putFiles(formData, `/api/profile/image/${userid}/`)
+      .subscribe(
+        data => {
+        },
+        error => {
+        });
   }
 
   setStep(i) {
@@ -274,6 +412,28 @@ export class PartnerUsComponent implements OnInit {
     this.sentOtpField = true;
     this.verifyOtpField = false
   }
+
+  getStates() {
+    this.networkRequest.getWithHeaders(`/api/allstates/`).subscribe(
+      data => {
+        this.states = data;
+        console.log("states", this.districts);
+      },
+      error => {
+        console.log("error", error);
+      }
+    );
+    this.networkRequest.getWithHeaders(`/api/bank/`).subscribe(
+      data => {
+        this.banks = data;
+        console.log("banks", this.banks);
+      },
+      error => {
+        console.log("error", error);
+      }
+    );
+  }
+
   ngOnInit(): void {
 
     this.authenticationForm = this.formbuilder.group({
@@ -298,7 +458,7 @@ export class PartnerUsComponent implements OnInit {
       pinCode: ['', [Validators.required,]],
       addressLine1: ['', [Validators.required,]],
       addressLine2: ['', [Validators.required,]],
-      city: ['', [Validators.required,]],
+      city: ['',],
       state: ['', [Validators.required,]],
       district: ['', [Validators.required,]],
     })
@@ -317,6 +477,8 @@ export class PartnerUsComponent implements OnInit {
       // nameOfNominee: ['', [Validators.required]],
       // relationshipWithNominee: ['', [Validators.required]],
     })
+
+    this.getStates();
 
     // if(this.successForm.length === 3) {
     //   this.formCompleted = true;
