@@ -73,17 +73,34 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                       <label for="inputMobile">Mobile Number</label>
-                                      <input type="number" formControlName="phoneNumber1" class="form-control" id="inputMobile" placeholder="Phone Number">
-                                      <button class="btn btn-primary mt-2">Send OTP</button>
-                                      <ng-container *ngIf="personalDetails.get('phoneNumber1').invalid && personalDetails.get('phoneNumber1').touched" class="col-sm-3 col-form-label"></ng-container>
-                                      <div *ngIf="personalDetails.get('phoneNumber1').invalid && personalDetails.get('phoneNumber1').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                          <small class="text-danger" *ngIf="personalDetails.get('phoneNumber1').errors?.['required']">Enter Mobile Number</small>
+                                      <input
+                                      [readonly]="sentOtpField"
+                                      type="number" formControlName="phoneNumber1" class="form-control" id="inputMobile" placeholder="Phone Number">
+                                      <a (click)="sendOTP(phoneNumber1.value)">
+                                        <button
+                                        [disabled]="sentOtpField || phoneNumber1.invalid"
+                                        class="btn btn-sm btn-primary mt-2">Send OTP</button>
+                                      </a>
+                                      <ng-container *ngIf="phoneNumber1.invalid && phoneNumber1.touched" class="col-md-4 col-form-label">
+                                      </ng-container>
+                                      <div *ngIf="phoneNumber1.invalid && phoneNumber1.touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                          <small class="text-danger" *ngIf="phoneNumber1.errors?.['required']">Enter Mobile Number</small>
                                       </div>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div [hidden]="verifyOtpField" class="form-group col-md-4">
                                       <label for="otp">Enter OTP</label>
-                                      <input type="number" class="form-control" placeholder="OPT">
-                                      <button class="btn btn-primary mt-2">Verify OTP</button>
+                                      <i *ngIf="otpVerifiedSuccessfully" class="fa-solid fa-circle-check text-success text-center ml-2"></i>
+                                      <input
+                                      type="number" class="form-control" placeholder="OPT">
+                                      <a (click)="verifyOtp()">
+                                        <button [disabled]="otpVerifiedSuccessfully"
+                                        class="btn btn-sm btn-primary mt-1">Verify OTP</button>
+                                      </a>
+                                      <a (click)="sendOTP(phoneNumber1.value)">
+                                        <button
+                                        [disabled]="!sentOtpField || phoneNumber1.invalid"
+                                        class="btn btn-primary btn-sm ml-1 mt-2">Resend OTP</button>
+                                      </a>
                                     </div>
                                     <!-- <div class="form-group col-md-4">
                                         <label for="inputState">Select Product</label>
@@ -145,9 +162,9 @@
                                           <label for="inputMobile">Mobile Number</label>
                                           <input type="number" formControlName="phoneNumber1" class="form-control" id="inputMobile">
 
-                                          <ng-container *ngIf="personalDetails.get('phoneNumber1').invalid && personalDetails.get('phoneNumber1').touched" class="col-sm-3 col-form-label"></ng-container>
-                                          <div *ngIf="personalDetails.get('phoneNumber1').invalid && personalDetails.get('phoneNumber1').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
-                                              <small class="text-danger" *ngIf="personalDetails.get('phoneNumber1').errors?.['required']">Enter Mobile Number</small>
+                                          <ng-container *ngIf="phoneNumber1.invalid && phoneNumber1.touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="phoneNumber1.invalid && phoneNumber1.touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="phoneNumber1.errors?.['required']">Enter Mobile Number</small>
                                           </div>
                                       </div>
                                       <div class="form-group col-md-4">
@@ -199,7 +216,11 @@
                               </form>
                           </div>
                           <div class="form-btn">
-                              <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Next</button></a>
+                              <a (click)="savePersonalDetails()">
+                                <button
+                                [disabled]="personalDetails.invalid || !otpVerifiedSuccessfully"
+                                type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Next</button>
+                              </a>
                           </div>
                       </div>
                   </div>
@@ -225,7 +246,13 @@
                                           <small *ngIf="branch.errors?.['required']" class="text-danger">Branch is required</small>
                                         </div>
                                     </div>
-
+                                    <div class="form-group col-md-4">
+                                        <label for="inputbankName">Bank Name</label>
+                                        <input [class.is-invalid]="bankName.invalid && bankName.touched" type="text" class="form-control" placeholder="Enter Branch Name" formControlName="bankName">
+                                        <div style="margin-left: 10px;" *ngIf="bankName.invalid && bankName.touched">
+                                          <small *ngIf="bankName.errors?.['required']" class="text-danger">Bank Name is required</small>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group col-md-4">
                                         <label for="inputAppointment">Date of Appointment</label>
