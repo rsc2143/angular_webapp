@@ -170,6 +170,8 @@ export class PartnerUsComponent implements OnInit {
     this.isOtpForm = false;
     this.isBasicDetailForm = true;
   }
+
+  
   submitAgentForm(){
 
   const name = this.authenticationForm.value.name;
