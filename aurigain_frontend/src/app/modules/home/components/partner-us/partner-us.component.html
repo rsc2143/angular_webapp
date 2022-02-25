@@ -77,7 +77,7 @@
           <div class="m-5">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a
+                <a *ngIf="!otpVerified"
                   class="nav-item nav-link"
                   [ngClass]="{ active: currentStep == 1 }"
                   id="basic-tab"
@@ -90,7 +90,7 @@
                   >Basic Details</a
                 >
 
-                <a
+                <a *ngIf="otpVerified"
                   class="nav-item nav-link"
                   [ngClass]="{ active: currentStep == 2 }"
                   id="nav-address-tab"
@@ -103,7 +103,7 @@
                   >Address Details</a
                 >
 
-                <a
+                <a *ngIf="otpVerified"
                   class="nav-item nav-link"
                   [ngClass]="{ active: currentStep == 3 }"
                   id="nav-kyc-tab"
@@ -116,7 +116,7 @@
                   >KYC & Qualification Details</a
                 >
 
-                <a
+                <a *ngIf="otpVerified"
                   class="nav-item nav-link"
                   [ngClass]="{ active: currentStep == 4 }"
                   id="nav-bank-tab"
@@ -202,7 +202,7 @@
                       />
                       <div style="margin-left: 10px;" *ngIf="password.invalid && password.touched">
                         <small *ngIf="password.errors?.['required']" class="text-danger">password is required</small><br>
-                        <small *ngIf="password.errors?.['minLength']" class="text-danger">password must be of 6 digit</small>
+                        <small *ngIf="password.errors?.['minLength']" class="text-danger">password must be of minimum 8 characters</small>
                       </div>
                     </div>
                   </div>
@@ -211,7 +211,7 @@
                 <div *ngIf="isOtpForm" class="otpDiv">
                   <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp"
                     placeholder="Enter OTP" aria-label="Username" aria-describedby="basic-addon1" required>
-                  <button type="button" (click)="submitOTP()"
+                  <button type="button" (click)="verifyOtp()"
                     [ngStyle]="{'font-family': 'Poppins'}" class="btn mt-4 btnSendOtp btn-block">Verify
                     OTP</button>
                   <button type="button" (click)="sendOTP(phoneNumber1.value)" [ngStyle]="{'font-family': 'Poppins'}"

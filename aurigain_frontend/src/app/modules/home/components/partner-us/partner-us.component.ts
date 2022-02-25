@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 import { NetworkRequestService } from 'src/app/core/services/network-request.service';
 import { UtilsService } from 'src/app/core/services/utils.service';
 
@@ -45,12 +46,15 @@ export class PartnerUsComponent implements OnInit {
     private networkRequest: NetworkRequestService,
     private loginservice: LoginService,
     private cookie: CookieService,
+    private misc: MiscellaneousService
   ) { }
   errors;
   districts;
   states;
   selectedPinCode;
   banks;
+  otpVerified: boolean = false;
+  loaderActive = false;
 
   get name(){
     return this.authenticationForm.get('name');
@@ -126,23 +130,26 @@ export class PartnerUsComponent implements OnInit {
   }
 
   verifyOtp(){
+    if (!this.otp) {
+      this.toastr.error("Please enter OTP", 'Error!', {
+        timeOut: 4000,
+      });
+      return;
+    }
     this.otpVerifiedSuccessfully = true;
-
+    const phoneNumber = this.authenticationForm.value.phoneNumber1;
+    this.misc.verifyOtp(this.otp, phoneNumber).subscribe(
+      data => {
+        this.otpVerified = true;
+        this.isOtpForm = false;
+        this.isBasicDetailForm = true;
+      },
+      error => {
+        this.errors = error;
+        this.misc.showLoader()
+      }
+    );
   }
-  // submitPatnerForm(){
-  //   const name = this.partnerForm.value.name;
-  //   const email = this.partnerForm.value.email;
-  //   const phone = this.partnerForm.value.phone;
-  //   const message = this.partnerForm.value.message;
-
-  //   const formData = {
-  //     name: name,
-  //     email: email,
-  //     phone: phone,
-  //     message: message,
-  //   }
-  //   console.log(formData);
-  // }
 
   searchDistrict() {
     const pinCode = this.addressDetailForm.value.pinCode;
@@ -169,10 +176,6 @@ export class PartnerUsComponent implements OnInit {
     );
   }
 
-  submitOTP(){
-    this.isOtpForm = false;
-    this.isBasicDetailForm = true;
-  }
 
   
   submitAgentForm(){
@@ -199,7 +202,7 @@ export class PartnerUsComponent implements OnInit {
         if (user['user']) {
           // this.bt.openModal('otp', user);
           this.registrationData = user['user'];
-          // this.misc.sendOtp(phoneNumber1).subscribe();
+          this.misc.sendOtp(phoneNumber1).subscribe();
           // if (!this.signupAsStudent) {
             this.cookie.set('_l_a_t', this.registrationData['token'], this.conts.LOGIN_EXPIRY_TIME, '/');
 
@@ -416,6 +419,7 @@ export class PartnerUsComponent implements OnInit {
     this.isAuthenticationForm = false;
     this.isOtpForm = true;
   }
+  
   sendOTP(phoneNumber){
     console.log(phoneNumber);
     this.sentOtpField = true;
@@ -451,7 +455,7 @@ export class PartnerUsComponent implements OnInit {
       ]],
       phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
       referralCode: [''],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     })
 
     this.basicDetailForm = this.formbuilder.group({
