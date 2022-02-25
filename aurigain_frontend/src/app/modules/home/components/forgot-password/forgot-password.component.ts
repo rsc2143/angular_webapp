@@ -16,22 +16,22 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router, 
+    private router: Router,
     private conts: ConstantsService,
     private authservice: AuthService,
     private loginService: LoginService,
   ) { }
-  
+
   isForgotPasswordForm:boolean = true;
   isOtpForm:boolean= false;
   username: string;
   password: string;
-  email: string;
+  phonenumber: number;
   otp:number;
   emailForm:FormGroup;
   successMsg:any;
   errors: any;
-  
+
   resetValidations() {
     this.errors = null;
   }
@@ -78,7 +78,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.successMsg = null;
     this.errors = null;
     const formData = {
-      email: this.email
+      phonenumber: this.phonenumber
     }
     console.log("resetPassword", formData);
     this.loginService.forgotPassword(formData).subscribe(
