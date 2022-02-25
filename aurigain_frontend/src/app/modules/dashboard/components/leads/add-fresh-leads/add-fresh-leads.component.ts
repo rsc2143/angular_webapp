@@ -21,6 +21,11 @@ export class AddFreshLeadsComponent implements OnInit {
   ) {
     this.tabelData = [];
    }
+
+   sentOtpField: boolean = false;
+   verifyOtpField: boolean = true;
+   otpVerifiedSuccessfully: boolean = false;
+
   currentStep: number = 1;
   personalDetails: FormGroup;
   // documentDetails: FormGroup;
@@ -45,6 +50,10 @@ export class AddFreshLeadsComponent implements OnInit {
 
     ];
 
+    get phoneNumber1(){
+      return this.personalDetails.get('phoneNumber1');
+    }
+
   get loanAccountNumber(){
     return this.loanDetails.get('loanAccountNumber')
   }
@@ -56,6 +65,9 @@ export class AddFreshLeadsComponent implements OnInit {
   }
   get branch(){
     return this.appointmentDetails.get('branch');
+  }
+  get bankName(){
+    return this.appointmentDetails.get('bankName');
   }
   get ifsc(){
     return this.appointmentDetails.get('ifsc');
@@ -93,6 +105,7 @@ export class AddFreshLeadsComponent implements OnInit {
 
     this.appointmentDetails = this.formbuilder.group({
           branch: ['', [Validators.required,]],
+          bankName: ['', [Validators.required,]],
           ifsc: ['', [Validators.required,]],
           dateOfAppointment: ['', [Validators.required]],
           timeOfAppointment: ['', [Validators.required,]],
@@ -110,6 +123,16 @@ export class AddFreshLeadsComponent implements OnInit {
 
   }
 
+  sendOTP(phoneNumber){
+    console.log(phoneNumber);
+    this.sentOtpField = true;
+    this.verifyOtpField = false
+  }
+
+  verifyOtp(){
+    this.otpVerifiedSuccessfully = true;
+
+  }
   stepUp(){
     console.log("clicked")
     this.currentStep +=1;
@@ -249,6 +272,7 @@ export class AddFreshLeadsComponent implements OnInit {
   const timeOfAppointment = this.appointmentDetails.value.timeofAppointment;
   const ifsc = this.appointmentDetails.value.ifsc;
   const branch = this.appointmentDetails.value.branch;
+  const bankName = this.appointmentDetails.value.bankName;
 
   const loanAccountNumber = this.loanDetails.value.loanAccountNumber;
   const loanAmount = this.loanDetails.value.loanAmount;
@@ -260,6 +284,7 @@ export class AddFreshLeadsComponent implements OnInit {
 
     ifsc: ifsc,
     branch: branch,
+    bankName: bankName,
     dateOfAppointment: dateOfAppointment,
     timeOfAppointment: timeOfAppointment,
 
@@ -303,7 +328,8 @@ export class AddFreshLeadsComponent implements OnInit {
         console.log("API is: ",user);
 
         this.appointmentDetails.patchValue({
-          branch: user['BRANCH']
+          branch: user['BRANCH'],
+          bankName: user['BANK']
         })
       },
       error => {

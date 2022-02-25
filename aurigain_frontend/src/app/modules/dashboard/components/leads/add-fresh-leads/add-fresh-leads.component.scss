@@ -3,7 +3,7 @@
     min-height: calc(100vh - 170px)!important;
     margin-top: 15px;
     margin-left: 15px;
-    
+
 }
 
 .widget {
@@ -78,11 +78,11 @@
     margin: 36px;
     border: 0;
     position: relative;
-    
- 
+
+
     form{
         display: block;
-        margin: 20px;
+        margin: 18px;
     }
 
     .form-btn{
@@ -116,7 +116,7 @@
 
 }
 
-.form-row{ 
+.form-row{
     margin-top:10px;
 }
 
@@ -144,7 +144,7 @@
 }
 
 #progressbar li {
-	
+
     list-style-type: none;
 	color: black;
 	text-transform: uppercase;
@@ -152,7 +152,7 @@
 	width: 100%;
 	float: left;
 	position: relative;
-    
+
     span{
         // display: block;
         font-size: 18px;
@@ -189,7 +189,7 @@
 }
 #progressbar li:first-child:after {
 	/*connector not needed before the first step*/
-	content: none; 
+	content: none;
 }
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
@@ -205,7 +205,7 @@
 //     list-style: none;
 //     counter-reset: step;
 //   }
-  
+
 //   .StepProgress::before {
 //     display: inline-block;
 //     content: "";
@@ -257,7 +257,7 @@
 //       background-color: greenyellow;
 //       border: 1px solid greenyellow;
 //   }
-  
+
 //   .StepProgress strong {
 //     display: block;
 //   }
@@ -272,4 +272,3 @@
     padding-bottom: 70px;
   }
 
-  

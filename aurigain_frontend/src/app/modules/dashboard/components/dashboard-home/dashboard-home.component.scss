@@ -61,7 +61,7 @@
         content: "";
         line-height: 0;
     }
-    
+
 }
 
 table{
@@ -70,7 +70,7 @@ table{
 
 .table-responsive{
     border-radius: 15px;
-    
+
 }
 .table-shadow {
     box-shadow: 0 5px 5px -3px #0003, 0 8px 10px 1px #00000024, 0 3px 14px 2px #0000001f;
@@ -81,7 +81,7 @@ thead{
 .search-container button:hover {
     background: #ccc;
   }
-  
+
   @media screen and (max-width: 600px) {
     .topnav .search-container {
       float: none;
@@ -95,7 +95,7 @@ thead{
       padding: 14px;
     }
     .topnav input[type=text] {
-      border: 1px solid #ccc;  
+      border: 1px solid #ccc;
     }
 }
 .menu{
@@ -105,7 +105,7 @@ thead{
         border: none;
         background-color: transparent;
     }
-    
+
     .dropdown-toggle::after{
         content: none;
     }
@@ -122,22 +122,22 @@ thead{
         font-size: 14px;
         width: 100%;
         border-bottom: 1px solid #f1f1f1;
-        margin: 0; 
-        font-weight: 500; 
-        cursor: pointer; 
-    }  
+        margin: 0;
+        font-weight: 500;
+        cursor: pointer;
+    }
     .edit{
         background: #e9f9f6!important;
-    } 
+    }
     .change{
         background: #fff7df!important;
-    } 
+    }
     .delete{
         background: #f5f0ff!important;
-    } 
+    }
     .booking{
         background: #e2eaf1!important;
-    } 
+    }
 
 }
 
@@ -182,4 +182,30 @@ thead{
     .btn-look1:hover{
         box-shadow: none;
     }
+}
+
+a{
+  color: #f51f8a;
+  text-decoration: none;
+  font-size: 16px;
+line-height: 1.6;
+font-weight: 500;
+}
+
+a:hover{
+  color: #0a2759;
+  text-decoration: none;
+}
+.accordion > .card > .card-header {
+  border-radius: 4px;
+  margin-bottom: -1px;
+  padding: 4px 10px;
+  border-bottom: 0px;
+}
+
+.card-body {
+  padding: 0px;
+  line-height: 1.5;
+color: #778191;
+font-size: 15px;
 }

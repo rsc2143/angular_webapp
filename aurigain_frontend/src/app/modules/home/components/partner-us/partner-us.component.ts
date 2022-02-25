@@ -58,6 +58,9 @@ export class PartnerUsComponent implements OnInit {
   get phoneNumber1(){
     return this.authenticationForm.get('phoneNumber1');
   }
+  get password(){
+    return this.authenticationForm.get('password');
+  }
 
   get fatherName(){
     return this.basicDetailForm.get('fatherName');
@@ -177,6 +180,7 @@ export class PartnerUsComponent implements OnInit {
   const name = this.authenticationForm.value.name;
   const phoneNumber1 = this.authenticationForm.value.phoneNumber1;
   const referralCode= this.authenticationForm.value.referralCode;
+  const password= this.authenticationForm.value.password;
 
   // const city = this.addressDetailForm.value.city;
 
@@ -184,7 +188,8 @@ export class PartnerUsComponent implements OnInit {
   const user = {
     user: {
       phonenumber: phoneNumber1,
-      fullname: name
+      fullname: name,
+      password: password
     }
   };
   if (name && phoneNumber1) {
@@ -197,7 +202,7 @@ export class PartnerUsComponent implements OnInit {
           // this.misc.sendOtp(phoneNumber1).subscribe();
           // if (!this.signupAsStudent) {
             this.cookie.set('_l_a_t', this.registrationData['token'], this.conts.LOGIN_EXPIRY_TIME, '/');
-            
+
             // this.loginservice.processLogin(user).subscribe(() => {
             // });
             const userData = {
@@ -253,7 +258,7 @@ export class PartnerUsComponent implements OnInit {
         else {
           firstName = firstName + ' ' + fullname[i];
         }
-        
+
       }
       lastName = fullname[fullname.length -1];
     }
@@ -272,7 +277,7 @@ export class PartnerUsComponent implements OnInit {
     const dob = this.basicDetailForm.value.dob;
     const gender = this.basicDetailForm.value.gender;
     const email = this.basicDetailForm.value.email;
-    
+
     const formData = {
       first_name: firstName,
       last_name: lastName || '',
@@ -306,7 +311,7 @@ export class PartnerUsComponent implements OnInit {
     const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
     let cheque: File;
     cheque = (<HTMLInputElement>document.getElementById('cheque')).files[0];
-    
+
     let formData: FormData = new FormData();
     formData.append("user", userid);
     formData.append("bank", bankName);
@@ -355,7 +360,7 @@ export class PartnerUsComponent implements OnInit {
           // this.misc.hideLoader()
           const emailError = error.message['email'];
           const phoneError = error.message['phonenumber'];
-  
+
           this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
           this.toastr.error(this.errors, 'Error!', {
             timeOut: 4000,
@@ -372,7 +377,7 @@ export class PartnerUsComponent implements OnInit {
 
     let imageFile: File;
     imageFile = (<HTMLInputElement>document.getElementById('profilepic')).files[0];
- 
+
     const formData: FormData = new FormData();
     formData.append('image', imageFile);
     console.log("aa");
@@ -398,11 +403,13 @@ export class PartnerUsComponent implements OnInit {
     const name = this.authenticationForm.value.name;
     const phoneNumber = this.authenticationForm.value.phoneNumber1;
     const referralCode = this.authenticationForm.value.referralCode;
+    const password = this.authenticationForm.value.password;
 
     let formData= {
       name: name,
       phonenumber: phoneNumber,
-      referralCode: referralCode
+      referralCode: referralCode,
+      password: password
     }
     console.log(formData);
     this.sendOTP(phoneNumber);
@@ -443,7 +450,8 @@ export class PartnerUsComponent implements OnInit {
         // , Validators.pattern("^[a-zA-Z\-\']+")
       ]],
       phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      referralCode: ['']
+      referralCode: [''],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     })
 
     this.basicDetailForm = this.formbuilder.group({
