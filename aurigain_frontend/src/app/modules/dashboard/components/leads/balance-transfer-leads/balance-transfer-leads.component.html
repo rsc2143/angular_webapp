@@ -55,33 +55,38 @@
                   <table class="table">
                     <thead class="text-white">
                       <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Father Name</th>
-                        <th>Product</th>
-                        <th>Pincode</th>
-                        <th>Mobile Number</th>
-                        <th>Loan Amount</th>
-                        <th>Lead Status</th>
-                        <th>Lead Source By</th>
-                        <th>Action</th>
+                        <th>Lead Id</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>RM Name</th>
+                        <th>Customer Occupation</th>
+                        <th>Detail</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr
                         *ngFor="let user of filterArray | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
                         <td>{{(p-1) * rowFilter + i + 1}}</td>
-                        <td> <span>N</span> {{user.FullName}}</td>
-                        <td>{{user.FatherName}}</td>
-                        <td>Product</td>
+                        <td>{{user.FullName}}</td>
                         <td>110059</td>
-                        <td>95400558622</td>
-                        <td>98622</td>
-                        <td> <button type="button" class="btn btn-primary btn-sm">New</button>
-                        <td>Mayank</td>
+                        <td>Int</td>
+                        <td>RM 1</td>
+                        <td>Professor</td>
                         <td>
-                          <div ngbDropdown class="menu">
-                            <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                          <a
+                          class="booking"
+                          [routerLink]="['approval', user.Id,]">
+                            <button class="btn btn-primary">
+                              View
+                            </button>
+                          </a>
+                          <!-- <div ngbDropdown class="menu">
+                            <button ngbDropdownToggle>
+                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i
+                                >
+                              View
+                              </button>
                             <div ngbDropdownMenu class="sub-menu">
                               <a ngbDropdownItem [routerLink]="['add-update', user.Id]" class="edit"><i class="fas fa-edit pr-1"></i>Edit User</a>
                               <a ngbDropdownItem class="delete"><i class="fas fa-eye pr-1"></i>Delete User</a>
@@ -89,7 +94,7 @@
                               <a ngbDropdownItem data-toggle="modal" data-target="#changeStatus" class="change"><i class="fas fa-book-reader pr-1"></i>Change Status</a>
                               <a ngbDropdownItem data-toggle="modal" data-target="#appointmentBooking" class="booking"><i class="fas fa-calendar-check pr-1"></i>Appointment Booking</a>
                             </div>
-                          </div>
+                          </div> -->
                         </td>
                       </tr>
                     </tbody>

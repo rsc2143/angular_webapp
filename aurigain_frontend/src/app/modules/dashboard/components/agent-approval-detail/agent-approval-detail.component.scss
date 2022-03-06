@@ -124,6 +124,9 @@ table tr td {
 .small-media-items-img img {
   max-width: 70px;
 }
+// .small-media-items-img img:hover {
+//   max-width: 70px;
+// }
 .bottom-icon {
   position: absolute;
   top: 27px;
@@ -133,4 +136,11 @@ table tr td {
   color: #135da4;
   font-size: 18px;
   font-weight: 900;
+}
+
+.table-custom tr{
+  line-height: 50px;
+  td{
+    font-size: 18px;
+  }
 }

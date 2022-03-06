@@ -32,80 +32,52 @@
                               Personal Details
                           </h5>
                       </div>
-                      <div class="d-flex">
-                          <table class="table table-borderless">
-                              <tbody>
+                      <div class="row">
+                          <div class="col-md-8 pl-3">
+                            <table class="table table-borderless">
+                              <tbody class="table-custom">
                                   <tr>
-                                      <td style="width: 25%;"><strong>Name</strong></td>
-                                      <td style="width: 25%;"> AUR/1/22/92158</td>
+                                      <td><strong>Name</strong></td>
+                                      <td> AUR/1/22/92158</td>
                                   </tr>
                                   <tr>
-                                      <td style="width: 25%;"><strong>Mobile Number</strong></td>
-                                      <td style="width: 25%;">+91 8010277671</td>
+                                      <td><strong>Mobile Number</strong></td>
+                                      <td>+91 8010277671</td>
                                   </tr>
                                   <tr>
-                                      <td style="width: 25%;"><strong>Address</strong></td>
-                                      <td style="width: 25%;">gccghchchchc</td>
+                                      <td><strong>Address</strong></td>
+                                      <td>gccghchchchc</td>
                                   </tr>
                                   <tr>
-                                      <td style="width: 25%;"><strong>Qualification</strong></td>
-                                      <td style="width: 25%;">12th</td>
+                                      <td><strong>Qualification</strong></td>
+                                      <td>12th</td>
                                   </tr>
                                   <tr>
-                                      <td style="width: 25%;"><strong>Date of Birth:</strong></td>
-                                      <td style="width: 25%;">12:00 AM</td>
+                                      <td><strong>Date of Birth:</strong></td>
+                                      <td>12:00 AM</td>
                                   </tr>
                                   <tr>
-                                      <td style="width: 25%;"><strong>Current Occupation</strong></td>
-                                      <td style="width: 25%;">Sales Agent</td>
+                                      <td><strong>Current Occupation</strong></td>
+                                      <td>Sales Agent</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>KYC</strong></td>
+                                      <td>
+                                        <strong class="">Aadhar Number:</strong> 5544 <br>
+                                        <strong class="strong">PAN Number:</strong> 6644
+                                      </td>
                                   </tr>
                               </tbody>
                           </table>
-                          <img width="150" height="150" src="https://thispersondoesnotexist.com/image" class="float-right mr-3 mb-3" alt="demoImage">
+                          </div>
+                          <div class="col-md-4">
+                            <img width="250" height="250" src="https://thispersondoesnotexist.com/image" class="float-right mr-3 mb-3" alt="demoImage">
+                          </div>
                       </div>
 
                   </div>
               </div>
-              <div class="mt-5 box">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                      <div class="box2">
-                          <h5>
-                              <!-- <img src="" alt="personal"> -->
-                              KYC Document Details
-                          </h5>
-                      </div>
-                      <div class="mb3">
-                          <h5 class="text-danger">Proof of identity</h5>
-                      </div>
-                      <div class="table-responsive">
-                          <table class="table table-borderless">
-                              <tbody>
-                                  <tr>
-                                      <td style="width: 25%;"><strong>Document Name:</strong></td>
-                                      <td style="width: 25%;">NREGA Document</td>
-                                      <td style="width: 25%;"><strong>Document number:</strong></td>
-                                      <td style="width: 25%;">889999666899</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                      <div class="mb3">
-                          <h5 class="text-danger">Proof of address</h5>
-                      </div>
-                      <div class="table-responsive-sm">
-                          <table class="table table-borderless">
-                              <tbody>
-                                  <tr>
-                                      <td style="width: 25%;"><strong>Document Name:</strong></td>
-                                      <td style="width: 25%;">Licence</td>
-                                      <td style="width: 25%;"><strong>Document number:</strong></td>
-                                      <td style="width: 25%;">55666669999</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
+
               <div class="mt-5 box">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                       <div class="box2">
@@ -116,24 +88,32 @@
                       </div>
                       <div class="bottom-box">
                           <div class="row">
-                              <div class="form-group col-md-6">
-                                  <label for="">Customer Photo</label>
+                              <div class="form-group col-md-2" *ngFor="let img of image?.url">
+                                  <!-- <label for="">Customer Photo</label> -->
                                   <a href="javascript:void(0);">
                                       <div class="small-media-items-img">
-                                          <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
+                                          <a (click)="previewImage(img)">
+                                            <img [src]="img" alt="" title="img"/>
+                                          </a>
                                       </div>
                                       <i class="fas fa-link bottom-icon"></i>
                                   </a>
                               </div>
-                              <div class="form-group col-md-6">
-                                  <label for="">Blank Cheque 1</label>
-                                  <a href="javascript:void(0);">
-                                      <div class="small-media-items-img">
-                                          <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                      </div>
-                                      <i class="fas fa-link bottom-icon"></i>
-                                  </a>
-                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="mt-5 box" *ngIf="isImagePreview">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="box2">
+                          <h5>
+                              <!-- <img src="" alt="personal"> -->
+                              Document Preview
+                          </h5>
+                      </div>
+                      <div class="bottom-box">
+                          <div class="row">
+                              <img [src]="previewImg" width="500" height="500">
                           </div>
                       </div>
                   </div>

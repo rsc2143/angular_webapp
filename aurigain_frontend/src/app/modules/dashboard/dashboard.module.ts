@@ -36,6 +36,10 @@ import { BalanceTransferDetailComponent } from './components/leads/balance-trans
 import { HttpClientModule } from '@angular/common/http';
 import { AgentApprovalPanelComponent } from './components/agent-approval-panel/agent-approval-panel.component';
 import { AgentApprovalDetailComponent } from './components/agent-approval-detail/agent-approval-detail.component';
+import { BalanceTransferApprovalComponent } from './components/leads/balance-transfer-approval/balance-transfer-approval.component';
+import { BalanceTransferFinalApprovalComponent } from './components/leads/balance-transfer-final-approval/balance-transfer-final-approval.component';
+import { BalanceTransferFinalApprovalDetailComponent } from './components/leads/balance-transfer-final-approval-detail/balance-transfer-final-approval-detail.component';
+import { AccountsCheckerPanelComponent } from './components/leads/accounts-checker-panel/accounts-checker-panel.component';
 
 const routes: Routes = [
   {
@@ -67,6 +71,15 @@ const routes: Routes = [
       },
       {
         path: 'balance-transfer-leads/add-update/:id', component: AddBalanceTransferLeadsComponent
+      },
+      {
+        path: 'balance-transfer-leads/approval/:id', component: BalanceTransferApprovalComponent
+      },
+      {
+        path: 'balance-transfer-leads/approval/:id/final-approval', component: BalanceTransferFinalApprovalComponent
+      },
+      {
+        path: 'balance-transfer-leads/approval/:id/final-approval/detail', component: BalanceTransferFinalApprovalDetailComponent
       },
       {
         path: 'balance-transfer-leads/detail/:id', component: BalanceTransferDetailComponent
@@ -158,7 +171,11 @@ const routes: Routes = [
     BalanceTransferDetailComponent,
     AddPersonalLeadsComponent,
     AgentApprovalPanelComponent,
-    AgentApprovalDetailComponent
+    AgentApprovalDetailComponent,
+    BalanceTransferApprovalComponent,
+    BalanceTransferFinalApprovalComponent,
+    BalanceTransferFinalApprovalDetailComponent,
+    AccountsCheckerPanelComponent
   ],
   imports: [
     CommonModule,
