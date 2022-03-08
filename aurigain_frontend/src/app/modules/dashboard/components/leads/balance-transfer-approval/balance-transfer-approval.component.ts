@@ -11,9 +11,18 @@ import { LoginService } from 'src/app/core/authentication/login.service';
   styleUrls: ['./balance-transfer-approval.component.scss']
 })
 export class BalanceTransferApprovalComponent implements OnInit {
+
   currentUserId: number;
+  nameChecker;
+  nameRemark = "";
+  addressChecker;
+  addressRemark = "";
+  photoChecker;
+  photoRemark = "";
+  // nameChecker;
+  // nameRemark = "";
 
-
+  nameRe = "";
   image = {
     url: ['https://www.w3schools.com/css/img_forest.jpg', 'https://www.w3schools.com/css/img_5terre.jpg', 'https://www.w3schools.com/css/img_lights.jpg', 'https://www.w3schools.com/css/img_lights.jpg']
   }
@@ -39,6 +48,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
   documentUploadDetails: FormGroup;
   loanDetails: FormGroup;
   tabelData:any;
+
 
   originalArray = [
     {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'active'},
@@ -80,17 +90,14 @@ export class BalanceTransferApprovalComponent implements OnInit {
       }
     );
     this.personalDetails = this.formbuilder.group({
-      product: ['', [Validators.required,]],
-      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      fatherName: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
-      dob: ['', [Validators.required,]],
-      gender: ['', [Validators.required,]],
-      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      phoneNumber2: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      loanAmount: ['', [Validators.required,]],
-      loanNumber: ['', [Validators.required,]],
-      loanPurpose: ['', [Validators.required,]]
+
+      name: [''],
+      address: [''],
+      customerPhoto: [''],
+      phone: [''],
+      gender: [''],
+      alternateContact: [''],
+      fatherName: [''],
     })
 
     this.loanDetails = this.formbuilder.group({
@@ -164,6 +171,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
   }
 
   stepUp(){
+    console.log("name remark is:", this.nameRe);
     console.log("clicked")
     this.currentStep +=1;
     console.log(this.currentStep);

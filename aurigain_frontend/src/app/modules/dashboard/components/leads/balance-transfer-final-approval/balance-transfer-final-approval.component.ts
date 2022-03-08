@@ -8,7 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BalanceTransferFinalApprovalComponent implements OnInit {
   currentUserId: number;
-
+  status;
+  remark;
   constructor(
     private route: ActivatedRoute,
   ) { }

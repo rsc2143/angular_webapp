@@ -280,7 +280,19 @@ color: white;
     background-color: #fff;
   }
 
-  .col-md-4{
+  .box{
     border: 1px solid black;
   }
+}
+
+.bg-white {
+  background: #fff;
+}
+
+.shadow {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.position-absolute {
+  position: absolute!important;
 }

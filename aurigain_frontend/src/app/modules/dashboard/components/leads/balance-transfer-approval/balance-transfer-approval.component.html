@@ -26,102 +26,164 @@
             </div>
 
             <div class="mx-5 my-3">
-            <div class="container pl-3">
+            <form>
+              <div class="container pl-3">
               <div class="mb-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 1, 'fa-plus': currentStep !==1}"></i> Personal Detail</h5></div>
               <div class="form-div p-4" *ngIf="currentStep === 1">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Name</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Yishu</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="name" checked>Ok
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="name" >Not Ok
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
                             </label>
+
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Address</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Delhi</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="address" checked>Ok
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="address" >Not Ok
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
                             </label>
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Customer Photo</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Customer Photo</div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Father's Name</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="photo" checked>Ok
-                            </label>
-                            <label  class="radio-inline">
-                              <input type="radio" value="female" name="photo" >Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
-                        </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Father's Name will come here...
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Mobile Number</div>
+                    </div>
+
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Gender</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Gender will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Alternate Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Alternate Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
@@ -130,404 +192,651 @@
               <div class="my-4"><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 2, 'fa-plus': currentStep !==2}"></i> Existing LoanDetail</h5></div>
               <div class="form-div p-4" *ngIf="currentStep === 2">
                 <div class="container inner-form-div">
-                  <div class="row">
-                    <div class="col-md-4">
+                  <!-- <div class="row">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Name</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Yishu</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="photoOk" checked>Ok
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="photoNotOK" >Not Ok
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
                             </label>
+
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Address</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Delhi</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
                             </label>
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Customer Photo</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Outstanding amount</div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Outstanding amount will come here...
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Customer Photo</div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Bank or NBFC name</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
-                            </label>
-                            <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
-                        </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Bank or NBFC name will come here...
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">If bank, branch name</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        If bank, branch name will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Latest Loan account number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Latest Loan account number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Age of latest loan in number of months</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Age of latest loan in number of months
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
-                  <button class="btn btn-outline-primary" (click)="stepDown()">Back</button>
                 </div>
               </div>
               <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 3, 'fa-plus': currentStep !==3}"></i> Fund Transfer Detail</h5></div>
               <div class="form-div p-4" *ngIf="currentStep === 3">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Name</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Yishu</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
                             </label>
+
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Address</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Delhi</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
                             </label>
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Customer Photo</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Customer Photo</div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Father's Name</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
-                            </label>
-                            <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
-                        </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Father's Name will come here...
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Gender</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Gender will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Alternate Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Alternate Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
-                  <button class="btn btn-outline-primary" (click)="stepDown()">Back</button>
                 </div>
               </div>
               <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 4, 'fa-plus': currentStep !==4}"></i> Agreement</h5></div>
               <div class="form-div p-4" *ngIf="currentStep === 4">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Name</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Yishu</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
                             </label>
+
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Address</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Delhi</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
                             </label>
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Customer Photo</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Customer Photo</div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Father's Name</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
-                            </label>
-                            <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
-                        </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Father's Name will come here...
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Gender</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Gender will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Alternate Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Alternate Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
-                  <button class="btn btn-outline-primary" (click)="stepDown()">Back</button>
                 </div>
               </div>
               <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 5, 'fa-plus': currentStep !==5}"></i> Appointment</h5></div>
               <div class="form-div p-4" *ngIf="currentStep === 5">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Name</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Yishu</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
                             </label>
+
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Address</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Delhi</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
                             </label>
                           </div>
                         </div>
                         <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Customer Photo</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Customer Photo</div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Father's Name</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="gender" checked>Ok
-                            </label>
-                            <label  class="radio-inline">
-                              <input type="radio" value="female" name="gender" >Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <button class="btn btn-primary">Add Remark</button>
-                        </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Father's Name will come here...
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Gender</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Gender will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Alternate Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Alternate Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
+
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
-                  <button class="btn btn-outline-primary" (click)="stepDown()">Back</button>
                 </div>
               </div>
             </div>
+            </form>
               <div class="text-center">
                 <a  href="javascript:void(0)" data-toggle="modal" aria-label="screens" data-target="#review">
                   <button class="btn btn-primary mr-3">
@@ -591,7 +900,7 @@
 
         </table>
         <div class="text-center">
-          <a routerLink="final-approval"> <!--Change the ID with dynamic Id-->
+          <a routerLink="../../../final-approval"> <!--Change the ID with dynamic Id-->
             <button class="btn btn-primary mr-3">
               Save & Submit
             </button>

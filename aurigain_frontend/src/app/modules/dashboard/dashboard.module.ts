@@ -47,6 +47,7 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { UserRoleMasterComponent } from './components/user-role-master/user-role-master.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { FinalApprovalListComponent } from './components/final-approval-list/final-approval-list.component';
 
 const routes: Routes = [
   {
@@ -81,12 +82,6 @@ const routes: Routes = [
       },
       {
         path: 'balance-transfer-leads/approval/:id', component: BalanceTransferApprovalComponent
-      },
-      {
-        path: 'balance-transfer-leads/approval/:id/final-approval', component: BalanceTransferFinalApprovalComponent
-      },
-      {
-        path: 'balance-transfer-leads/approval/:id/final-approval/detail', component: BalanceTransferFinalApprovalDetailComponent
       },
       {
         path: 'balance-transfer-leads/detail/:id', component: BalanceTransferDetailComponent
@@ -163,6 +158,15 @@ const routes: Routes = [
       {
         path: 'edit-user/:id', component: EditUserComponent
       },
+      {
+        path: 'final-approval', component: FinalApprovalListComponent
+      },
+      {
+        path: 'final-approval/detail/:id', component: BalanceTransferFinalApprovalComponent
+      },
+      {
+        path: 'final-approval/detail/:id/expand', component: BalanceTransferFinalApprovalDetailComponent
+      },
     ]
   }
 ]
@@ -210,7 +214,8 @@ const routes: Routes = [
     EmployeeListComponent,
     EmployeeDetailComponent,
     UserRoleMasterComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    FinalApprovalListComponent
   ],
   imports: [
     CommonModule,
