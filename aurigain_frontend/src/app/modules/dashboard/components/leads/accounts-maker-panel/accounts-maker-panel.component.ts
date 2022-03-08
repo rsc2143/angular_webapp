@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-accounts-checker-panel',
-  templateUrl: './accounts-checker-panel.component.html',
-  styleUrls: ['./accounts-checker-panel.component.scss']
+  selector: 'app-accounts-maker-panel',
+  templateUrl: './accounts-maker-panel.component.html',
+  styleUrls: ['./accounts-maker-panel.component.scss']
 })
-export class AccountsCheckerPanelComponent implements OnInit {
+export class AccountsMakerPanelComponent implements OnInit {
   rowFilter: number = 1;
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;

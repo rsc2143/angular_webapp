@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-accounts-checker-panel',
-  templateUrl: './accounts-checker-panel.component.html',
-  styleUrls: ['./accounts-checker-panel.component.scss']
+  selector: 'app-employee-list',
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.scss']
 })
-export class AccountsCheckerPanelComponent implements OnInit {
+export class EmployeeListComponent implements OnInit {
+
   rowFilter: number = 1;
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
+  suc
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,

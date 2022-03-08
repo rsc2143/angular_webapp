@@ -40,6 +40,13 @@ import { BalanceTransferApprovalComponent } from './components/leads/balance-tra
 import { BalanceTransferFinalApprovalComponent } from './components/leads/balance-transfer-final-approval/balance-transfer-final-approval.component';
 import { BalanceTransferFinalApprovalDetailComponent } from './components/leads/balance-transfer-final-approval-detail/balance-transfer-final-approval-detail.component';
 import { AccountsCheckerPanelComponent } from './components/leads/accounts-checker-panel/accounts-checker-panel.component';
+import { AccountsCheckerPanelDetailsComponent } from './components/leads/accounts-checker-panel-details/accounts-checker-panel-details.component';
+import { AccountsMakerPanelComponent } from './components/leads/accounts-maker-panel/accounts-maker-panel.component';
+import { AccountsMakerPanelDetailsComponent } from './components/leads/accounts-maker-panel-details/accounts-maker-panel-details.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { UserRoleMasterComponent } from './components/user-role-master/user-role-master.component';
+import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 
 const routes: Routes = [
   {
@@ -83,6 +90,27 @@ const routes: Routes = [
       },
       {
         path: 'balance-transfer-leads/detail/:id', component: BalanceTransferDetailComponent
+      },
+      {
+        path: 'accounts-checker-panel', component: AccountsCheckerPanelComponent
+      },
+      {
+        path: 'accounts-checker-panel/detail/:id', component: AccountsCheckerPanelDetailsComponent
+      },
+      {
+        path: 'accounts-maker-panel', component: AccountsMakerPanelComponent
+      },
+      {
+        path: 'accounts-maker-panel/detail/:id', component: AccountsMakerPanelDetailsComponent
+      },
+      {
+        path: 'add-employee', component: AddEmployeeComponent
+      },
+      {
+        path: 'employee-list', component: EmployeeListComponent
+      },
+      {
+        path: 'employee-list/detail/:id', component: EmployeeDetailComponent
       },
       {
         path: 'manager/banks', component: BanksComponent
@@ -175,7 +203,14 @@ const routes: Routes = [
     BalanceTransferApprovalComponent,
     BalanceTransferFinalApprovalComponent,
     BalanceTransferFinalApprovalDetailComponent,
-    AccountsCheckerPanelComponent
+    AccountsCheckerPanelComponent,
+    AccountsCheckerPanelDetailsComponent,
+    AccountsMakerPanelComponent,
+    AccountsMakerPanelDetailsComponent,
+    EmployeeListComponent,
+    EmployeeDetailComponent,
+    UserRoleMasterComponent,
+    AddEmployeeComponent
   ],
   imports: [
     CommonModule,

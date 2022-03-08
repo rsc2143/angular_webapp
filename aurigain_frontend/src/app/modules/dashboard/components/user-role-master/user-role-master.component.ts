@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-accounts-checker-panel',
-  templateUrl: './accounts-checker-panel.component.html',
-  styleUrls: ['./accounts-checker-panel.component.scss']
+  selector: 'app-user-role-master',
+  templateUrl: './user-role-master.component.html',
+  styleUrls: ['./user-role-master.component.scss']
 })
-export class AccountsCheckerPanelComponent implements OnInit {
+export class UserRoleMasterComponent implements OnInit {
+
   rowFilter: number = 1;
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
+  suc
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
@@ -124,5 +126,6 @@ export class AccountsCheckerPanelComponent implements OnInit {
       timeOfAppointment : ['', Validators.required],
     })
   }
+
 
 }
