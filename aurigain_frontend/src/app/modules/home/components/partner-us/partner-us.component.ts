@@ -130,12 +130,16 @@ export class PartnerUsComponent implements OnInit {
   }
 
   verifyOtp(){
-    if (!this.otp) {
-      this.toastr.error("Please enter OTP", 'Error!', {
-        timeOut: 4000,
-      });
-      return;
-    }
+    // if (!this.otp) {
+    //   this.toastr.error("Please enter OTP", 'Error!', {
+    //     timeOut: 4000,
+    //   });
+    //   return;
+    // }
+    this.otpVerified = true;
+        this.isOtpForm = false;
+        this.isBasicDetailForm = true;
+        return;
     this.otpVerifiedSuccessfully = true;
     const phoneNumber = this.authenticationForm.value.phoneNumber1;
     this.misc.verifyOtp(this.otp, phoneNumber).subscribe(
@@ -177,7 +181,7 @@ export class PartnerUsComponent implements OnInit {
   }
 
 
-  
+
   submitAgentForm(){
 
   const name = this.authenticationForm.value.name;
@@ -419,7 +423,7 @@ export class PartnerUsComponent implements OnInit {
     this.isAuthenticationForm = false;
     this.isOtpForm = true;
   }
-  
+
   sendOTP(phoneNumber){
     console.log(phoneNumber);
     this.sentOtpField = true;

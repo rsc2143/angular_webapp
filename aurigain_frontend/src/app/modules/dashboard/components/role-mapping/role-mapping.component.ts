@@ -1,5 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-role-mapping',
@@ -10,8 +11,10 @@ export class RoleMappingComponent implements OnInit {
 
   roleMappingForm:FormGroup;
   Roles:any = ['supervisor', 'client', 'agent'];
+  currentUserId: number;
   constructor(
     private formbuilder: FormBuilder,
+    private route: ActivatedRoute,
   ) { }
 
   submitRoleMapping(){
@@ -36,6 +39,8 @@ export class RoleMappingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log(this.currentUserId);
 
     this.roleMappingForm = this.formbuilder.group({
       selectRole: ['', Validators.required],

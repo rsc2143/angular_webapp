@@ -48,6 +48,7 @@ import { UserRoleMasterComponent } from './components/user-role-master/user-role
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { FinalApprovalListComponent } from './components/final-approval-list/final-approval-list.component';
+import { AddRoleComponent } from './components/add-role/add-role.component';
 
 const routes: Routes = [
   {
@@ -129,7 +130,7 @@ const routes: Routes = [
         path: 'user-roles', component: UserRolesComponent
       },
       {
-        path: 'role-mapping', component: RoleMappingComponent
+        path: 'role-mapping/:id', component: RoleMappingComponent
       },
       {
         path: 'reset-password', component: ResetPasswordComponent
@@ -166,6 +167,12 @@ const routes: Routes = [
       },
       {
         path: 'final-approval/detail/:id/expand', component: BalanceTransferFinalApprovalDetailComponent
+      },
+      {
+        path: 'user-role-master', component: UserRoleMasterComponent
+      },
+      {
+        path: 'add-role', component: AddRoleComponent
       },
     ]
   }
@@ -215,7 +222,8 @@ const routes: Routes = [
     EmployeeDetailComponent,
     UserRoleMasterComponent,
     AddEmployeeComponent,
-    FinalApprovalListComponent
+    FinalApprovalListComponent,
+    AddRoleComponent
   ],
   imports: [
     CommonModule,

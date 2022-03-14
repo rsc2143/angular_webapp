@@ -17,28 +17,14 @@ export class AddEmployeeComponent implements OnInit {
     this.tabelData = [];
    }
   currentStep: number = 1;
-  statusDetails: FormGroup;
   personalDetails: FormGroup;
-  documentDetails: FormGroup;
-  jewelleryDetails: FormGroup;
-  appointmentDetails: FormGroup;
+  bankDetails: FormGroup;
+  kycDetailForm: FormGroup;
+  otherPersonalDetails: FormGroup;
   tabelData:any
+
   ngOnInit(): void {
-    this.statusDetails = this.formbuilder.group({
-      status: ['', [Validators.required,]]
-    })
-  }
 
-  saveStatusDetails(){
-
-    const status = this.statusDetails.value.status;
-
-    let formData = {
-      status: status
-    }
-
-    console.log(formData);
-    this.stepUp();
     this.personalDetails = this.formbuilder.group({
 
       name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
@@ -47,7 +33,43 @@ export class AddEmployeeComponent implements OnInit {
       designation: ['', [Validators.required,]],
       reportingPerson: ['', [Validators.required,]]
     })
+
+    this.bankDetails = this.formbuilder.group({
+      bankName: ['', [Validators.required,]],
+      amountOld: ['', [Validators.required]],
+      dateOld: ['', [Validators.required,]],
+      valuation: ['', [Validators.required,]],
+      outstandingAmount: ['', [Validators.required,]],
+      balanceTransferAmount: ['', [Validators.required,]],
+      requiredAmount: ['', [Validators.required,]],
+      tenure: ['', [Validators.required,]],
+    })
+
+    this.kycDetailForm = this.formbuilder.group({
+      qualification: [''],
+      panNumber: ['', [Validators.required,]],
+      adhaarNumber: ['', [Validators.required,]],
+      occupation: ['', [Validators.required,]],
+    })
   }
+
+  get qualification(){
+    return this.kycDetailForm.get('qualification');
+  }
+  get panNumber(){
+    return this.kycDetailForm.get('panNumber');
+  }
+  get adhaarNumber(){
+    return this.kycDetailForm.get('adhaarNumber');
+  }
+  get occupation(){
+    return this.kycDetailForm.get('occupation');
+  }
+
+  saveBankDetails(){
+    this.stepUp();
+  }
+
 
   stepUp(){
     console.log("clicked")
@@ -57,17 +79,6 @@ export class AddEmployeeComponent implements OnInit {
   stepDown(){
     this.currentStep-=1;
     console.log(this.currentStep);
-  }
-
-  addJewellery(){
-    // const jewelleryType = this.jewelleryDetails.value.jewelleryType;
-    // const quantity = this.jewelleryDetails.value.quantity;
-    // const weight = this.jewelleryDetails.value.weight;
-    // const karats = this.jewelleryDetails.value.karats;
-
-    this.tabelData.push(this.jewelleryDetails.value);
-    this.jewelleryDetails.reset();
-
   }
 
   removeItem(item){
@@ -84,118 +95,62 @@ export class AddEmployeeComponent implements OnInit {
     let personalDetailData:any;
 
     const name = this.personalDetails.value.name;
-    const email = this.personalDetails.value.email;
-    const phone = this.personalDetails.value.phone;
-    const address = this.personalDetails.value.address;
-    const role = this.personalDetails.value.role;
+    const employeeCode = this.personalDetails.value.employeeCode;
+    const location = this.personalDetails.value.location;
+    const designation = this.personalDetails.value.designation;
+    const reportingPerson = this.personalDetails.value.reportingPerson;
 
 
     personalDetailData = {
 
       name: name,
-      email: email,
-      phone: phone,
-      address: address,
-      role: role
+      email: employeeCode,
+      phone: location,
+      address: designation,
+      role: reportingPerson
    }
 
     console.log(personalDetailData);
-    this.jewelleryDetails = this.formbuilder.group({
-      jewelleryType: ['', [Validators.required,]],
-      quantity: ['', [Validators.required]],
-      weight: ['', [Validators.required,]],
-      karats: ['', [Validators.required,]],
-    })
 
-    // this.documentDetails = this.formbuilder.group({
-    //   documentType: ['', [Validators.required,]],
-    //   documentNumber: ['', [Validators.required]],
-    //   panNumber: ['', [Validators.required,]],
-    //   pinCode: ['', [Validators.required,]],
-    //   areaName: ['', [Validators.required,]],
-    //   addressLine1: ['', [Validators.required,]],
-    //   addressLine2: ['', [Validators.required,]],
-    // })
   }
 
-  // saveDocumentDetails(){
-  //   this.stepUp();
-  //   console.log("inside save document details")
-  //   let documentDetailData:any;
-  //   const documentType = this.documentDetails.value.documentType;
-  //   const documentNumber = this.documentDetails.value.documentNumber;
-  //   const panNumber = this.documentDetails.value.panNumber;
-  //   const pinCode = this.documentDetails.value.pinCode;
-  //   const areaName = this.documentDetails.value.areaName;
-  //   const addressLine1 = this.documentDetails.value.addressLine1;
-  //   const addressLine2 = this.documentDetails.value.addressLine2;
-
-  //   documentDetailData = {
-  //     documentType: documentType,
-  //     documentNumber: documentNumber,
-  //     panNumber: panNumber,
-  //     pinCode: pinCode,
-  //     areaName: areaName,
-  //     addressLine1: addressLine1,
-  //     addressLine2: addressLine2,
-
-  //   }
-  //   console.log(documentDetailData);
-
-
-  // }
-
-  saveJewelleryDetails(){
-    this.stepUp();
-    console.log(this.tabelData);
-
-    this.appointmentDetails = this.formbuilder.group({
-      branch: ['', [Validators.required,]],
-      dateOfAppointment: ['', [Validators.required]],
-      timeOfAppointment: ['', [Validators.required,]],
-    })
-  }
 
   saveForms(){
 
     const name = this.personalDetails.value.name;
-    const email = this.personalDetails.value.email;
-    const phone = this.personalDetails.value.phone;
-    const address = this.personalDetails.value.address;
-    const role = this.personalDetails.value.role;
+    const employeeCode = this.personalDetails.value.employeeCode;
+    const location = this.personalDetails.value.location;
+    const designation = this.personalDetails.value.designation;
+    const reportingPerson = this.personalDetails.value.reportingPerson;
 
-  const documentType = this.documentDetails.value.documentType;
-  const documentNumber = this.documentDetails.value.documentNumber;
-  const panNumber = this.documentDetails.value.panNumber;
-  const pinCode = this.documentDetails.value.pinCode;
-  const areaName = this.documentDetails.value.areaName;
-  const addressLine1 = this.documentDetails.value.addressLine1;
-  const addressLine2 = this.documentDetails.value.addressLine2;
+    const bankName = this.bankDetails.value.bankName;
+    const amountOld = this.bankDetails.value.amountOld;
+    const dateOld= this.bankDetails.value.dateOld;
+    const valuation = this.bankDetails.value.valuation;
+    const outstandingAmount = this.bankDetails.value.outstandingAmount;
+    const balanceTransferAmount = this.bankDetails.value.balanceTransferAmount;
+    const requiredAmount = this.bankDetails.value.requiredAmount;
+    const tenure = this.bankDetails.value.tenure;
 
-  const branch = this.appointmentDetails.value.branch;
-  const dateOfAppointment= this.appointmentDetails.value.dateOfAppointment;
-  const timeOfAppointment = this.appointmentDetails.value.timeofAppointment;
 
   let finalData= {
     name: name,
-    email: email,
-    phone: phone,
-    address: address,
-    role: role,
+    employeeCode: employeeCode,
+    location: location,
+    designation: designation,
+    reportingPerson: reportingPerson,
 
-  documentType: documentType,
-  documentNumber: documentNumber,
-  panNumber: panNumber,
-  pinCode: pinCode,
-  areaName: areaName,
-  addressLine1: addressLine1,
-  addressLine2: addressLine2,
+   bankName: bankName,
+    amountOld: amountOld,
+    dateOld: dateOld,
+    valuation: valuation,
+    outstandingAmount: outstandingAmount,
+    balanceTransferAmount: balanceTransferAmount,
+    requiredAmount: requiredAmount,
+    tenure: tenure,
 
   jewelleryDetails: this.tabelData,
 
-  branch: branch,
-  dateOfAppointment: dateOfAppointment,
-  timeOfAppointment: timeOfAppointment,
   }
   console.log("final form data", finalData);
   }

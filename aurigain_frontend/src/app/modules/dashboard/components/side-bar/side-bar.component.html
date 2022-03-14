@@ -79,12 +79,6 @@
 						<span><i class="fa fa-book" style="margin-left:-5px;"></i></span> Master</a>
 					<ul class="collapse list-unstyled " id="master">
 						<li>
-							<a href="javascript:void(0);"><i class="fa fa-user" aria-hidden="true"></i>User Role</a>
-						</li>
-						<li>
-							<a href="javascript:void(0);"><i class="fa fa-user" aria-hidden="true"></i>User Management</a>
-						</li>
-						<li>
 							<a routerLink="manager/banks"><i class="fa fa-user" aria-hidden="true"></i>Banks</a>
 						</li>
 					</ul>
@@ -120,12 +114,7 @@
 						<li>
 							<a routerLink="agent-performance" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Agent Performance</a>
 						</li>
-						<li>
-							<a routerLink="agent-approval-panel" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Agent Approval Panel</a>
-						</li>
-						<li>
-							<a routerLink="final-approval" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Final Approval List</a>
-						</li>
+
 					</ul>
 				</li>
 				<li>
@@ -136,11 +125,9 @@
 							<a routerLink="user-list" data-toggle="collapse" aria-expanded="false" ><i class="fa fa-diamond" aria-hidden="true"></i>Users</a>
                         </li>
 						<li>
-							<a routerLink="user-roles" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Role</a>
+							<a routerLink="user-role-master" data-toggle="collapse" aria-expanded="false" ><i class="fa fa-diamond" aria-hidden="true"></i>Users Role Master</a>
                         </li>
-						<li>
-							<a routerLink="role-mapping" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Role Mapping</a>
-                        </li>
+
 						<li>
 							<a routerLink="reset-password" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Reset Password</a>
                         </li>
@@ -148,7 +135,7 @@
 				</li>
 				<li>
 					<a routerLinkActive="active" href="#checkers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-						<span class="title"><i class="fa fa-book" style="margin-left:-5px;"></i></span>Checker/Makers Panels</a>
+						<span class="title"><i class="fa fa-book" style="margin-left:-5px;"></i></span>Accounts Panels</a>
 					<ul class="collapse list-unstyled " id="checkers">
 						<li>
 							<a routerLink="accounts-checker-panel" data-toggle="collapse" aria-expanded="false" ><i class="fa fa-diamond" aria-hidden="true"></i>Account Checker Panel</a>
@@ -156,6 +143,18 @@
 						<li>
 							<a routerLink="accounts-maker-panel" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Account Maker Panel</a>
                         </li>
+					</ul>
+				</li>
+				<li>
+					<a routerLinkActive="active" href="#approval" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<span class="title"><i class="fa fa-book" style="margin-left:-5px;"></i></span>Approvals</a>
+					<ul class="collapse list-unstyled " id="approval">
+						<li>
+							<a routerLink="final-approval" data-toggle="collapse" aria-expanded="false" ><i class="fa fa-diamond" aria-hidden="true"></i>Final Approval</a>
+                        </li>
+						<li>
+							<a routerLink="agent-approval-panel" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-address-card" aria-hidden="true"></i>Agent Approval Panel</a>
+            </li>
 					</ul>
 				</li>
 
