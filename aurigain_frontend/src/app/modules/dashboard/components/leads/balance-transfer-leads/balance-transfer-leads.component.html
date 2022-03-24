@@ -61,7 +61,8 @@
                         <th>Type</th>
                         <th>RM Name</th>
                         <th>Customer Occupation</th>
-                        <th>Detail</th>
+                        <th>Status</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -73,10 +74,11 @@
                         <td>Int</td>
                         <td>RM 1</td>
                         <td>Professor</td>
+                        <td>Pending / MisMatch / Completed</td>
                         <td>
                           <a
                           class="booking"
-                          [routerLink]="['approval', user.Id,]">
+                          [routerLink]="['detail', user.Id,]">
                             <button class="btn btn-primary">
                               View
                             </button>

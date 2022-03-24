@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AccountsCheckerPanelDetailsComponent implements OnInit {
 
   currentUserId:number;
+  remark;
+  status;
   constructor(
     private route: ActivatedRoute,
     private router: Router,

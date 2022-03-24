@@ -49,6 +49,9 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { FinalApprovalListComponent } from './components/final-approval-list/final-approval-list.component';
 import { AddRoleComponent } from './components/add-role/add-role.component';
+import { BalanceTransferApprovalListComponent } from './components/leads/balance-transfer-approval-list/balance-transfer-approval-list.component';
+import { CompliancePanelComponent } from './components/compliance-panel/compliance-panel.component';
+import { CompliancePanelDetailComponent } from './components/compliance-panel-detail/compliance-panel-detail.component';
 
 const routes: Routes = [
   {
@@ -82,7 +85,10 @@ const routes: Routes = [
         path: 'balance-transfer-leads/add-update/:id', component: AddBalanceTransferLeadsComponent
       },
       {
-        path: 'balance-transfer-leads/approval/:id', component: BalanceTransferApprovalComponent
+        path: 'balance-transfer-approval-list', component: BalanceTransferApprovalListComponent
+      },
+      {
+        path: 'balance-transfer-approval-list/approval/:id', component: BalanceTransferApprovalComponent
       },
       {
         path: 'balance-transfer-leads/detail/:id', component: BalanceTransferDetailComponent
@@ -174,6 +180,12 @@ const routes: Routes = [
       {
         path: 'add-role', component: AddRoleComponent
       },
+      {
+        path: 'compliance-panel', component: CompliancePanelComponent
+      },
+      {
+        path: 'compliance-panel/detail/:id', component: CompliancePanelDetailComponent
+      },
     ]
   }
 ]
@@ -223,7 +235,10 @@ const routes: Routes = [
     UserRoleMasterComponent,
     AddEmployeeComponent,
     FinalApprovalListComponent,
-    AddRoleComponent
+    AddRoleComponent,
+    BalanceTransferApprovalListComponent,
+    CompliancePanelComponent,
+    CompliancePanelDetailComponent
   ],
   imports: [
     CommonModule,

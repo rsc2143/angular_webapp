@@ -107,14 +107,14 @@
                   <div class="col-md-6 text-center pl-4">
                     <strong class="pr-5">Status</strong>
                   <label  class="radio-inline pr-5">
-                    <input type="radio" value="ok" name="name" class="mr-2" checked>Ok
+                    <input type="radio" value="ok" name="status" [(ngModel)]="status" checked>Ok
                   </label>
                   <label  class="radio-inline pr-5">
-                    <input type="radio" value="notOk" class="mr-2" name="name" >Not Ok
+                    <input type="radio" value="ok" name="status" [(ngModel)]="status">Not Ok
                   </label>
                   </div>
                   <div class="col-md-3 text-center">
-                    <button class="btn btn-primary">Add Remark</button>
+                    <input type="text" class="form-control" placeholder="Add Remark" [(ngModel)]="remark">
                   </div>
                 </div>
               </div>

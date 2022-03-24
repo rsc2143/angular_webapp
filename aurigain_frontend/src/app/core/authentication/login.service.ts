@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { ErrorHandlerService } from '../http/error-handler.service';
 import { NetworkRequestService } from '../services/network-request.service';
+import { UtilsService } from '../services/utils.service';
 import { AuthService } from './auth.service';
 import { ProfileService } from './user-profile.service';
 
@@ -24,10 +25,11 @@ export class LoginService {
     private router: Router,
     private profileservice: ProfileService,
     private networkRequest: NetworkRequestService,
+    private utils: UtilsService,
   ) { }
 
   userProfileObj;
-  
+
   forgotPassword(data: any) {
     return this.http.post(this.constsvc.forgotPasswordUrl, data)
       .pipe(
@@ -53,25 +55,26 @@ export class LoginService {
     console.log("process login");
     return new Observable(observer => {
       try {
-        this.setToken(user['user']);
-        console.log("Token set successfully", user['user']);
+        this.setToken(user);
+        console.log("Token set successfully");
         this.extraSteps().subscribe({
           error: err => {
             console.log(err);
           },
           complete: () => {
-
-            this.loginRedirect();
+            // this.loginRedirect();
           }
         })
-      } catch{
-        // this.misc.hideLoader()
+      } catch(err){
+        console.log(err);
       }
     });
   }
 
   extraSteps(): Observable<any> {
-    console.log("extra steps", this.cookie.get('_l_a_t'));
+    // console.log("extra steps", this.cookie.get('_l_a_t'));
+    const decodeToken = this.utils.decodeToken(this.cookie.get('_l_a_t'));
+    console.log("decoded token: ", decodeToken);
     return new Observable(observer => {
       // this.profileservice.refreshProfileData().subscribe(
       //   data => {
@@ -84,16 +87,18 @@ export class LoginService {
       //     observer.error('failed');
       //   }
       // )
-      this.networkRequest.getWithHeaders('/api/profile/').subscribe(
-        data => {
-          this.userProfileObj = data['profile'];
-  
-          observer.complete();
-        },
-        error => {
-          observer.error('failed');
-        }
-      );
+
+
+      // this.networkRequest.getWithHeaders('/api/profile/').subscribe(
+      //   data => {
+      //     this.userProfileObj = data['profile'];
+
+      //     observer.complete();
+      //   },
+      //   error => {
+      //     observer.error('failed');
+      //   }
+      // );
 
     });
 
@@ -109,6 +114,6 @@ export class LoginService {
   }
 
   loginRedirect(){
-    this.router.navigateByUrl('/dashboard');
+    // this.router.navigateByUrl('/dashboard');
   }
 }

@@ -16,6 +16,7 @@ import { UtilsService } from 'src/app/core/services/utils.service';
 })
 export class PartnerUsComponent implements OnInit {
 
+  count= 0;
   authenticationForm: FormGroup;
   isAuthenticationForm: boolean = true;
   isBasicDetailForm: boolean = false;
@@ -36,6 +37,7 @@ export class PartnerUsComponent implements OnInit {
   isOtpForm: boolean = false;
   successForm:any = [];
   formCompleted: boolean = false;
+  qualificationList: any;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -46,7 +48,8 @@ export class PartnerUsComponent implements OnInit {
     private networkRequest: NetworkRequestService,
     private loginservice: LoginService,
     private cookie: CookieService,
-    private misc: MiscellaneousService
+    private misc: MiscellaneousService,
+
   ) { }
   errors;
   districts;
@@ -124,26 +127,50 @@ export class PartnerUsComponent implements OnInit {
     return this.bankDetailForm.get('ifscCode');
   }
 
+  searchIFSC(){
+     const ifscCode = this.bankDetailForm.value.ifscCode;
+     if(ifscCode.length ==11){
+      this.loginservice.searchBank(ifscCode)
+    .subscribe(
+      user => {
+        console.log("API is: ",user);
+
+        this.bankDetailForm.patchValue({
+          bankName: user['BANK']
+        })
+      },
+      error => {
+        console.log("Cannot Find Bank")
+      }
+    )
+     }
+  }
+
   changeForm(){
     this.partner = false;
     this.navText = "Become Agent"
   }
 
   verifyOtp(){
-    // if (!this.otp) {
-    //   this.toastr.error("Please enter OTP", 'Error!', {
-    //     timeOut: 4000,
-    //   });
-    //   return;
-    // }
-    this.otpVerified = true;
-        this.isOtpForm = false;
-        this.isBasicDetailForm = true;
-        return;
-    this.otpVerifiedSuccessfully = true;
+    if (!this.otp) {
+      this.toastr.error("Please enter OTP", 'Error!', {
+        timeOut: 4000,
+      });
+      return;
+    }
+    // this.otpVerified = true;
+    //     this.isOtpForm = false;
+    //     this.isBasicDetailForm = true;
+    //     return;
+
+    // this.otpVerifiedSuccessfully = true;
     const phoneNumber = this.authenticationForm.value.phoneNumber1;
     this.misc.verifyOtp(this.otp, phoneNumber).subscribe(
       data => {
+        console.log("verified data: ", data)
+        this.toastr.success("OTP Verified Successfully", 'Success!', {
+          timeOut: 4000,
+        });
         this.otpVerified = true;
         this.isOtpForm = false;
         this.isBasicDetailForm = true;
@@ -189,54 +216,110 @@ export class PartnerUsComponent implements OnInit {
   const referralCode= this.authenticationForm.value.referralCode;
   const password= this.authenticationForm.value.password;
 
+  const fatherName = this.basicDetailForm.value.fatherName;
+  const dob = this.basicDetailForm.value.dob;
+  const gender = this.basicDetailForm.value.gender;
+  const email = this.basicDetailForm.value.email;
+
+  const addressLine1 = this.addressDetailForm.value.addressLine1;
+  const addressLine2 = this.addressDetailForm.value.addressLine2;
+  const pinCode = this.addressDetailForm.value.pinCode;
+  const district = this.addressDetailForm.value.district;
+  const state = this.addressDetailForm.value.state;
+
+  const qualification = this.kycDetailForm.value.qualification;
+  const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
+  const panNumber = this.kycDetailForm.value.panNumber;
+  const occupation = this.kycDetailForm.value.occupation;
+
+  const bankName = this.bankDetailForm.value.bankName;
+  const accountNumber = this.bankDetailForm.value.accountNumber;
+  const ifscCode= this.bankDetailForm.value.ifscCode;
+
+const userObj = {
+  basic_details: {
+    fullname: name,
+    phonenumber: phoneNumber1,
+    referral_code: referralCode,
+    password : password,
+    fatherName: fatherName,
+    dob: dob,
+    gender: gender,
+    email: email
+  },
+  kyc: {
+      aadhar_number: adhaarNumber,
+      occupation: occupation,
+      pan_number: panNumber,
+      qualification:qualification,
+      aadhar_front_image_url: "124",
+      aadhar_back_image_url: "124",
+      pan_image_url: "1234"
+  },
+  address: {
+      address_line1: addressLine1,
+      address_line2: addressLine2,
+      pincode_id: pinCode,
+      district: district,
+      state: state,
+  },
+  bank_details: {
+      account_number: accountNumber,
+      bankName: bankName,
+      ifsc_code: ifscCode,
+      cancelled_cheque_url: "abc.com"
+  },
+
+}
   // const city = this.addressDetailForm.value.city;
 
   //Addition made by Rohit - Start
-  const user = {
-    user: {
-      phonenumber: phoneNumber1,
-      fullname: name,
-      password: password
-    }
-  };
+  // const userObj = {
+  //     phonenumber: phoneNumber1,
+  //     fullname: name,
+  //     password: password,
+  // };
+
   if (name && phoneNumber1) {
-    this.auth.register(JSON.stringify(user), '/api/users/register/').subscribe(
+    this.auth.register(userObj).subscribe(
       user => {
         console.log("user", user);
-        if (user['user']) {
-          // this.bt.openModal('otp', user);
-          this.registrationData = user['user'];
-          this.misc.sendOtp(phoneNumber1).subscribe();
-          // if (!this.signupAsStudent) {
-            this.cookie.set('_l_a_t', this.registrationData['token'], this.conts.LOGIN_EXPIRY_TIME, '/');
+        // if (user) {
+        //   this.isAuthenticationForm = false;
+        //   this.isOtpForm = true;
+        //   // this.bt.openModal('otp', user);
+        //   this.registrationData = user;
+        //   this.misc.sendOtp(phoneNumber1).subscribe();
+        //   // if (!this.signupAsStudent) {
+        //     this.cookie.set('_l_a_t', this.registrationData['token'], this.conts.LOGIN_EXPIRY_TIME, '/');
 
-            // this.loginservice.processLogin(user).subscribe(() => {
-            // });
-            const userData = {
-              user_group: 'agent',
-              shareReferralCode: referralCode
-            }
-            const decoded_token = this.utils.decodeToken(this.registrationData['token']);
-            console.log("decoded_token ", decoded_token);
-            const user_id = decoded_token['id'];
-            // const user_id = this.registrationData['id'];
-            this.updateKYCDetails(user_id);
-            this.updateBankDetails(user_id);
-            this.upadateProfileImage(user_id);
-            // setTimeout(() => {
-            this.updateProfile();
-            // }, 1200);
-            this.networkRequest.putWithoutHeaders(userData, `/api/profile/usergroup/${user_id}/`)
-            .subscribe(
-              data => {
-                console.log("role updated ", data);
-              },
-              error => {
-              });
-              this.loginservice.processLogin(user).subscribe();
-          // }
-          // this.sendOTPRegister();
-        }
+        //     // this.loginservice.processLogin(user).subscribe(() => {
+        //     // });
+        //     const userData = {
+        //       user_group: 'agent',
+        //       shareReferralCode: referralCode
+        //     }
+        //     const decoded_token = this.utils.decodeToken(this.registrationData['token']);
+        //     console.log("decoded_token ", decoded_token);
+        //     const user_id = decoded_token['id'];
+        //     // const user_id = this.registrationData['id'];
+        //   //   this.updateKYCDetails(user_id);
+        //   //   this.updateBankDetails(user_id);
+        //   //   this.upadateProfileImage(user_id);
+        //   //   // setTimeout(() => {
+        //   //   this.updateProfile();
+        //   //   // }, 1200);
+        //   //   this.networkRequest.putWithoutHeaders(userData, `/api/profile/usergroup/${user_id}/`)
+        //   //   .subscribe(
+        //   //     data => {
+        //   //       console.log("role updated ", data);
+        //   //     },
+        //   //     error => {
+        //   //     });
+        //   //     this.loginservice.processLogin(user).subscribe();
+        //   // // }
+        //   // // this.sendOTPRegister();
+        // }
       },
       error => {
         // this.misc.hideLoader()
@@ -407,21 +490,25 @@ export class PartnerUsComponent implements OnInit {
     this.currentStep += 1;
   }
   submitAuthenticationForm(){
-    const name = this.authenticationForm.value.name;
+    // const name = this.authenticationForm.value.name;
+    // const referralCode = this.authenticationForm.value.referralCode;
+    // const password = this.authenticationForm.value.password;
     const phoneNumber = this.authenticationForm.value.phoneNumber1;
-    const referralCode = this.authenticationForm.value.referralCode;
-    const password = this.authenticationForm.value.password;
 
     let formData= {
-      name: name,
+      // name: name,
       phonenumber: phoneNumber,
-      referralCode: referralCode,
-      password: password
+      // referralCode: referralCode,
+      // password: password
     }
     console.log(formData);
-    this.sendOTP(phoneNumber);
-    this.isAuthenticationForm = false;
-    this.isOtpForm = true;
+
+    this.misc.sendOtp(phoneNumber).subscribe(
+      data => {
+        this.isAuthenticationForm = false;
+        this.isOtpForm = true;
+    });
+    // this.sendOTP(phoneNumber);
   }
 
   sendOTP(phoneNumber){
@@ -431,19 +518,32 @@ export class PartnerUsComponent implements OnInit {
   }
 
   getStates() {
-    this.networkRequest.getWithHeaders(`/api/allstates/`).subscribe(
+    this.networkRequest.getWithHeaders(`/api/state/`).subscribe(
       data => {
-        this.states = data;
-        console.log("states", this.districts);
+        this.states = data['data'];
+        console.log("states", data['data']);
       },
       error => {
         console.log("error", error);
       }
     );
-    this.networkRequest.getWithHeaders(`/api/bank/`).subscribe(
+
+    // this.networkRequest.getWithHeaders(`/api/bank/`).subscribe(
+    //   data => {
+    //     this.banks = data;
+    //     console.log("banks", this.banks);
+    //   },
+    //   error => {
+    //     console.log("error", error);
+    //   }
+    // );
+  }
+
+  getQualification() {
+    this.networkRequest.getWithHeaders(`/api/qualification/`).subscribe(
       data => {
-        this.banks = data;
-        console.log("banks", this.banks);
+        this.qualificationList = data['data'];
+        console.log("qualificationList", data['data']);
       },
       error => {
         console.log("error", error);
@@ -497,6 +597,7 @@ export class PartnerUsComponent implements OnInit {
     })
 
     this.getStates();
+    this.getQualification();
 
     // if(this.successForm.length === 3) {
     //   this.formCompleted = true;

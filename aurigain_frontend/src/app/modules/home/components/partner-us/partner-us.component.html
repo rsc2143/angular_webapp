@@ -389,10 +389,9 @@
                         class="form-control"
                         id="exampleFormControlSelect1"
                         formControlName="state"
-                        readonly
                       >
-                        <option value="" disabled>Select State</option>
-                        <option [value]="state?.id" *ngFor="let state of states" disabled>{{state?.name}}</option>
+                        <option value="">Select State</option>
+                        <option [value]="state?.id" *ngFor="let state of states">{{state?.name}}</option>
                       </select>
                       <div style="margin-left: 10px;" *ngIf="state.invalid && state.touched">
                         <small *ngIf="state.errors?.['required']" class="text-danger">State is required</small>
@@ -428,11 +427,11 @@
                         formControlName="qualification"
                       >
                         <option value="">Select Qualification</option>
-                        <option value="10th">10th</option>
-                        <option value="12th">12th</option>
+                        <option *ngFor="let qualifications of qualificationList"  [value]="qualifications">{{qualifications}}</option>
+                        <!-- <option value="12th">12th</option>
                         <option value="graduation">Graduate</option>
                         <option value="postgraduation">Post Graduate</option>
-                        <option value="other">Other</option>
+                        <option value="other">Other</option> -->
                       </select>
                       <div style="margin-left: 10px;" *ngIf="qualification.invalid && qualification.touched">
                         <small *ngIf="qualification.errors?.['required']" class="text-danger">Qualification is required</small>
@@ -576,16 +575,30 @@
                 <form [formGroup]="bankDetailForm">
                   <div class="form-row">
                     <div class="form-group col-md-6">
+                      <input
+                      [class.is-invalid]="ifscCode.invalid && ifscCode.touched"
+                      type="text"
+                        class="form-control"
+                        id="inputifsc"
+                        placeholder="IFSC Code"
+                        formControlName="ifscCode"
+                        required
+                        (input)="searchIFSC()"
+                      />
+                      <div style="margin-left: 10px;" *ngIf="ifscCode.invalid && ifscCode.touched">
+                        <small *ngIf="ifscCode.errors?.['required']" class="text-danger">IFSC code is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
 
-                      <select
+                      <input
                         [class.is-invalid]="district.invalid && district.touched"
                         class="form-control"
                         id="exampleFormControlSelect1"
                         formControlName="bankName"
+                        readonly
                       >
-                        <option value="" disabled>Select Bank</option>
-                        <option [value]="bank?.id" *ngFor="let bank of banks">{{bank?.name}}</option>
-                      </select>
+
                       <div style="margin-left: 10px;" *ngIf="bankName.invalid && bankName.touched">
                         <small *ngIf="bankName.errors?.['required']" class="text-danger">Bank Name is required</small>
                       </div>
@@ -604,20 +617,7 @@
                         <small *ngIf="accountNumber.errors?.['required']" class="text-danger">Account Number is required</small>
                       </div>
                     </div>
-                    <div class="form-group col-md-6">
-                      <input
-                      [class.is-invalid]="ifscCode.invalid && ifscCode.touched"
-                      type="text"
-                        class="form-control"
-                        id="inputifsc"
-                        placeholder="IFSC Code"
-                        formControlName="ifscCode"
-                        required
-                      />
-                      <div style="margin-left: 10px;" *ngIf="ifscCode.invalid && ifscCode.touched">
-                        <small *ngIf="ifscCode.errors?.['required']" class="text-danger">IFSC code is required</small>
-                      </div>
-                    </div>
+
 
                     <div class="form-group col-md-12">
                       <label class="control-label"> CANCELLED CHEQUE</label>

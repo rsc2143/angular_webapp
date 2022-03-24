@@ -99,6 +99,7 @@ export class MiscellaneousService {
       this.networkRequest.postWithHeader(verificationData, '/api/verify_otp/')
         .subscribe(
           data => {
+            console.log("verified")
             observer.next(data['phone_number']);
             this.hideLoader();
           },

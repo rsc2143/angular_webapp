@@ -271,40 +271,28 @@ color: white;
   padding-bottom: 5px;
 }
 
+.form-div{
+  background-color:#efefef;
+  border-radius: 5px;
+  padding: 10px;
+  .inner-form-div{
 
-.upload-btn{
-  position: relative;
-  display: block;
-  border: 2px dotted #dae0ff ;
-  font-size: 20px;
-  border-radius:15px;
+    background-color: #fff;
+  }
+
+  .box{
+    border: 1px solid black;
+  }
+}
+
+.bg-white {
   background: #fff;
 }
 
-.file-upload__label {
-  display: block;
-  padding: 10px 0;
-  color: #4361ee;
-  text-align: center;
-  transition: background .3s;
-
-  i{
-      margin-right: 10px;
-  }
-
+.shadow {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
-.file-upload__label:hover {
-     cursor: pointer;
-
-  }
-
-.upload-btn input[type=file] {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  width: 100%;
-  z-index: 999999999;
-  cursor: pointer;
+.position-absolute {
+  position: absolute!important;
 }

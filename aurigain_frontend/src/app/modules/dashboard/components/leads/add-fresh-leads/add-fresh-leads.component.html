@@ -266,7 +266,7 @@
                                         <label for="inputTime">Time of Appointment</label>
                                         <input
                                         [class.is-invalid]="timeOfAppointment.invalid && timeOfAppointment.touched"
-                                        formControlName="timeOfAppointment" type="time" class="form-control" placeholder="">
+                                        formControlName="timeOfAppointment" type="time" class="form-control" >
 
                                         <div style="margin-left: 10px;" *ngIf="timeOfAppointment.invalid && timeOfAppointment.touched">
                                           <small *ngIf="timeOfAppointment.errors?.['required']" class="text-danger">Time is required</small>

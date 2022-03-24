@@ -29,20 +29,45 @@ export class AuthService {
     'access': this.cookie.get('_l_a_t')
   };
   BASE_URL = environment.BASE_URL;
-  login(data: any, api: any) {
-    return this.http.post(`${this.BASE_URL}${api}`, data, this.loginOptions)
+  // login(data: any, api: any) {
+  //   return this.http.post(`${this.BASE_URL}${api}`, data, this.loginOptions)
+  //     .pipe(
+  //       catchError(this.misc.handleError)
+  //     );
+  // }
+
+  // register(data: any, api: any) {
+  //   return this.http.post(`${this.BASE_URL}${api}`, data, this.loginOptions)
+  //     .pipe(
+  //       catchError(this.misc.handleError)
+  //     );
+  // }
+
+  getHeaderOption(): any {
+    const token = this.cookie.get('_l_a_t');
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+      }).set('Access-Control-Allow-Origin', '*')
+      .set("Access-Control-Expose-Headers", "*"),
+      // mode: 'no-cors'
+    };
+  }
+
+  login(data: any) {
+    return this.http.post(this.consts.loginApiUrl, data)
       .pipe(
         catchError(this.misc.handleError)
       );
   }
 
-  register(data: any, api: any) {
-    return this.http.post(`${this.BASE_URL}${api}`, data, this.loginOptions)
+  register(data: any) {
+    return this.http.post(this.consts.signupApiUrl, data)
       .pipe(
         catchError(this.misc.handleError)
       );
   }
-  
+
   // login(data: any) {
   //   console.log("Inside Login service")
   //   return this.http.post(this.consts.loginApiUrl, data)

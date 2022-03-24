@@ -16,7 +16,7 @@ export class ConstantsService {
     length: 10,
     otpLength: 6
   }
-  
+
   constructor() { }
   // loginApiUrl = `https://jsonplaceholder.typicode.com/`;
   loginApiUrl = `${environment.BASE_URL}/api/users/login/`;

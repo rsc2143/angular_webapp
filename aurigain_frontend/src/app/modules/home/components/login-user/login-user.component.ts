@@ -13,16 +13,16 @@ import { ConditionalExpr } from '@angular/compiler';
 })
 export class LoginUserComponent implements OnInit {
 
-  
+
   constructor(
     private formbuilder: FormBuilder,
-    private router: Router, 
+    private router: Router,
     private conts: ConstantsService,
     private authservice: AuthService,
     private loginservice: LoginService,
-    
+
     ) { }
-    
+
   isLoginForm:boolean= true;
   username: string;
   password: string;
@@ -33,7 +33,7 @@ export class LoginUserComponent implements OnInit {
   errors: any;
   signupForm: FormGroup;
   loginForm: FormGroup;
-  
+
 
   switchRegisterForm(){
     this.isLoginForm = false;
@@ -59,16 +59,19 @@ export class LoginUserComponent implements OnInit {
 
     const password = this.signupForm.value.password;
 
-   
+
+
+
     finalData = {
-      name: name,
+      fullname: name,
       email: email,
-      contactNumber: contactNumber,
+      username: name,
+      phonenumber: contactNumber,
       password: password,
     }
-    
+
     console.log("finalData ", finalData);
-    
+
 
     this.authservice.signup(finalData)
       .subscribe(
@@ -102,26 +105,26 @@ export class LoginUserComponent implements OnInit {
     else if(!password){
       this.errors = "Please enter a password"
     }
+
     if(username && password){
       const userObj = {
-        user: {
-          email: username,
-          password: password
-        }
+        email: username,
+        password: password
       };
 
       console.log(userObj);
-      this.authservice.login(JSON.stringify(userObj), '/api/users/login/')
+      // this.authservice.login(JSON.stringify(userObj), '/api/users/login/')
+      this.authservice.login(userObj)
       .subscribe(
         user=> {
-          console.log(user)
+          console.log("user", user);
           this.errors = '';
           console.log("login");
           this.successMsg = "Logged in successfully, loading...."
           this.loginservice.processLogin(user).subscribe();
           // localStorage.setItem('token', user['token']);
           // this.router.navigate(['/dashboard']);
-          
+
         },
         error => {
           console.log("errorsection", error);
@@ -132,7 +135,7 @@ export class LoginUserComponent implements OnInit {
       )
     }
   }
-  
+
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
       email: ['', Validators.required],

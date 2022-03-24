@@ -16,7 +16,7 @@
                 </ol>
                 </nav>
                 <h1>Role Mapping</h1>
-  
+
               </div>
               <!-- <a routerLink="../fresh-leads/add-update"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add Role</button></a> -->
             </div>
@@ -24,13 +24,13 @@
 
           <div class="m-3">
            <form [formGroup]="roleMappingForm" (ngSubmit)="submitRoleMapping()">
-               <div class="form-group col-md-4">
+               <!-- <div class="form-group col-md-4">
                    <label for="selectRole" class="h5">Select Role</label>
                    <select formControlName="selectRole" class="form-control" id="selectRole">
                        <option value="">Select Role</option>
                        <option *ngFor="let role of Roles; let i = index" [value]="role">{{role | titlecase}}</option>
                    </select>
-               </div>
+               </div> -->
                <div class="menuBox">
                 <div class="row">
                     <div class="col-md-5">
@@ -41,75 +41,75 @@
                     <div class="col-md-5">
                         <input class="form-check-input" type="checkbox" formControlName="dashboard" value="dashboard" id="dashboard">
                     </div>
-                </div> 
-               
+                </div>
+
                 <div class="row">
                     <div class="col-md-5">
                         <label class="form-check-label" for="leads">
                             Leads
-                            </label>    
+                            </label>
                     </div>
-                
+
                     <div class="col-md-5">
-                        <input class="form-check-input" type="checkbox" formControlName="leads" value="leads" id="leads">    
-                    </div>                       
-                </div> 
-                
+                        <input class="form-check-input" type="checkbox" formControlName="leads" value="leads" id="leads">
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-5">
                         <label class="form-check-label" for="master">Master
 
-                        </label> 
+                        </label>
                     </div>
                     <div class="col-md-5">
                         <input class="form-check-input " type="checkbox" formControlName="master" value="master" id="master">
                     </div>
-                    
-                    
-                </div> 
+
+
+                </div>
                 <div class="row">
                     <div class="col-md-5">
                         <label class="form-check-label " for="commission">
                             Commissions
-                            </label>    
+                            </label>
                     </div>
                     <div class="col-md-5">
                         <input class="form-check-input " type="checkbox" formControlName="commission" value="commission" id="commission">
                     </div>
-                    
-                    
-                </div> 
+
+
+                </div>
                <div class="row">
                     <div class="col-md-5">
                         <label class="form-check-label " for="employeeManagement">
                             Employee Management
-                            </label>     
+                            </label>
                     </div>
                     <div class="col-md-5">
                         <input class="form-check-input " type="checkbox" formControlName="employeeManagement" value="employeeManagement" id="employeeManagement">
                     </div>
-                    
-                    
-                </div> 
+
+
+                </div>
                <div class="row">
                 <div class="col-md-5">
                     <label class="form-check-label " for="customerManagement">
                         Customer Management
-                        </label>   
+                        </label>
                 </div>
                 <div class="col-md-5">
                     <input class="form-check-input " type="checkbox" formControlName="customerManagement" value="customerManagement" id="customerManagement">
                 </div>
-                    
-                    
-                </div> 
+
+
+                </div>
                </div>
-                
+
                <button type="submit" class="btn btn-primary mt-4 ml-5">Submit</button>
            </form>
           </div>
         </div>
       </div>
     </div>
-  
+
   </div>
