@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, Subscriber } from 'rxjs';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
@@ -16,29 +17,33 @@ import { UtilsService } from 'src/app/core/services/utils.service';
 })
 export class PartnerUsComponent implements OnInit {
 
-  count= 0;
+  count = 0;
+  pinCodeDetail;
   authenticationForm: FormGroup;
   isAuthenticationForm: boolean = true;
   isBasicDetailForm: boolean = false;
-  otp:number;
+  otp: number;
   sentOtpField: boolean = false;
   verifyOtpField: boolean = true;
   otpVerifiedSuccessfully: boolean = false;
-  partner:boolean = true;
+  partner: boolean = true;
   partnerForm: FormGroup;
   basicDetailForm: FormGroup;
   addressDetailForm: FormGroup;
   kycDetailForm: FormGroup;
   bankDetailForm: FormGroup;
   refrralDetailForm: FormGroup;
-  navText:string= "Partner Us"
-  currentStep:number = 1;
+  navText: string = "Partner Us"
+  currentStep: number = 1;
   registrationData;
   isOtpForm: boolean = false;
-  successForm:any = [];
+  successForm: any = [];
   formCompleted: boolean = false;
   qualificationList: any;
-
+  aadhar_front_image:File;
+  aadhar_back_image:File;
+  pan_image:File;
+  cancelled_cheque:File;
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
@@ -59,99 +64,103 @@ export class PartnerUsComponent implements OnInit {
   otpVerified: boolean = false;
   loaderActive = false;
 
-  get name(){
+  get name() {
     return this.authenticationForm.get('name');
   }
-  get phoneNumber1(){
+  get phoneNumber1() {
     return this.authenticationForm.get('phoneNumber1');
   }
-  get password(){
+  get password() {
     return this.authenticationForm.get('password');
   }
 
-  get fatherName(){
+  get fatherName() {
     return this.basicDetailForm.get('fatherName');
   }
-  get dob(){
+  get dob() {
     return this.basicDetailForm.get('dob');
   }
-  get email(){
+  get email() {
     return this.basicDetailForm.get('email');
   }
 
-  get gender(){
+  get gender() {
     return this.basicDetailForm.get('gender');
   }
 
-  get pinCode(){
+  get pinCode() {
     return this.addressDetailForm.get('pinCode');
   }
-  get addressLine1(){
+  get addressLine1() {
     return this.addressDetailForm.get('addressLine1');
   }
-  get addressLine2(){
+  get addressLine2() {
     return this.addressDetailForm.get('addressLine2');
   }
-  get city(){
+  get city() {
     return this.addressDetailForm.get('city');
   }
-  get state(){
+  get state() {
     return this.addressDetailForm.get('state');
   }
-  get district(){
+  get district() {
     return this.addressDetailForm.get('district');
   }
 
-  get qualification(){
+  get qualification() {
     return this.kycDetailForm.get('qualification');
   }
-  get panNumber(){
+  get panNumber() {
     return this.kycDetailForm.get('panNumber');
   }
-  get adhaarNumber(){
+  get adhaarNumber() {
     return this.kycDetailForm.get('adhaarNumber');
   }
-  get occupation(){
+  get occupation() {
     return this.kycDetailForm.get('occupation');
   }
 
 
 
-  get bankName(){
+  get bankName() {
     return this.bankDetailForm.get('bankName');
   }
-  get accountNumber(){
+  get branchName() {
+    return this.bankDetailForm.get('branchName');
+  }
+  get accountNumber() {
     return this.bankDetailForm.get('accountNumber');
   }
-  get ifscCode(){
+  get ifscCode() {
     return this.bankDetailForm.get('ifscCode');
   }
 
-  searchIFSC(){
-     const ifscCode = this.bankDetailForm.value.ifscCode;
-     if(ifscCode.length ==11){
+  searchIFSC() {
+    const ifscCode = this.bankDetailForm.value.ifscCode;
+    if (ifscCode.length == 11) {
       this.loginservice.searchBank(ifscCode)
-    .subscribe(
-      user => {
-        console.log("API is: ",user);
+        .subscribe(
+          user => {
+            console.log("API is: ", user);
 
-        this.bankDetailForm.patchValue({
-          bankName: user['BANK']
-        })
-      },
-      error => {
-        console.log("Cannot Find Bank")
-      }
-    )
-     }
+            this.bankDetailForm.patchValue({
+              bankName: user['BANK'],
+              branchName: user['BRANCH']
+            })
+          },
+          error => {
+            console.log("Cannot Find Bank")
+          }
+        )
+    }
   }
 
-  changeForm(){
+  changeForm() {
     this.partner = false;
     this.navText = "Become Agent"
   }
 
-  verifyOtp(){
+  verifyOtp() {
     if (!this.otp) {
       this.toastr.error("Please enter OTP", 'Error!', {
         timeOut: 4000,
@@ -184,22 +193,25 @@ export class PartnerUsComponent implements OnInit {
 
   searchDistrict() {
     const pinCode = this.addressDetailForm.value.pinCode;
-    this.networkRequest.getWithHeaders(`/api/districts/?pincode=${pinCode}`).subscribe(
-      data => {
-        this.districts = data;
-        console.log("districts", this.districts);
-      },
-      error => {
-        console.log("error", error);
-      }
-    );
+    // this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
+    //   data => {
+    //     this.districts = data;
+    //     console.log("districts", this.districts);
+    //   },
+    //   error => {
+    //     console.log("error", error);
+    //   }
+    // );
     this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
       data => {
-        this.selectedPinCode = data[0]['id'];
-        this.addressDetailForm.patchValue({
-          state: data[0]['state']
-        })
-        console.log("pincode details", data);
+        // console.log("pincode data is: ",data);
+        console.log("internal data is", data['data']);
+        this.pinCodeDetail = data['data'];
+        // this.selectedPinCode = data[0]['id'];
+        // this.addressDetailForm.patchValue({
+        //   state: data[0]['state']
+        // })
+        // console.log("pincode details", data);
       },
       error => {
         console.log("error", error);
@@ -207,133 +219,133 @@ export class PartnerUsComponent implements OnInit {
     );
   }
 
-
-
-  submitAgentForm(){
-
-  const name = this.authenticationForm.value.name;
-  const phoneNumber1 = this.authenticationForm.value.phoneNumber1;
-  const referralCode= this.authenticationForm.value.referralCode;
-  const password= this.authenticationForm.value.password;
-
-  const fatherName = this.basicDetailForm.value.fatherName;
-  const dob = this.basicDetailForm.value.dob;
-  const gender = this.basicDetailForm.value.gender;
-  const email = this.basicDetailForm.value.email;
-
-  const addressLine1 = this.addressDetailForm.value.addressLine1;
-  const addressLine2 = this.addressDetailForm.value.addressLine2;
-  const pinCode = this.addressDetailForm.value.pinCode;
-  const district = this.addressDetailForm.value.district;
-  const state = this.addressDetailForm.value.state;
-
-  const qualification = this.kycDetailForm.value.qualification;
-  const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
-  const panNumber = this.kycDetailForm.value.panNumber;
-  const occupation = this.kycDetailForm.value.occupation;
-
-  const bankName = this.bankDetailForm.value.bankName;
-  const accountNumber = this.bankDetailForm.value.accountNumber;
-  const ifscCode= this.bankDetailForm.value.ifscCode;
-
-const userObj = {
-  basic_details: {
-    fullname: name,
-    phonenumber: phoneNumber1,
-    referral_code: referralCode,
-    password : password,
-    fatherName: fatherName,
-    dob: dob,
-    gender: gender,
-    email: email
-  },
-  kyc: {
-      aadhar_number: adhaarNumber,
-      occupation: occupation,
-      pan_number: panNumber,
-      qualification:qualification,
-      aadhar_front_image_url: "124",
-      aadhar_back_image_url: "124",
-      pan_image_url: "1234"
-  },
-  address: {
-      address_line1: addressLine1,
-      address_line2: addressLine2,
-      pincode_id: pinCode,
-      district: district,
-      state: state,
-  },
-  bank_details: {
-      account_number: accountNumber,
-      bankName: bankName,
-      ifsc_code: ifscCode,
-      cancelled_cheque_url: "abc.com"
-  },
-
-}
-  // const city = this.addressDetailForm.value.city;
-
-  //Addition made by Rohit - Start
-  // const userObj = {
-  //     phonenumber: phoneNumber1,
-  //     fullname: name,
-  //     password: password,
-  // };
-
-  if (name && phoneNumber1) {
-    this.auth.register(userObj).subscribe(
-      user => {
-        console.log("user", user);
-        // if (user) {
-        //   this.isAuthenticationForm = false;
-        //   this.isOtpForm = true;
-        //   // this.bt.openModal('otp', user);
-        //   this.registrationData = user;
-        //   this.misc.sendOtp(phoneNumber1).subscribe();
-        //   // if (!this.signupAsStudent) {
-        //     this.cookie.set('_l_a_t', this.registrationData['token'], this.conts.LOGIN_EXPIRY_TIME, '/');
-
-        //     // this.loginservice.processLogin(user).subscribe(() => {
-        //     // });
-        //     const userData = {
-        //       user_group: 'agent',
-        //       shareReferralCode: referralCode
-        //     }
-        //     const decoded_token = this.utils.decodeToken(this.registrationData['token']);
-        //     console.log("decoded_token ", decoded_token);
-        //     const user_id = decoded_token['id'];
-        //     // const user_id = this.registrationData['id'];
-        //   //   this.updateKYCDetails(user_id);
-        //   //   this.updateBankDetails(user_id);
-        //   //   this.upadateProfileImage(user_id);
-        //   //   // setTimeout(() => {
-        //   //   this.updateProfile();
-        //   //   // }, 1200);
-        //   //   this.networkRequest.putWithoutHeaders(userData, `/api/profile/usergroup/${user_id}/`)
-        //   //   .subscribe(
-        //   //     data => {
-        //   //       console.log("role updated ", data);
-        //   //     },
-        //   //     error => {
-        //   //     });
-        //   //     this.loginservice.processLogin(user).subscribe();
-        //   // // }
-        //   // // this.sendOTPRegister();
-        // }
-      },
-      error => {
-        // this.misc.hideLoader()
-        const emailError = error.message['email'];
-        const phoneError = error.message['phonenumber'];
-
-        this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
-        this.toastr.error(this.errors, 'Error!', {
-          timeOut: 4000,
-        });
-      }
-    );
+  onChange(event, id) {
+    const file = (event.target as HTMLInputElement).files[0];
+    console.log(file);
+    this.convertToBase64(id, file);
   }
-  //Addition made by Rohit - end
+
+  convertToBase64(id, file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe((d) => {
+      console.log("Image Url", d);
+      if (id=== 'aadhar_front_image') {
+        this.aadhar_front_image = d;
+      }
+      else if (id==='aadhar_back_image') {
+        this.aadhar_back_image = d;
+      }
+      else if (id==='pan_image') {
+        this.pan_image = d;
+      }
+      else if (id==='cancelled_cheque') {
+        this.cancelled_cheque = d;
+      }
+
+
+    });
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const filereader = new FileReader();
+    filereader.readAsDataURL(file);
+
+    filereader.onload = () => {
+      subscriber.next(filereader.result);
+      subscriber.complete();
+    };
+    filereader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
+  }
+
+  submitAgentForm() {
+
+    const name = this.authenticationForm.value.name;
+    const phoneNumber1 = this.authenticationForm.value.phoneNumber1;
+    const referralCode = this.authenticationForm.value.referralCode;
+    const password = this.authenticationForm.value.password;
+
+    const fatherName = this.basicDetailForm.value.fatherName;
+    const dob = this.basicDetailForm.value.dob;
+    const gender = this.basicDetailForm.value.gender;
+    const email = this.basicDetailForm.value.email;
+
+    const addressLine1 = this.addressDetailForm.value.addressLine1;
+    const addressLine2 = this.addressDetailForm.value.addressLine2;
+    const pinCode = this.pinCodeDetail[0]['id'];
+    const district = this.addressDetailForm.value.district;
+    const state = this.addressDetailForm.value.state;
+
+    const qualification = this.kycDetailForm.value.qualification;
+    const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
+    const panNumber = this.kycDetailForm.value.panNumber;
+    const occupation = this.kycDetailForm.value.occupation;
+
+    const bankName = this.bankDetailForm.value.bankName;
+    const accountNumber = this.bankDetailForm.value.accountNumber;
+    const ifscCode = this.bankDetailForm.value.ifscCode;
+    const branchName = this.bankDetailForm.value.branchName;
+
+    const userObj = {
+      basic_details: {
+        first_name: name,
+        last_name: name,
+        phonenumber: phoneNumber1,
+        referral_code: referralCode,
+        password: password,
+        father_name: fatherName,
+        dob: dob,
+        gender: gender,
+        email: email
+      },
+      kyc: {
+        aadhar_number: adhaarNumber,
+        occupation: occupation,
+        pan_number: panNumber,
+        qualification_id: qualification,
+        aadhar_front_image: this.aadhar_front_image,
+        aadhar_back_image: this.aadhar_back_image,
+        pan_image: this.pan_image
+      },
+      address: {
+        address_line1: addressLine1,
+        address_line2: addressLine2,
+        pincode_id: pinCode,
+        district: district,
+        state: state,
+      },
+      bank_details: {
+        id: 1,
+        account_number: accountNumber,
+        bank_name: bankName,
+        branch_name: branchName,
+        ifsc_code: ifscCode,
+        cancelled_cheque: this.cancelled_cheque
+      },
+    }
+
+    console.log(userObj);
+
+    if (name && phoneNumber1) {
+      this.auth.register(userObj).subscribe(
+        user => {
+          console.log("user", user);
+        },
+        error => {
+          const emailError = error.message['email'];
+          const phoneError = error.message['phonenumber'];
+
+          this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
+          this.toastr.error(this.errors, 'Error!', {
+            timeOut: 4000,
+          });
+        }
+      );
+    }
   }
 
   updateProfile() {
@@ -350,7 +362,7 @@ const userObj = {
         }
 
       }
-      lastName = fullname[fullname.length -1];
+      lastName = fullname[fullname.length - 1];
     }
     else {
       firstName = fullname[0];
@@ -396,7 +408,7 @@ const userObj = {
   updateBankDetails(userid) {
     const bankName = this.bankDetailForm.value.bankName;
     const accountNumber = this.bankDetailForm.value.accountNumber;
-    const ifscCode= this.bankDetailForm.value.ifscCode;
+    const ifscCode = this.bankDetailForm.value.ifscCode;
     const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
     const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
     let cheque: File;
@@ -442,21 +454,21 @@ const userObj = {
     formData.append("aadhar_front_image", aadharfront);
     formData.append("aadhar_back_image", aadharback);
     formData.append("pan_image", panimg);
-      this.networkRequest.postFormData(formData, '/api/userkyc/').subscribe(
-        user => {
-          console.log("userkyc", user);
-        },
-        error => {
-          // this.misc.hideLoader()
-          const emailError = error.message['email'];
-          const phoneError = error.message['phonenumber'];
+    this.networkRequest.postFormData(formData, '/api/userkyc/').subscribe(
+      user => {
+        console.log("userkyc", user);
+      },
+      error => {
+        // this.misc.hideLoader()
+        const emailError = error.message['email'];
+        const phoneError = error.message['phonenumber'];
 
-          this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
-          this.toastr.error(this.errors, 'Error!', {
-            timeOut: 4000,
-          });
-        }
-      );
+        this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
+        this.toastr.error(this.errors, 'Error!', {
+          timeOut: 4000,
+        });
+      }
+    );
   }
 
   upadateProfileImage(userid) {
@@ -484,37 +496,25 @@ const userObj = {
     this.currentStep = i;
   }
 
-  stepUp(nextStep){
+  stepUp(nextStep) {
     this.successForm.push(nextStep);
     console.log(this.successForm);
     this.currentStep += 1;
   }
-  submitAuthenticationForm(){
-    // const name = this.authenticationForm.value.name;
-    // const referralCode = this.authenticationForm.value.referralCode;
-    // const password = this.authenticationForm.value.password;
-    const phoneNumber = this.authenticationForm.value.phoneNumber1;
+  submitAuthenticationForm() {
 
-    let formData= {
-      // name: name,
-      phonenumber: phoneNumber,
-      // referralCode: referralCode,
-      // password: password
-    }
-    console.log(formData);
+    console.log("submit authentication form")
+    const phoneNumber = this.authenticationForm.value.phoneNumber1;
 
     this.misc.sendOtp(phoneNumber).subscribe(
       data => {
         this.isAuthenticationForm = false;
         this.isOtpForm = true;
-    });
-    // this.sendOTP(phoneNumber);
+      });
   }
 
-  sendOTP(phoneNumber){
-    console.log(phoneNumber);
-    this.sentOtpField = true;
-    this.verifyOtpField = false
+  sendOTP(phoneNumber) {
+    this.misc.sendOtp(phoneNumber).subscribe()
   }
 
   getStates() {
@@ -590,6 +590,7 @@ const userObj = {
 
     this.bankDetailForm = this.formbuilder.group({
       bankName: ['', [Validators.required,]],
+      branchName: ['', [Validators.required,]],
       accountNumber: ['', [Validators.required,]],
       ifscCode: ['', [Validators.required,]],
       // nameOfNominee: ['', [Validators.required]],

@@ -42,7 +42,7 @@ export class NetworkRequestService {
 
 
   getWithHeaders(api: any) {
-    return this.http.get(`${this.BASE_URL}${api}`, this.httpOptions)
+    return this.http.get(`${this.BASE_URL}${api}`)
       .pipe(map(res => res),
         catchError(this.handleError));
   }

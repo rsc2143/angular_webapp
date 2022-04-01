@@ -14,7 +14,14 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
 
   currentUserId: number;
 
+  photoChecker;
+  photoRemark = "";
+  nameRemark = "";
+  addressChecker;
+  addressRemark = "";
+ nameRe = "";
 
+ nameChecker
   image = {
     url: ['https://www.w3schools.com/css/img_forest.jpg', 'https://www.w3schools.com/css/img_5terre.jpg', 'https://www.w3schools.com/css/img_lights.jpg', 'https://www.w3schools.com/css/img_lights.jpg']
   }

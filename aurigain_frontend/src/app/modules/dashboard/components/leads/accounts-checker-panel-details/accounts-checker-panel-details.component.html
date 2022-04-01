@@ -107,10 +107,10 @@
                   <div class="col-md-6 text-center pl-4">
                     <strong class="pr-5">Status</strong>
                   <label  class="radio-inline pr-5">
-                    <input type="radio" value="ok" name="status" [(ngModel)]="status" checked>Ok
+                    <input type="radio" class="mr-2" value="ok" name="status" [(ngModel)]="status" checked >Ok
                   </label>
                   <label  class="radio-inline pr-5">
-                    <input type="radio" value="ok" name="status" [(ngModel)]="status">Not Ok
+                    <input type="radio" class="mr-2" value="not ok" name="status" [(ngModel)]="status">Not Ok
                   </label>
                   </div>
                   <div class="col-md-3 text-center">
@@ -120,8 +120,8 @@
               </div>
             </div>
             <div class="mt-5 text-center">
-              <button class="btn btn-primary mr-4">Save & Submit</button>
-              <button class="btn btn-outline-primary">Cancel</button>
+              <a routerLink="../../"><button class="btn btn-primary mr-4">Save & Submit</button></a>
+              <a  routerLink="../../"><button class="btn btn-outline-primary">Cancel</button></a>
             </div>
           </div>
       </div>

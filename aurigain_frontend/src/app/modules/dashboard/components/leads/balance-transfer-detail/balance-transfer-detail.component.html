@@ -307,117 +307,47 @@
                     </div>
                 </div>
                 <div class="mt-5 box">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="box2">
-                            <h5>
-                                <!-- <img src="" alt="personal"> -->
-                                Document Details
-                            </h5>
-                        </div>
-                        <div class="bottom-box">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="">Customer Photo</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Blank Cheque 1</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="">Blank Cheque 2</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">KYC Document (POI)</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="">KYC Document (POA)</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Loan Document</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="">Foreclosure Letter</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">ATM withdrawal slip</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="">Promissory Note</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Last page of the Agreement</label>
-                                    <a href="javascript:void(0);">
-                                        <div class="small-media-items-img">
-                                            <img src="http://api.allaboutitdemo.co.in/Content/UserFiles/LeadsDocs/BTGoldLoan/10031/Customer.png" alt="">
-                                        </div>
-                                        <i class="fas fa-link bottom-icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="box2">
+                          <h5>
+                              <!-- <img src="" alt="personal"> -->
+                              Document Details
+                          </h5>
+                      </div>
+
+                      <div class="bottom-box">
+                          <div class="row">
+                              <div class="form-group col-md-2" *ngFor="let img of image?.url">
+                                  <!-- <label for="">Customer Photo</label> -->
+                                  <a href="javascript:void(0);">
+                                      <div class="small-media-items-img">
+                                          <a (click)="previewImage(img)">
+                                            <img [src]="img" alt="" title="img"/>
+                                          </a>
+                                      </div>
+                                      <i class="fas fa-link bottom-icon"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
+              <div class="mt-5 box" *ngIf="isImagePreview">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="box2">
+                          <h5>
+                              <!-- <img src="" alt="personal"> -->
+                              Document Preview
+                          </h5>
+                      </div>
+                      <div class="float-right"><a (click)="closePreview()"><button class="btn btn-danger">Close</button></a></div>
+                      <div class="bottom-box">
+                          <div class="row">
+                              <img [src]="previewImg" width="500" height="500">
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
     </div>

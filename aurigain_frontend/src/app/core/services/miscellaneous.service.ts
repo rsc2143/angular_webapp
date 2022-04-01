@@ -1,10 +1,13 @@
 import { LocationStrategy } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { ConstantsService } from 'src/app/config/constants.service';
+import { ErrorHandlerService } from '../http/error-handler.service';
 import { NetworkRequestService } from './network-request.service';
 
 @Injectable({
@@ -17,8 +20,23 @@ export class MiscellaneousService {
     private cookie: CookieService,
     private locationStrategy: LocationStrategy,
     private networkRequest: NetworkRequestService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private consts: ConstantsService,
+    private http: HttpClient,
+    private errorHandler: ErrorHandlerService,
   ) {
+  }
+
+
+  getHeaderOption(): any {
+    const token = this.cookie.get('_l_a_t');
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+      }).set('Access-Control-Allow-Origin', '*')
+      .set("Access-Control-Expose-Headers", "*"),
+      // mode: 'no-cors'
+    };
   }
 
   showMobileSidebar: Subject<boolean> = new Subject<boolean>();
@@ -67,7 +85,7 @@ export class MiscellaneousService {
 
     return new Observable(observer => {
       this.showLoader('short');
-      this.networkRequest.postWithHeader(JSON.stringify({ phone_number: phonenumber }), '/api/send_otp/')
+      this.networkRequest.postWithHeader(JSON.stringify({ phone_number: phonenumber }), '/api/otp/')
         .subscribe(
           data => {
             console.log("otp sent", data);
@@ -83,6 +101,32 @@ export class MiscellaneousService {
   }
 
 
+  fetchAgents() {
+
+    return this.http.get(this.consts.apiAgent, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchAgentsDetail(id) {
+    return this.http.get(`${this.consts.apiAgent}${id}/`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  agentApproval(id) {
+    return this.http.post(`${this.consts.apiAgent}${id}/approve/`, id)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   verifyOtp(otp, phonenumber) {
 
     /*
@@ -96,7 +140,7 @@ export class MiscellaneousService {
       this.showLoader('short');
 
       const verificationData = JSON.stringify({ otp: otp, phone_number: phonenumber });
-      this.networkRequest.postWithHeader(verificationData, '/api/verify_otp/')
+      this.networkRequest.postWithHeader(verificationData, '/api/otp/verify/')
         .subscribe(
           data => {
             console.log("verified")

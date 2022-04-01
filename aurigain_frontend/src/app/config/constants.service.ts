@@ -18,9 +18,11 @@ export class ConstantsService {
   }
 
   constructor() { }
-  // loginApiUrl = `https://jsonplaceholder.typicode.com/`;
-  loginApiUrl = `${environment.BASE_URL}/api/users/login/`;
+
+  // loginApiUrl = `${environment.BASE_URL}/api/users/login/`;
+  loginApiUrl = `${environment.BASE_URL}/api/token/`;
   signupApiUrl = `${environment.BASE_URL}/api/users/register/`;
+  apiAgent = `${environment.BASE_URL}/api/agent/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   resetPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   getUpdateProfileUrl = `${environment.BASE_URL}/api/profile/`;

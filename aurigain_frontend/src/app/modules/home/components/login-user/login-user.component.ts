@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/core/authentication/auth.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { ConditionalExpr } from '@angular/compiler';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login-user',
   templateUrl: './login-user.component.html',
@@ -20,7 +20,7 @@ export class LoginUserComponent implements OnInit {
     private conts: ConstantsService,
     private authservice: AuthService,
     private loginservice: LoginService,
-
+    private toastr: ToastrService
     ) { }
 
   isLoginForm:boolean= true;
@@ -56,11 +56,7 @@ export class LoginUserComponent implements OnInit {
     const name = this.signupForm.value.name;
     const email = this.signupForm.value.email;
     const contactNumber = this.signupForm.value.contactNumber;
-
     const password = this.signupForm.value.password;
-
-
-
 
     finalData = {
       fullname: name,
@@ -78,14 +74,23 @@ export class LoginUserComponent implements OnInit {
         user => {
           console.log(user, "student add")
           localStorage.setItem('token', user['token']);
+          this.toastr.success("SignUp Successfully", "Success", {
+            timeOut: 4000,
+          });
           this.switchToLoginForm();
         },
         error => {
           console.log("Error section")
           this.errors = error['message']['error']['message'];
+          // this.toastr.error(this.errors, "Error", {
+          //   timeOut: 4000,
+          // });
           console.log(this.errors);
           if (this.errors == 'Duplicate Field Value Entered'){
             this.errors = 'Phonenumber already exist'
+            this.toastr.error(this.errors, "Error", {
+              timeOut: 4000,
+            });
           }
         }
       );
@@ -121,15 +126,21 @@ export class LoginUserComponent implements OnInit {
           this.errors = '';
           console.log("login");
           this.successMsg = "Logged in successfully, loading...."
+          this.toastr.success(this.successMsg, "Sucess", {
+            timeOut: 4000,
+          });
           this.loginservice.processLogin(user).subscribe();
           // localStorage.setItem('token', user['token']);
-          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']);
 
         },
         error => {
           console.log("errorsection", error);
           this.successMsg = '';
           this.errors = error['message'];
+          this.toastr.error(this.errors, "Error", {
+            timeOut: 4000,
+          });
           console.log(error, "aa ", error['message']);
         }
       )

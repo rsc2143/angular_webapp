@@ -108,6 +108,51 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-4 box">
+                      <div class="mt-4 text-center">Father's Name</div>
+                    </div>
+
+                    <div class="col-md-4 box">
+                      <div class="my-3 text-center">
+                        Father's Name will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 box">
+                      <div class="mt-4 text-center">Mobile Number</div>
+                    </div>
+
+
+                    <div class="col-md-4 box">
+                      <div class="my-3 text-center">
+                        Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 box">
+                      <div class="mt-4 text-center">Gender</div>
+                    </div>
+
+                    <div class="col-md-4 box">
+                      <div class="my-3 text-center">
+                        Gender will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 box">
+                      <div class="mt-4 text-center">Alternate Mobile Number</div>
+                    </div>
+
+                    <div class="col-md-4 box">
+                      <div class="my-3 text-center">
+                        Alternate Mobile Number will come here...
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Next</button>
@@ -117,7 +162,62 @@
               <div class="my-4"><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 2, 'fa-plus': currentStep !==2}"></i> Existing LoanDetail</h5></div>
               <div class="form-div p-4" *ngIf="currentStep === 2">
                 <div class="container inner-form-div">
+                     <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Outstanding amount</div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Outstanding amount will come here...
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Bank or NBFC name</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Bank or NBFC name will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">If bank, branch name</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        If bank, branch name will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Latest Loan account number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Latest Loan account number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Age of latest loan in number of months</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Age of latest loan in number of months
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row">
                     <div class="col-md-4">
                       <div class="mt-4 text-center">Name</div>
                     </div>
@@ -186,7 +286,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Next</button>
@@ -197,75 +297,158 @@
               <div class="form-div p-4" *ngIf="currentStep === 3">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Name</div>
+                    <div class="col-md-2 box">
+
+                      <div class="mt-4 text-center">Transffered to</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Transffered to </div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="row p-1">
-                        <div class="col-md-6 text-center">
-                          <p>OK</p>
+                    <div class="col-md-4 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                            </label>
+
+                          </div>
                         </div>
-                        <div class="text-center col-md-6">
-                          <button class="btn btn-primary" data-toggle="modal" aria-label="screens" data-target="#comment" >View Comment</button>
+                        <div class="text-center">
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Address</div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Loan account number</div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Loan account number</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="row p-1">
-                        <div class="col-md-6 text-center">
-                          <p>OK</p>
+                    <div class="col-md-4 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
+                            </label>
+                          </div>
                         </div>
-                        <div class="text-center col-md-6">
-                          <button class="btn btn-primary" data-toggle="modal" aria-label="screens" data-target="#comment" >View Comment</button>
+                        <div class="text-center">
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2 box">
                       <div class="mt-4 text-center">Customer Photo</div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
-                        </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="row p-1">
-                        <div class="col-md-6 text-center">
-                          <p>OK</p>
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
                         </div>
-                        <div class="text-center col-md-6">
-                          <button class="btn btn-primary" data-toggle="modal" aria-label="screens" data-target="#comment" >View Comment</button>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Account number</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Account number will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">IFS code</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        IFS code will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Gold Rates Button
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Gold Rates button will come here...
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Aurigain contribution </div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Aurigain contribution will come here...
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="text-center mt-2">
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Next</button>
@@ -355,72 +538,140 @@
               <div class="form-div p-4" *ngIf="currentStep === 5">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Name</div>
+                    <div class="col-md-2 box">
+
+                      <div class="mt-4 text-center">Bank IFS code</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Bank IFS code</div>
+                    </div>
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                        <button class="form-div w-100">
-                          POI
-                        </button>
-                        </a>
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="row p-1">
-                        <div class="col-md-6 text-center">
-                          <p>OK</p>
+                    <div class="col-md-4 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                            </label>
+
+                          </div>
                         </div>
-                        <div class="text-center col-md-6">
-                          <button class="btn btn-primary" data-toggle="modal" aria-label="screens" data-target="#comment" >View Comment</button>
+                        <div class="text-center">
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Bank branch name </div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Bank branch name </div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-4 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
+                            </label>
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Bank branch address</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">Bank branch address
+                      </div>
+                    </div>
+
+                    <div class="col-md-7 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Address</div>
+                    <div class="col-md-2 box">
+
+
+                      <div class="mt-4 text-center">Bank name </div>
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-3 box">
                       <div class="my-3 text-center">
-                        <a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <button class="form-div w-100">
-                          POA
-                        </button>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="row p-1">
-                        <div class="col-md-6 text-center">
-                          <p>OK</p>
-                        </div>
-                        <div class="text-center col-md-6">
-                          <button class="btn btn-primary" data-toggle="modal" aria-label="screens" data-target="#comment" >View Comment</button>
-                        </div>
+                        Bank name  will come here...
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
-                      <div class="mt-4 text-center">Customer Photo</div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="my-3">
-                        <div class="form-div text-center">
-                          <img src="https://thispersondoesnotexist.com/image" width="150" height="150">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Appointment time
                         </div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Appointment time will come here...
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="row p-1">
-                        <div class="col-md-6 text-center">
-                          <p>OK</p>
-                        </div>
-                        <div class="text-center col-md-6">
-                          <button class="btn btn-primary" data-toggle="modal" aria-label="screens" data-target="#comment" >View Comment</button>
-                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Appointment date</div>
+                    </div>
+
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+                        Appointment date will come here...
                       </div>
                     </div>
                   </div>
