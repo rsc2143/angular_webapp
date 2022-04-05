@@ -38,23 +38,23 @@
                               <tbody class="table-custom">
                                   <tr>
                                       <td><strong>Name</strong></td>
-                                      <td>{{agentDetails?.first_name}} {{agentDetails?.last_name}}</td>
+                                      <td>{{agentDetails?.profile?.first_name}} {{agentDetails?.profile?.last_name}}</td>
                                   </tr>
-                                  <!-- <tr>
+                                  <tr>
                                       <td><strong>Mobile Number</strong></td>
-                                      <td>{{agentDetails.phonenumber}}</td>
+                                      <td>{{agentDetails?.phonenumber}}</td>
                                   </tr>
                                   <tr>
                                       <td><strong>Address</strong></td>
                                       <td>{{agentDetails.address}}</td>
-                                  </tr> -->
+                                  </tr>
                                   <tr>
                                       <td><strong>Qualification</strong></td>
                                       <td>12th</td>
                                   </tr>
                                   <tr>
                                       <td><strong>Date of Birth:</strong></td>
-                                      <td>12:00 AM</td>
+                                      <td>{{agentDetails?.profile?.dob | date: 'medium'}}</td>
                                   </tr>
                                   <tr>
                                       <td><strong>Current Occupation</strong></td>

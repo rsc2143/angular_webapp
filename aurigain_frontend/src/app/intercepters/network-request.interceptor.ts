@@ -17,7 +17,7 @@ export class NetworkRequestInterceptor implements HttpInterceptor {
         if (this.cookie.get('_l_a_t')) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: `Token ${this.cookie.get('_l_a_t')}`
+                    Authorization: `Bearer ${this.cookie.get('_l_a_t')}`
                 }
             });
         }
